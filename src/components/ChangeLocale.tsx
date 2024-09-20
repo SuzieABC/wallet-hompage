@@ -1,32 +1,57 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import {
-  useParams,
+  /* useParams, */
   useRouter,
   useSelectedLayoutSegments,
 } from "next/navigation";
+import worldIcon from "@/assets/icons/world_icon.png";
+import Image from "next/image";
 
 const ChangeLocale = () => {
   const router = useRouter();
-  const params = useParams();
+  /* const params = useParams(); */
   const urlSegments = useSelectedLayoutSegments();
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // 드롭다운 열림 여부 상태
 
-  const handleLocaleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const newLocale = event.target.value;
-
-    // This is used by the Header component which is used in `app/[locale]/layout.tsx` file,
-    // urlSegments will contain the segments after the locale.
-    // We replace the URL with the new locale and the rest of the segments.
+  const handleLocaleChange = (newLocale: string) => {
+    // 언어 변경 후 드롭다운 닫기
+    setIsDropdownOpen(false);
     router.push(`/${newLocale}/${urlSegments.join("/")}`);
   };
 
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen); // 드롭다운 열기/닫기
+  };
+
   return (
-    <div className="test-change-locale">
-      <select onChange={handleLocaleChange} value={params.locale}>
-        <option value="ko">🇰🇷 한국어</option>
-        <option value="en">🇺🇸 English</option>
-      </select>
+    <div className="px-5 relative">
+      {/* 공 모양 이미지 버튼 */}
+      <Image
+        src={worldIcon} // 원하는 공 모양 이미지 경로로 수정
+        alt=""
+        className="w-[24px] h-[24px] cursor-pointer"
+        onClick={toggleDropdown}
+      />
+
+      {/* 드롭다운 메뉴 */}
+      {isDropdownOpen && (
+        <div className="absolute top-10 left-0 bg-white border border-solid border-[#ccc] rounded-[5px] shadow-[0px 4px 8px rgba(0, 0, 0, 0.1)] z-10 cursor-pointer">
+          <div
+            className="px-4 py-2 cursor-pointer"
+            onClick={() => handleLocaleChange("ko")}
+          >
+            <span className="text-black text-[14px]">한국어</span>
+          </div>
+          <div
+            className="px-4 py-2 cursor-pointer"
+            onClick={() => handleLocaleChange("en")}
+          >
+            <span className="text-black text-[14px]">English</span>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
