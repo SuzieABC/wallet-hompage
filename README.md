@@ -82,4 +82,11 @@ Initialized a git repository.
 
 Success! Created homepage at /Users/bryan/Workspace/homepage
 
-##
+## globals css
+
+MOVE globals.css from src/app/ to src/styles/
+EDIT layout.tsx in src/app/
+
+## i18next package
+
+npm i i18next react-i18next i18next-resources-to-backend i18next-browser-languagedetector
