@@ -1,42 +1,35 @@
-// middleware.ts
 import { NextResponse, NextRequest } from "next/server";
 import { fallbackLng, locales } from "@/utils/localization/settings";
 
-export function middleware(request: NextRequest) {
-  // Check if there is any supported locale in the pathname
+export function middleware(request: NextRequest) {  
   const pathname = request.nextUrl.pathname;
 
+  // Paths to redirect to the root URL
+  const pathsToRootRedirect = [`/${fallbackLng}`, '/products'];
+
+  // Redirect to root if the current pathname matches any path
+  if (pathsToRootRedirect.includes(pathname) || pathname === `/${fallbackLng}/`) {
+    return NextResponse.redirect(new URL('/', request.url));
+  }
+
+  // Redirect /en/products to /en
+  if (locales.some(locale => pathname === `/${locale}/products`)) {
+    const locale = pathname.split('/')[1];
+    return NextResponse.redirect(new URL(`/${locale}`, request.url));
+  }
+
   // Check if the default locale is in the pathname
-  if (
-    pathname.startsWith(`/${fallbackLng}/`) ||
-    pathname === `/${fallbackLng}`
-  ) {
-    // e.g. incoming request is /en/about
-    // The new URL is now /about
+  if (pathname.startsWith(`/${fallbackLng}`)) {
     return NextResponse.redirect(
-      new URL(
-        pathname.replace(
-          `/${fallbackLng}`,
-          pathname === `/${fallbackLng}` ? "/" : ""
-        ),
-        request.url
-      )
+      new URL(pathname.replace(`/${fallbackLng}`, pathname === `/${fallbackLng}` ? "/" : ""), request.url)
     );
   }
 
-  const pathnameIsMissingLocale = locales.every(
-    (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
-  );
+  // Check if the pathname is missing any locale
+  const pathnameIsMissingLocale = !locales.some(locale => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`);
 
   if (pathnameIsMissingLocale) {
-    // We are on the default locale
-    // Rewrite so Next.js understands
-
-    // e.g. incoming request is /about
-    // Tell Next.js it should pretend it's /en/about
-    return NextResponse.rewrite(
-      new URL(`/${fallbackLng}${pathname}`, request.url)
-    );
+    return NextResponse.rewrite(new URL(`/${fallbackLng}${pathname}`, request.url));
   }
 }
 
