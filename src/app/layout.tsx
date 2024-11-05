@@ -1,17 +1,21 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
-import "@/styles/globals.css";
 
-const geistSans = localFont({
-  src: "./../assets/fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./../assets/fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+import {
+  geistSans,
+  geistMono,
+  pretendard,
+  pretendardLight,
+  pretendardRegular,
+  pretendardMedium,
+  pretendardSemibold,
+  pretendardBold,
+  pretendardExtrabold,
+  archivoMedium,
+  archivoSemibold,
+  archivoBold,
+  outfitExtrabold,
+} from "@/styles/fonts";
+import "@/styles/globals.css";
 
 /* TODO */
 export const metadata: Metadata = {
@@ -28,7 +32,21 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black`}
+        className={`
+          ${geistSans.variable} 
+          ${geistMono.variable} 
+          ${pretendard.variable} 
+          ${pretendardLight.variable} 
+          ${pretendardRegular.variable}
+          ${pretendardMedium.variable}
+          ${pretendardSemibold.variable}
+          ${pretendardBold.variable}
+          ${pretendardExtrabold.variable}
+          ${archivoMedium.variable}
+          ${archivoSemibold.variable}
+          ${archivoBold.variable}
+          ${outfitExtrabold.variable}
+          antialiased bg-white`}
       >
         {children}
       </body>
