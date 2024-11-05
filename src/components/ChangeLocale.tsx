@@ -30,7 +30,7 @@ const ChangeLocale = () => {
       {/* 공 모양 이미지 버튼 */}
       <Image
         src={worldIcon} // 원하는 공 모양 이미지 경로로 수정
-        alt=""
+        alt="world icon"
         className="w-[24px] h-[24px] cursor-pointer"
         onClick={toggleDropdown}
       />
