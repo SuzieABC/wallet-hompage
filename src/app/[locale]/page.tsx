@@ -33,9 +33,11 @@ export default async function Page({
         subtitle_1={t("top.subtitle_1")}
         subtitle_2={t("top.subtitle_2")}
         subtitle_3={t("top.subtitle_3")}
+        detail={t("top.detail")}
       />
       <FirstIntro
         title={t("intro_1.intro_1_title")}
+        title_2={t("intro_1.intro_1_title_2")}
         content={t("intro_1.intro_1_content")}
         card_1_title={t("intro_1.card_1_title")}
         card_1_content={t("intro_1.card_1_content")}
@@ -58,6 +60,7 @@ export default async function Page({
       />
       <ThirdIntro
         title={t("intro_3.intro_3_title")}
+        title_2={t("intro_3.intro_3_title_2")}
         content={t("intro_3.intro_3_content")}
         card_1_title={t("intro_3.card_1_title")}
         card_1_content={t("intro_3.card_1_content")}
