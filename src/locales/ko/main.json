@@ -3,10 +3,12 @@
     "title": "ABC Wallet",
     "subtitle_1": "안전한",
     "subtitle_2": "Web3",
-    "subtitle_3": "지갑"
+    "subtitle_3": "지갑",
+    "detail" : "ABC Wallet 안전한 Web3 지갑 ABC Wallet 안전한 Web3 지갑ABC Wallet 안전한 Web3 지갑"
   },
   "intro_1": {
-    "intro_1_title": "키 관리 없이 간편하게",
+    "intro_1_title": "키 관리 없이",
+    "intro_1_title_2": "간편하게",
     "intro_1_content": "자산을 관리해 보세요",
     "card_1_title": "소셜 로그인으로",
     "card_1_content": "즉시 지갑이 생성됩니다.",
@@ -29,6 +31,7 @@
   },
   "intro_3": {
     "intro_3_title": "ABC가",
+    "intro_3_title_2": "AhnLab Blockchain Company가",
     "intro_3_content": "안전하게 지켜드립니다.",
     "card_1_title": "MPC",
     "card_1_content": "MPC(다자간 계산) 암호화 기술을 통한 안전한 셀프 커스터디 자산관리",
