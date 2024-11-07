@@ -35,7 +35,7 @@ export default function Top({
   return (
     <div
       className={`flex items-center ${
-        isLargeDesktop ? "w-[98.99vw]" : "w-full"
+        isLargeDesktop ? "w-[100vw]" : "w-full"
       } h-lvh`}
       style={{
         backgroundImage: `url(${

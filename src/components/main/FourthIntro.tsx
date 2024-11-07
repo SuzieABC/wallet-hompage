@@ -14,6 +14,7 @@ import fncyIcon from "@/assets/icons/main/fourthIntro/fncy.png";
 import xLayerIcon from "@/assets/icons/main/fourthIntro/x_layer.png";
 import scrollIcon from "@/assets/icons/main/fourthIntro/scroll.png";
 import arrowDownIcon from "@/assets/icons/main/arrow_down_icon.png";
+import useWindowWidth from "@/utils/hooks/useWindowWidth";
 
 interface CarouselItem {
   title: string;
@@ -42,6 +43,12 @@ export default function FourthIntro({
   card1_title: string;
   card2_title: string;
 }) {
+  const windowWidth = useWindowWidth();
+
+  const isMobile = windowWidth < 700;
+  const isTablet = windowWidth >= 700 && windowWidth < 1024;
+  const isDesktop = windowWidth >= 1024;
+
   const [visibleItems, setVisibleItems] = useState(8);
 
   const handleShowMore = () => {
@@ -69,86 +76,157 @@ export default function FourthIntro({
   }));
 
   return (
-    <div className="w-full px-5 py-20 flex-col justify-start items-start gap-[60px] inline-flex">
-      <div className="self-stretch text-center text-black text-2xl font-pretendardBold uppercase leading-[33.60px]">
-        {intro_4_title}
-        <br />
-        {intro_4_content}
-      </div>
-
-      <div className="self-stretch flex-col justify-start items-start gap-6 flex">
-        <div className="self-stretch h-[45px] flex-col justify-center items-center gap-4 flex">
-          <div className="w-6 h-px bg-[#454854]" />
-          <div className="self-stretch text-center text-[#454854] text-xl font-pretendardBold uppercase leading-7">
-            {card1_title}
-          </div>
+    <div className="max-w-[1440px] mx-auto">
+      <div
+        className={`w-full flex-col justify-start items-start  inline-flex ${
+          isMobile || isTablet
+            ? "py-20 gap-[60px] px-5"
+            : "py-[180px] gap-[160px] px-10"
+        }`}
+      >
+        <div
+          className={`self-stretch text-center text-black uppercase leading-[33.60px] ${
+            isMobile
+              ? "text-2xl font-pretendardBold"
+              : isTablet
+              ? "text-4xl font-pretendardSemibold"
+              : "text-[56px] font-pretendardSemibold"
+          }`}
+        >
+          {intro_4_title}&nbsp;
+          {isMobile && <br />}
+          {intro_4_content}
         </div>
-        <div className="flex justify-center flex-wrap gap-2 px-[1px]">
-          {coins.map((item) => (
+
+        <div
+          className={`self-stretch flex-col justify-start items-start flex ${
+            isMobile ? "gap-6" : isTablet ? "px-8 gap-10" : "gap-[60px]"
+          }`}
+        >
+          <div
+            className={`self-stretch flex flex-col justify-center items-center ${
+              isDesktop ? "gap-7" : "gap-4"
+            }`}
+          >
             <div
-              key={item.name}
-              className="self-stretch justify-center items-center gap-2 inline-flex"
+              className={`${
+                isDesktop ? "w-10 h-0.5" : "w-6 h-px"
+              }  bg-[#454854]`}
+            />
+            <div
+              className={`self-stretch text-center text-[#454854] ${
+                isDesktop ? "text-[32px]" : "text-xl"
+              } font-pretendardBold uppercase`}
             >
-              <div className="p-3 bg-[#e3e4e8] rounded-[80px] justify-center items-center gap-1.5 flex">
-                <Image src={item.icon} alt={item.name} width={24} height={24} />
-                <div className="text-center text-black text-[15px] font-pretendardMedium">
-                  {item.name}
-                </div>
-              </div>
+              {card1_title}
             </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="self-stretch flex-col justify-start items-start gap-6 flex">
-        <div className="self-stretch h-[45px] flex-col justify-center items-center gap-4 flex">
-          <div className="w-6 h-px bg-[#454854]" />
-          <div className="self-stretch text-center text-[#454854] text-xl font-pretendardBold uppercase leading-7">
-            {card2_title}
           </div>
-        </div>
-        <div className="flex flex-wrap justify-center items-center gap-2">
-          {items.map((item) => (
-            <div
-              className="grow shrink basis-0 h-[164px] px-3 py-5 bg-[#ececec] rounded-xl flex-col justify-start items-center gap-3 inline-flex"
-              key={item.title}
-            >
-              <div className="w-[132px] h-10 relative flex justify-center items-center">
-                <div className="w-[37.78px] h-[37.78px] rounded-[22.22px]">
+          <div
+            className={`flex justify-center flex-wrap ${
+              isMobile ? "gap-2" : "gap-3"
+            } px-[1px]`}
+          >
+            {coins.map((item) => (
+              <div
+                key={item.name}
+                className="self-stretch justify-center items-center gap-2 inline-flex"
+              >
+                <div
+                  className={`${
+                    isMobile
+                      ? "p-3"
+                      : isTablet
+                      ? "px-[16px] py-[12px]"
+                      : "px-[32px] py-[20px]"
+                  } bg-[#e3e4e8] rounded-[80px] justify-center items-center gap-1.5 flex`}
+                >
                   <Image
-                    src={item.imageSrc}
-                    alt={item.title}
-                    width={41.56}
-                    height={41.56}
-                    className="rounded-[22.22px]"
+                    src={item.icon}
+                    alt={item.name}
+                    width={isDesktop ? 48 : 24}
+                    height={isDesktop ? 48 : 24}
                   />
+                  <div
+                    className={`text-center text-black  font-pretendardMedium ${
+                      isDesktop ? "text-xl" : "text-[15px]"
+                    }`}
+                  >
+                    {item.name}
+                  </div>
                 </div>
               </div>
-              <div className="self-stretch text-center text-black text-base font-pretendardSemibold">
-                {item.title}
-              </div>
-              <div className="self-stretch h-[38px] flex-col justify-start items-start gap-1 flex">
-                {item.tags.map((tag) => (
-                  <div
-                    key={tag}
-                    className="self-stretch text-center text-[#5c6070] text-sm font-pretendardMedium"
-                  >
-                    #{tag}
+            ))}
+          </div>
+        </div>
+
+        <div
+          className={`self-stretch flex-col justify-start items-start flex ${
+            isMobile ? "gap-6" : isTablet ? "gap-10" : "gap-[60px]"
+          }`}
+        >
+          <div
+            className={`self-stretch flex-col justify-center items-center ${
+              isDesktop ? "gap-7" : "gap-4"
+            } flex`}
+          >
+            <div
+              className={`${
+                isDesktop ? "w-10 h-0.5" : "w-6 h-px"
+              }  bg-[#454854]`}
+            />
+            <div
+              className={`self-stretch text-center text-[#454854] font-pretendardBold uppercase  ${
+                isDesktop
+                  ? "text-[32px] leading-[44.80px]"
+                  : "text-xl leading-7"
+              }`}
+            >
+              {card2_title}
+            </div>
+          </div>
+          <div className="flex flex-wrap justify-center items-center gap-2">
+            {items.map((item) => (
+              <div
+                className="grow shrink basis-0 px-3 py-5 bg-[#ececec] rounded-xl flex-col justify-start items-center gap-3 inline-flex"
+                key={item.title}
+              >
+                <div className="w-[132px] h-10 relative flex justify-center items-center">
+                  <div className="w-[37.78px] h-[37.78px] rounded-[22.22px]">
+                    <Image
+                      src={item.imageSrc}
+                      alt={item.title}
+                      width={41.56}
+                      height={41.56}
+                      className="rounded-[22.22px]"
+                    />
                   </div>
-                ))}
+                </div>
+                <div className="self-stretch text-center text-black text-base font-pretendardSemibold">
+                  {item.title}
+                </div>
+                <div className="self-stretch h-[38px] flex-col justify-start items-start gap-1 flex">
+                  {item.tags.map((tag) => (
+                    <div
+                      key={tag}
+                      className="self-stretch text-center text-[#5c6070] text-sm font-pretendardMedium"
+                    >
+                      #{tag}
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
-          {visibleItems < items.length && (
-            <div onClick={handleShowMore} className="cursor-pointer mt-4">
-              <Image
-                src={arrowDownIcon}
-                alt="arrowRight"
-                width={24}
-                height={24}
-              />
-            </div>
-          )}
+            ))}
+            {visibleItems < items.length && (
+              <div onClick={handleShowMore} className="cursor-pointer mt-4">
+                <Image
+                  src={arrowDownIcon}
+                  alt="arrowRight"
+                  width={24}
+                  height={24}
+                />
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

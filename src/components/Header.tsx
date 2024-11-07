@@ -31,7 +31,7 @@ export default function Header() {
 
   return (
     <header
-      className={`flex flex-col justify-center max-w-[1440px] w-full z-50 fixed py-5 ${
+      className={`max-w-[1440px] w-full flex flex-col justify-center z-50 fixed top-0 left-1/2 transform -translate-x-1/2 py-5 ${
         isMobile || isTablet ? "pl-[20px] pr-[16px]" : "px-[40px]"
       }`}
     >
