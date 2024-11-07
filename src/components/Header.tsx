@@ -13,6 +13,12 @@ import { useState } from "react";
 
 export default function Header() {
   const windowWidth = useWindowWidth();
+
+  const isMobile = windowWidth < 700;
+  const isTablet = windowWidth >= 700 && windowWidth < 1024;
+  const isDesktop = windowWidth >= 1024 && windowWidth < 1440;
+  const isLargeDesktop = windowWidth >= 1440;
+
   const locale = useParams()?.locale as LocaleTypes;
   const { t } = useTranslation(locale, "common");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -24,23 +30,32 @@ export default function Header() {
   };
 
   return (
-    <header className="flex flex-col justify-center pl-[20px] pr-[16px] py-5 w-full absolute top-0 left-0 right-0 z-50 h-[60px] fixed">
+    <header
+      className={`flex flex-col justify-center max-w-[1440px] w-full z-50 fixed py-5 ${
+        isMobile || isTablet ? "pl-[20px] pr-[16px]" : "px-[40px]"
+      }`}
+    >
       <div className="flex flex-row w-full justify-between items-center">
         {/* Logo */}
         <div className="flex flex-row items-center cursor-pointer">
-          <Image src={logo} alt="logo" width={133} height={18.4} />
+          <Image
+            src={logo}
+            alt="logo"
+            width={isDesktop || isLargeDesktop ? 182 : 133}
+            height={isDesktop || isLargeDesktop ? 25.14 : 18.4}
+          />
         </div>
 
         {/* Right Section */}
-        <div className="flex flex-row items-center">
+        <div className="flex">
           {/* Desktop Navigation */}
-          {windowWidth >= 1024 ? (
-            <nav className="flex flex-row justify-center items-center space-x-5">
+          {isDesktop || isLargeDesktop ? (
+            <nav className="flex flex-row justify-center items-center gap-2.5">
               {items.map((item) => (
                 <Link
                   key={item}
                   href={`/${locale}/${item}`}
-                  className="text-white text-base font-semibold font-['Outfit'] uppercase tracking-tight"
+                  className="text-black text-[20px] font-archivoBold p-[16px] leading-none"
                 >
                   {t(`${item}`)}
                 </Link>
