@@ -26,12 +26,14 @@ const ChangeLocale = () => {
   };
 
   return (
-    <div className="px-5 relative">
+    <div className="relative">
       {/* 공 모양 이미지 버튼 */}
       <Image
         src={worldIcon} // 원하는 공 모양 이미지 경로로 수정
         alt="world icon"
-        className="w-[24px] h-[24px] cursor-pointer"
+        width={24}
+        height={24}
+        className="cursor-pointer m-[16px]"
         onClick={toggleDropdown}
       />
 
@@ -49,6 +51,12 @@ const ChangeLocale = () => {
             onClick={() => handleLocaleChange("en")}
           >
             <span className="text-black text-[14px]">English</span>
+          </div>
+          <div
+            className="px-4 py-2 cursor-pointer"
+            onClick={() => handleLocaleChange("jp")}
+          >
+            <span className="text-black text-[14px]">日本語</span>
           </div>
         </div>
       )}
