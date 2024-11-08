@@ -35,13 +35,14 @@ export default function IntroOne({
 
   const isMobile = windowWidth < 700;
   const isTablet = windowWidth >= 700 && windowWidth < 1024;
-  const isDesktop = windowWidth >= 1024;
+  const isDesktop = windowWidth >= 1024 && windowWidth < 1440;
+  const isLargeDesktop = windowWidth >= 1440;
 
   const cards = [
     { img: card1, title: card_1_title, content: card_1_content },
     { img: card2, title: card_2_title, content: card_2_content },
     {
-      img: isDesktop ? card3Cut : card3,
+      img: isDesktop || isLargeDesktop ? card3Cut : card3,
       title: card_3_title,
       content: card_3_content,
     },
@@ -113,8 +114,8 @@ export default function IntroOne({
             : "px-[40px] grid gap-6 mb-[180px]"
         }`}
         style={{
-          gridTemplateColumns: isDesktop ? "1fr 1fr" : "1fr",
-          gridTemplateRows: isDesktop ? "auto auto" : "auto",
+          gridTemplateColumns: isDesktop || isLargeDesktop ? "1fr 1fr" : "1fr",
+          gridTemplateRows: isDesktop || isLargeDesktop ? "auto auto" : "auto",
         }}
       >
         {cards.map((item, index) => (
@@ -127,13 +128,16 @@ export default function IntroOne({
                 : index === 2
                 ? "w-full col-span-2"
                 : "w-full"
-            } bg-[#f3f3f3] rounded-xl justify-start items-start gap-2.5 flex-shrink-0`}
+            } rounded-xl gap-2.5`}
             key={item.title}
             style={{
               // Make the third card span across the width on desktop
-              gridColumn: isDesktop && index === 2 ? "1 / span 2" : "auto",
+              gridColumn:
+                (isDesktop || isLargeDesktop) && index === 2
+                  ? "1 / span 2"
+                  : "auto",
               // Adjust card width based on viewport
-              width: isDesktop ? "auto" : undefined,
+              width: isDesktop || isLargeDesktop ? "auto" : undefined,
             }}
           >
             <div
@@ -141,11 +145,20 @@ export default function IntroOne({
                 isMobile || isTablet
                   ? "pt-5 px-5 gap-5"
                   : index === 2
-                  ? "pt-10 px-[40px] gap-10"
-                  : "pt-10 px-[30px] gap-10"
-              } bg-[#f3f3f3] rounded-2xl ${
-                isDesktop && index === 2 ? "flex-row w-full" : "flex-col"
-              } items-start`}
+                  ? `pt-10 px-[40px] gap-10 ${
+                      isLargeDesktop && "pl-[60px] pr-[120px]"
+                    }`
+                  : isDesktop
+                  ? "pt-10 px-[30px] gap-10"
+                  : "pt-10 px-[60px] gap-10"
+              } bg-[#f3f3f3] text-black rounded-2xl ${
+                (isDesktop || isLargeDesktop) &&
+                "hover:bg-[#6F49E2] hover:text-white"
+              } ${
+                (isDesktop || isLargeDesktop) && index === 2
+                  ? "flex-row w-full"
+                  : "flex-col"
+              } items-start w-full`}
             >
               <div
                 className={`self-stretch flex-col justify-start items-start ${
@@ -165,7 +178,7 @@ export default function IntroOne({
                   />
                 </div>
                 <div
-                  className={`self-stretch text-black ${
+                  className={`self-stretch ${
                     isMobile || isTablet
                       ? "text-xl leading-[26.80px]"
                       : "text-[28px] leading-[38.64px]"
@@ -179,7 +192,9 @@ export default function IntroOne({
               <Image
                 src={item.img}
                 alt="wallet introduction card"
-                className={`${isDesktop && index === 2 && "w-[45%]"}`}
+                className={`${
+                  isMobile || isTablet ? "max-w-[240px]" : "max-w-[420px]"
+                } mx-auto`}
               />
             </div>
           </div>

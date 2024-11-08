@@ -39,25 +39,26 @@ export default function IntroOne({
 
   const isMobile = windowWidth < 700;
   const isTablet = windowWidth >= 700 && windowWidth < 1024;
-  const isDesktop = windowWidth >= 1024;
+  const isDesktop = windowWidth >= 1024 && windowWidth < 1440;
+  const isLargeDesktop = windowWidth >= 1440;
 
   const cards = [
     { img: card1, title: card_1_title, content: card_1_content },
     { img: card2, title: card_2_title, content: card_2_content },
     {
-      img: isDesktop ? card3Cut : card3,
+      img: isDesktop || isLargeDesktop ? card3Cut : card3,
       title: card_3_title,
       content: card_3_content,
     },
     {
-      img: isDesktop ? card4Cut : card4,
+      img: isDesktop || isLargeDesktop ? card4Cut : card4,
       title: card_4_title,
       content: card_4_content,
     },
   ];
 
   return (
-    <div className="flex flex-col items-center w-[100vw] bg-[#F5F5F5]">
+    <div className="flex flex-col items-center bg-[#F5F5F5]">
       {/* 콘텐츠 컨테이너 */}
       <div className="max-w-[1440px] w-full mx-auto flex flex-col items-center relative">
         <div
@@ -99,8 +100,10 @@ export default function IntroOne({
               : "grid gap-6 mb-[180px] px-[40px]"
           }`}
           style={{
-            gridTemplateColumns: isDesktop ? "1fr 1fr" : "1fr",
-            gridTemplateRows: isDesktop ? "auto auto" : "auto",
+            gridTemplateColumns:
+              isDesktop || isLargeDesktop ? "1fr 1fr" : "1fr",
+            gridTemplateRows:
+              isDesktop || isLargeDesktop ? "auto auto" : "auto",
           }}
         >
           {cards.map((item, index) => (
@@ -108,27 +111,34 @@ export default function IntroOne({
               key={item.title}
               style={{
                 gridColumn:
-                  (isDesktop && index === 2) || index === 3
+                  ((isDesktop || isLargeDesktop) && index === 2) || index === 3
                     ? "1 / span 2"
                     : "auto",
-                width: isDesktop ? "auto" : undefined,
+                width: isDesktop || isLargeDesktop ? "auto" : undefined,
               }}
               className={`${
                 isMobile ? "w-[280px]" : isTablet ? "w-[340px]" : "w-full"
-              } bg-[#E3E4E8] rounded-xl justify-start items-start gap-2.5 flex-shrink-0`}
+              } rounded-xl justify-start items-start gap-2.5 flex-shrink-0`}
             >
               <div
                 className={`inline-flex ${
                   isMobile || isTablet
                     ? "pt-5 px-5 gap-5"
                     : index === 2 || index === 3
-                    ? "pt-10 px-[40px] gap-10"
-                    : "pt-10 px-[30px] gap-10"
-                } bg-[#E3E4E8] rounded-2xl ${
-                  isDesktop && (index === 2 || index === 3)
+                    ? `pt-10 px-[40px] gap-10 ${
+                        isLargeDesktop && "pl-[60px] pr-[120px]"
+                      }`
+                    : isDesktop
+                    ? "pt-10 px-[30px] gap-10"
+                    : "pt-10 px-[60px] gap-10"
+                } bg-[#E3E4E8] text-black  rounded-2xl ${
+                  (isDesktop || isLargeDesktop) &&
+                  "hover:bg-[#6F49E2] hover:text-white"
+                } ${
+                  (isDesktop || isLargeDesktop) && (index === 2 || index === 3)
                     ? "flex-row w-full"
                     : "flex-col"
-                } items-start`}
+                } items-start w-full`}
               >
                 <div
                   className={`self-stretch flex-col justify-start items-start ${
@@ -150,7 +160,7 @@ export default function IntroOne({
                     />
                   </div>
                   <div
-                    className={`self-stretch text-black ${
+                    className={`self-stretch ${
                       isMobile || isTablet
                         ? "text-xl leading-[26.80px]"
                         : "text-[28px] leading-[38.64px]"
@@ -165,8 +175,8 @@ export default function IntroOne({
                   src={item.img}
                   alt="wallet introduction card"
                   className={`${
-                    isDesktop && (index === 2 || index === 3) && "w-[45%]"
-                  }`}
+                    isMobile || isTablet ? "max-w-[240px]" : "max-w-[420px]"
+                  } mx-auto`}
                 />
               </div>
             </div>

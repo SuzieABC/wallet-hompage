@@ -60,7 +60,7 @@ export default function IntroOne({
   ];
 
   return (
-    <div className="flex flex-col items-center w-[100vw] bg-[#6d23ef]">
+    <div className="flex flex-col items-center w-[100vw] bg-[#6d23ef] overflow-y-scroll">
       <div
         className={`max-w-[1440px] mx-auto h-auto ${
           isMobile || isTablet ? "py-20 px-5" : "py-[180px] px-[40px]"
@@ -86,7 +86,9 @@ export default function IntroOne({
         >
           {functions.map((item, index) => (
             <div
-              className={`bg-[#641ce4] rounded-xl border border-white/20  ${
+              className={`bg-[#641ce4] rounded-xl border border-white/20 ${
+                isDesktop && "hover:bg-[#2f1a52]"
+              }  ${
                 isMobile
                   ? "inline-flex justify-start items-center h-[131px] px-5 py-4 gap-5"
                   : isTablet
@@ -127,12 +129,20 @@ export default function IntroOne({
                         : index === 4
                         ? `${
                             isMobile
-                              ? "text-lg"
+                              ? "text-[15px]"
                               : isTablet
                               ? "text-[16px]"
                               : "text-xl"
                           } font-pretendardBold leading-[25.20px]`
-                        : "self-stretch text-[15px] font-pretendardRegular"
+                        : "self-stretch font-pretendardRegular"
+                    } ${
+                      isMobile
+                        ? "text-[15px]"
+                        : isTablet
+                        ? "text-[14px]"
+                        : isDesktop
+                        ? "text-[16px]"
+                        : "text-[20px]"
                     }`}
                   >
                     {item.content}
