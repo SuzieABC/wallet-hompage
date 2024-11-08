@@ -29,6 +29,16 @@ const config: Config = {
       fontFamily: Object.fromEntries(
         fonts.map((font) => [font, [`var(--font-${font})`]])
       ),
+      keyframes : {
+        slideInFromLeft:{
+          '0%': { opacity: '0', transform: 'translateX(0)' },
+          '20%': { opacity: '0.5', transform: 'translateX(-20px)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' },
+        }
+      },
+      animation: {
+        slideInFromLeft: 'slideInFromLeft 0.3s ease-in-out'
+      }
     },
   },
   plugins: [],

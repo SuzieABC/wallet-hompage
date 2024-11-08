@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import backgroundMobile from "@/assets/images/main/top/top_background_mobile_image.png";
 import backgroundTablet from "@/assets/images/main/top/top_background_tablet_image.png";
@@ -9,6 +10,7 @@ import mobile from "@/assets/images/main/top/top_mobile_image.png";
 import tablet from "@/assets/images/main/top/top_tablet_image.png";
 import desktop from "@/assets/images/main/top/top_desktop_image.png";
 import arrowRight from "@/assets/icons/main/top_arrow_right_icon.svg";
+import arrowRightWhite from "@/assets/icons/main/top_arrow_right_white_icon.svg";
 import useWindowWidth from "@/utils/hooks/useWindowWidth";
 
 interface TopProps {
@@ -32,6 +34,7 @@ export default function Top({
   const isDesktop = windowWidth >= 1024 && windowWidth < 1440;
   const isLargeDesktop = windowWidth >= 1440;
 
+  const [isHovered, setIsHovered] = useState(false);
   return (
     <div
       className={`flex items-center ${
@@ -136,17 +139,21 @@ export default function Top({
           </div>
 
           <button
-            className={` ${
-              isMobile || isTablet
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            className={`${
+              isDesktop || isLargeDesktop
+                ? "border border-[#6d23ef] hover:bg-[#6d23ef] transition-colors duration-300 group"
+                : isMobile || isTablet
                 ? "bg-[#6d23ef] px-6"
-                : "border border-[#6d23ef] px-5"
-            }  rounded-[30px] justify-center items-center inline-flex ${
+                : "px-[32px]"
+            } rounded-[30px] justify-center items-center inline-flex ${
               isMobile
                 ? "mb-[40px] mt-[24px] py-3"
                 : isTablet
                 ? "mb-[17.42px] mt-[20px] py-3"
                 : isDesktop
-                ? "mt-[21px] mb-[19px] py-3"
+                ? "mt-[21px] mb-[19px] py-3 px-5"
                 : "mt-[48px] py-[20px] px-[32px]"
             }`}
           >
@@ -155,15 +162,15 @@ export default function Top({
                 isMobile || isTablet
                   ? "text-white text-base"
                   : isDesktop
-                  ? "text-black text-base"
-                  : "text-xl"
-              } font-archivoMedium leading-none flex`}
+                  ? "text-black text-base group-hover:text-white"
+                  : "text-xl group-hover:text-white"
+              } font-archivoMedium leading-none flex items-center transition-colors duration-300`}
             >
               {(isDesktop || isLargeDesktop) && (
                 <Image
-                  src={arrowRight}
+                  src={isHovered ? arrowRightWhite : arrowRight}
                   alt="arrow right"
-                  className="mr-[8px]"
+                  className="mr-[14px] transform transition-all duration-300 group-hover:animate-slideInFromLeft"
                 />
               )}
               Download
