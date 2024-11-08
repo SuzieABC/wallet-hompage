@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import backgroundMobile from "@/assets/images/main/top/top_background_mobile_image.png";
 import backgroundTablet from "@/assets/images/main/top/top_background_tablet_image.png";
@@ -9,9 +9,8 @@ import backgroundLargeDesktop from "@/assets/images/main/top/top_background_larg
 import mobile from "@/assets/images/main/top/top_mobile_image.png";
 import tablet from "@/assets/images/main/top/top_tablet_image.png";
 import desktop from "@/assets/images/main/top/top_desktop_image.png";
-import arrowRight from "@/assets/icons/main/top_arrow_right_icon.svg";
-import arrowRightWhite from "@/assets/icons/main/top_arrow_right_white_icon.svg";
 import useWindowWidth from "@/utils/hooks/useWindowWidth";
+import Button from "@/components/elements/Button";
 
 interface TopProps {
   title: string;
@@ -34,158 +33,132 @@ export default function Top({
   const isDesktop = windowWidth >= 1024 && windowWidth < 1440;
   const isLargeDesktop = windowWidth >= 1440;
 
-  const [isHovered, setIsHovered] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(true);
+  }, []);
+
   return (
-    <div
-      className={`flex items-center ${
-        isLargeDesktop ? "w-[100vw]" : "w-full"
-      } h-lvh`}
-      style={{
-        backgroundImage: `url(${
-          isMobile
-            ? backgroundMobile.src
-            : isTablet
-            ? backgroundTablet.src
-            : isDesktop
-            ? backgroundDesktop.src
-            : backgroundLargeDesktop.src
-        })`,
-        backgroundPosition: "center",
-        backgroundSize: "cover",
-        overflow: "hidden",
-      }}
-    >
-      <div
-        className={`flex items-center max-w-[1440px] w-full mx-auto relative h-full ${
-          isMobile
-            ? "pt-[102px] px-[20px] flex-col"
-            : isTablet
-            ? "pt-[100px] px-[20px] flex-col"
-            : isDesktop
-            ? "pt-[140px] px-[40px] flex-col"
-            : "pr-[70.54px] pt-[113.43px] flex-row px-[40px] justify-between"
-        }`}
-      >
+    <>
+      {isLoading && (
         <div
-          className={`flex flex-col ${
-            isMobile || isTablet || isDesktop ? "items-center" : "items-start"
-          }`}
+          id="download"
+          className={`scroll-smooth flex items-center ${
+            isLargeDesktop ? "w-[100vw]" : "w-full"
+          } h-lvh`}
+          style={{
+            backgroundImage: `url(${
+              isMobile
+                ? backgroundMobile.src
+                : isTablet
+                ? backgroundTablet.src
+                : isDesktop
+                ? backgroundDesktop.src
+                : backgroundLargeDesktop.src
+            })`,
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+            overflow: "hidden",
+          }}
         >
           <div
-            className={`mx-[20px] flex flex-col ${
-              isLargeDesktop ? "items-start w-[494px]" : "items-center"
-            } tracking-[-0.19px]`}
-          >
-            <span
-              className={`text-center text-black font-archivoSemibold leading-none ${
-                isMobile
-                  ? "text-[38px]"
-                  : isTablet
-                  ? "text-[50px]"
-                  : isDesktop
-                  ? "text-[64px]"
-                  : "text-[82px]"
-              }`}
-            >
-              {title}
-            </span>
-            <div>
-              <span
-                className={`text-black ${
-                  isMobile
-                    ? "text-[38px] font-pretendardBold"
-                    : isTablet
-                    ? "text-[50px] font-pretendardSemibold"
-                    : isDesktop
-                    ? "text-[64px] font-pretendardSemibold"
-                    : "text-[86px] font-pretendardSemibold leading-[100.04px]"
-                }`}
-              >
-                {subtitle_1}&nbsp;
-              </span>
-              {isLargeDesktop && <br />}
-              <span
-                className={`text-[#6d23ef] font-archivoSemibold leading-none ${
-                  isMobile
-                    ? "text-[38px]"
-                    : isTablet
-                    ? "text-[50px]"
-                    : isDesktop
-                    ? "text-[64px]"
-                    : "text-[86px]"
-                }`}
-              >
-                {subtitle_2}&nbsp;
-              </span>
-              <span
-                className={`text-[#6d23ef] leading-none ${
-                  isMobile
-                    ? "text-[38px] font-pretendardBold"
-                    : isTablet
-                    ? "text-[50px] font-pretendardSemibold"
-                    : isDesktop
-                    ? "text-[64px] font-pretendardSemibold"
-                    : "text-[86px] font-pretendardSemibold"
-                }`}
-              >
-                {subtitle_3}
-              </span>
-            </div>
-            {isLargeDesktop && (
-              <p className="pt-[16px] font-pretendardRegular leading-[30px] text-xl">
-                {detail}
-              </p>
-            )}
-          </div>
-
-          <button
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            className={`${
-              isDesktop || isLargeDesktop
-                ? "border border-[#6d23ef] hover:bg-[#6d23ef] transition-colors duration-300 group"
-                : isMobile || isTablet
-                ? "bg-[#6d23ef] px-6"
-                : "px-[32px]"
-            } rounded-[30px] justify-center items-center inline-flex ${
+            className={`flex items-center max-w-[1440px] w-full mx-auto relative h-full ${
               isMobile
-                ? "mb-[40px] mt-[24px] py-3"
+                ? "pt-[102px] px-[20px] flex-col"
                 : isTablet
-                ? "mb-[17.42px] mt-[20px] py-3"
+                ? "pt-[100px] px-[20px] flex-col justify-center"
                 : isDesktop
-                ? "mt-[21px] mb-[19px] py-3 px-5"
-                : "mt-[48px] py-[20px] px-[32px]"
+                ? "pt-[140px] px-[40px] flex-col"
+                : "pr-[70.54px] pt-[113.43px] flex-row px-[40px] justify-between"
             }`}
           >
             <div
-              className={`text-center ${
-                isMobile || isTablet
-                  ? "text-white text-base"
-                  : isDesktop
-                  ? "text-black text-base group-hover:text-white"
-                  : "text-xl group-hover:text-white"
-              } font-archivoMedium leading-none flex items-center transition-colors duration-300`}
+              className={`flex flex-col ${
+                isMobile || isTablet || isDesktop
+                  ? "items-center"
+                  : "items-start"
+              }`}
             >
-              {(isDesktop || isLargeDesktop) && (
-                <Image
-                  src={isHovered ? arrowRightWhite : arrowRight}
-                  alt="arrow right"
-                  className="mr-[14px] transform transition-all duration-300 group-hover:animate-slideInFromLeft"
-                />
-              )}
-              Download
+              <div
+                className={`mx-[20px] flex flex-col ${
+                  isLargeDesktop ? "items-start w-[494px]" : "items-center"
+                } tracking-[-0.19px]`}
+              >
+                <span
+                  className={`text-center text-black font-archivoSemibold leading-none ${
+                    isMobile
+                      ? "text-[38px]"
+                      : isTablet
+                      ? "text-[50px]"
+                      : isDesktop
+                      ? "text-[64px]"
+                      : "text-[82px]"
+                  }`}
+                >
+                  {title}
+                </span>
+                <div>
+                  <span
+                    className={`text-black ${
+                      isMobile
+                        ? "text-[38px] font-pretendardBold"
+                        : isTablet
+                        ? "text-[50px] font-pretendardSemibold"
+                        : isDesktop
+                        ? "text-[64px] font-pretendardSemibold"
+                        : "text-[86px] font-pretendardSemibold leading-[100.04px]"
+                    }`}
+                  >
+                    {subtitle_1}&nbsp;
+                  </span>
+                  {isLargeDesktop && <br />}
+                  <span
+                    className={`text-[#6d23ef] font-archivoSemibold leading-none ${
+                      isMobile
+                        ? "text-[38px]"
+                        : isTablet
+                        ? "text-[50px]"
+                        : isDesktop
+                        ? "text-[64px]"
+                        : "text-[86px]"
+                    }`}
+                  >
+                    {subtitle_2}&nbsp;
+                  </span>
+                  <span
+                    className={`text-[#6d23ef] leading-none ${
+                      isMobile
+                        ? "text-[38px] font-pretendardBold"
+                        : isTablet
+                        ? "text-[50px] font-pretendardSemibold"
+                        : isDesktop
+                        ? "text-[64px] font-pretendardSemibold"
+                        : "text-[86px] font-pretendardSemibold"
+                    }`}
+                  >
+                    {subtitle_3}
+                  </span>
+                </div>
+                {isLargeDesktop && (
+                  <p className="pt-[16px] font-pretendardRegular leading-[30px] text-xl">
+                    {detail}
+                  </p>
+                )}
+              </div>
+              <Button />
             </div>
-          </button>
-        </div>
 
-        <Image
-          src={isMobile ? mobile : isTablet ? tablet : desktop}
-          alt="mobile"
-          className={`${isMobile && "w-[320px]"} ${
-            isLargeDesktop && "w-[788.083px]"
-          }`}
-        />
-      </div>
-    </div>
+            <Image
+              src={isMobile ? mobile : isTablet ? tablet : desktop}
+              alt="mobile"
+              className={`${isMobile && "w-[320px]"} ${
+                isLargeDesktop && "w-[788.083px]"
+              }`}
+            />
+          </div>
+        </div>
+      )}
+    </>
   );
 }

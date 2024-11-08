@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import icon1 from "@/assets/icons/main/icon_01.png";
 import icon2 from "@/assets/icons/main/icon_02.png";
@@ -48,7 +49,8 @@ export default function IntroOne({
 
   const isMobile = windowWidth < 700;
   const isTablet = windowWidth >= 700 && windowWidth < 1024;
-  const isDesktop = windowWidth >= 1024;
+  const isDesktop = windowWidth >= 1024 && windowWidth < 1440;
+  const isLargeDesktop = windowWidth >= 1440;
 
   const functions = [
     { icon: icon1, title: card_1_title, content: card_1_content },
@@ -59,100 +61,120 @@ export default function IntroOne({
     { icon: icon6, title: card_6_title, content: card_6_content },
   ];
 
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(true);
+  }, []);
+
   return (
-    <div className="flex flex-col items-center w-[100vw] bg-[#6d23ef] overflow-y-scroll">
-      <div
-        className={`max-w-[1440px] mx-auto h-auto ${
-          isMobile || isTablet ? "py-20 px-5" : "py-[180px] px-[40px]"
-        }  flex-col justify-start items-start gap-10`}
-      >
-        <div
-          className={`self-stretch h-auto text-white leading-[33.60px] ${
-            isMobile
-              ? "text-2xl font-pretendardBold pb-[40px]"
-              : isTablet
-              ? "flex justify-center font-pretendardSemibold text-4xl pb-[40px]"
-              : "flex justify-start font-pretendardSemibold text-[56px] leading-[78.4px] pb-[100px]"
-          }`}
-        >
-          {isMobile || isTablet ? title : title_2}&nbsp;
-          {(isMobile || isDesktop) && <br />}
-          {content}
-        </div>
-        <div
-          className={`self-stretch grid ${
-            isTablet || isDesktop ? "grid-cols-3 gap-4" : "grid-cols-1 gap-3"
-          }`}
-        >
-          {functions.map((item, index) => (
+    <>
+      {isLoading && (
+        <div className="flex flex-col items-center w-[100vw] bg-[#6d23ef] overflow-y-scroll">
+          <div
+            className={`max-w-[1440px] mx-auto h-auto ${
+              isMobile || isTablet ? "py-20 px-5" : "py-[180px] px-[40px]"
+            }  flex-col justify-start items-start gap-10`}
+          >
             <div
-              className={`bg-[#641ce4] rounded-xl border border-white/20 ${
-                isDesktop && "hover:bg-[#2f1a52]"
-              }  ${
+              className={`self-stretch h-auto text-white leading-[33.60px] ${
                 isMobile
-                  ? "inline-flex justify-start items-center h-[131px] px-5 py-4 gap-5"
+                  ? "text-2xl font-pretendardBold pb-[40px]"
                   : isTablet
-                  ? "flex flex-col h-[212px] px-5 py-4 gap-5"
-                  : "flex flex-col h-[304px] p-[28px] gap-[60px]"
+                  ? "flex justify-center font-pretendardSemibold text-4xl pb-[40px]"
+                  : "flex justify-start font-pretendardSemibold text-[56px] leading-[78.4px] pb-[100px]"
               }`}
-              key={index}
             >
-              <Image
-                src={item.icon}
-                alt="icon"
-                width={isDesktop ? 40 : 28}
-                height={isDesktop ? 40 : 28}
-              />
-              <div
-                className={`grow shrink basis-0 flex-col justify-start items-start inline-flex ${
-                  index !== 4 && isMobile
-                    ? "gap-2"
-                    : index !== 4 && isTablet
-                    ? "gap-3"
-                    : index !== 4 && isDesktop
-                    ? "gap-5"
-                    : ""
-                }`}
-              >
+              {isMobile || isTablet ? title : title_2}&nbsp;
+              {(isMobile || isDesktop || isLargeDesktop) && <br />}
+              {content}
+            </div>
+            <div
+              className={`self-stretch grid ${
+                isTablet || isDesktop || isLargeDesktop
+                  ? "grid-cols-3 gap-4"
+                  : "grid-cols-1 gap-3"
+              }`}
+            >
+              {functions.map((item, index) => (
                 <div
-                  className={`self-stretch text-white font-pretendardBold uppercase ${
-                    isMobile ? "text-lg" : isTablet ? "text-[16px]" : "text-xl"
+                  className={`bg-[#641ce4] rounded-xl border border-white/20 pointerhover:hover:bg-[#5209D4] ${
+                    isMobile
+                      ? "inline-flex justify-start items-center h-[131px] px-5 py-4 gap-5"
+                      : isTablet
+                      ? "flex flex-col h-[212px] px-5 py-4 gap-5"
+                      : isDesktop
+                      ? "flex flex-col h-[304px] p-[28px] gap-[60px]"
+                      : "flex flex-col h-[402px] w-[402] p-[40px] gap-[60px]"
                   }`}
+                  key={index}
                 >
-                  {item.title}
-                </div>
-                {index !== 2 && (
+                  <Image
+                    src={item.icon}
+                    alt="icon"
+                    width={isDesktop || isLargeDesktop ? 40 : 28}
+                    height={isDesktop || isLargeDesktop ? 40 : 28}
+                  />
                   <div
-                    className={`text-white uppercase leading-snug ${
-                      index === 5
-                        ? `px-3 py-1.5 bg-gradient-to-r from-[#0d6eee] to-[#c021ff] rounded-lg border-[1px] border-white/30 justify-center items-center gap-2.5 inline-flex font-pretendardRegular`
-                        : index === 4
-                        ? `${
-                            isMobile
-                              ? "text-[15px]"
-                              : isTablet
-                              ? "text-[16px]"
-                              : "text-xl"
-                          } font-pretendardBold leading-[25.20px]`
-                        : "self-stretch font-pretendardRegular"
-                    } ${
-                      isMobile
-                        ? "text-[15px]"
-                        : isTablet
-                        ? "text-[14px]"
-                        : isDesktop
-                        ? "text-[16px]"
-                        : "text-[20px]"
+                    className={`grow shrink basis-0 flex-col justify-start items-start inline-flex ${
+                      index !== 4 && isMobile
+                        ? "gap-2"
+                        : index !== 4 && isTablet
+                        ? "gap-3"
+                        : index !== 4 && (isDesktop || isLargeDesktop)
+                        ? "gap-5"
+                        : ""
                     }`}
                   >
-                    {item.content}
+                    <div
+                      className={`self-stretch text-white font-pretendardBold uppercase ${
+                        isMobile
+                          ? "text-lg"
+                          : isTablet
+                          ? "text-[16px]"
+                          : isDesktop
+                          ? "text-[20px]"
+                          : "text-[28px]"
+                      }`}
+                    >
+                      {item.title}
+                    </div>
+                    {index !== 2 && (
+                      <div
+                        className={`text-white uppercase leading-snug ${
+                          index === 5
+                            ? `px-3 py-1.5 bg-gradient-to-r from-[#0d6eee] to-[#c021ff] rounded-lg border-[1px] border-white/30 justify-center items-center gap-2.5 inline-flex font-pretendardRegular`
+                            : index === 4
+                            ? `${
+                                isMobile
+                                  ? "text-[15px]"
+                                  : isTablet
+                                  ? "text-[16px]"
+                                  : isDesktop
+                                  ? "text-[20px]"
+                                  : "text-[28px]"
+                              } font-pretendardBold leading-[25.20px]`
+                            : "self-stretch font-pretendardRegular"
+                        } ${
+                          isMobile
+                            ? "text-[15px]"
+                            : isTablet
+                            ? "text-[14px]"
+                            : isDesktop
+                            ? "text-[16px]"
+                            : "text-[20px]"
+                        }`}
+                      >
+                        {item.content}
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 }
