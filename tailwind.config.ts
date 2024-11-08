@@ -38,6 +38,11 @@ const config: Config = {
       },
       animation: {
         slideInFromLeft: 'slideInFromLeft 0.3s ease-in-out'
+      },
+      screens:{
+        pointerhover:{
+          raw:"(hover:hover) and (pointer: fine)"
+        }
       }
     },
   },
