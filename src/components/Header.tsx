@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useParams } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import ChangeLocale from "./ChangeLocale";
@@ -13,6 +13,7 @@ import useWindowWidth from "@/utils/hooks/useWindowWidth";
 
 export default function Header() {
   const windowWidth = useWindowWidth();
+  const pathName = usePathname();
 
   const isMobile = windowWidth < 700;
   const isTablet = windowWidth >= 700 && windowWidth < 1024;
@@ -82,7 +83,11 @@ export default function Header() {
                       <Link
                         key={item}
                         href={`/${locale}/${item}`}
-                        className="text-black text-[20px] font-archivoBold p-[16px] leading-none"
+                        className={`text-black text-[20px] p-[16px] leading-none ${
+                          pathName.includes(item)
+                            ? "text-white font-archivoBold "
+                            : "text-[#5C6070] font-archivoMedium "
+                        }`}
                       >
                         {t(`${item}`)}
                       </Link>
@@ -97,13 +102,13 @@ export default function Header() {
                     </button>
                     {/* Mobile Navigation */}
                     {isMenuOpen && (
-                      <div className="absolute top-16 right-0 bg-gray-800 rounded-lg shadow-lg p-4">
+                      <div className="absolute top-16 right-0 bg-gray-800 rounded-lg shadow-lg p-4 border">
                         <nav className="flex flex-col space-y-3">
                           {items.map((item) => (
                             <Link
                               key={item}
                               href={`/${locale}/${item}`}
-                              className="text-white text-base font-semibold font-['Outfit'] tracking-tight"
+                              className="text-white text-base font-archivoMedium tracking-tight"
                             >
                               {t(`${item}`)}
                             </Link>
