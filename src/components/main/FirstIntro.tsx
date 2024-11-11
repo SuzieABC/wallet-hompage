@@ -202,7 +202,7 @@ export default function IntroOne({
                     alt="wallet introduction card"
                     className={`${
                       isMobile || isTablet ? "max-w-[240px]" : "max-w-[420px]"
-                    } mx-auto`}
+                    } mx-auto w-auto h-auto`}
                   />
                 </div>
               </div>

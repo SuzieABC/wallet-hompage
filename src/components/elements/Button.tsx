@@ -91,7 +91,7 @@ export default function Button() {
           <Image
             src={isHovered ? arrowRightWhite : arrowRight}
             alt="arrow right"
-            className="mr-[14px] transform transition-all duration-300 group-hover:animate-slideInFromLeft"
+            className="mr-[14px] transform transition-all duration-300 group-hover:animate-slideInFromLeft w-auto h-auto"
           />
         )}
         Download

@@ -70,6 +70,7 @@ export default function FifthIntro({
               alt="phone images"
               width={isDesktop ? 510 : 375}
               height={isDesktop ? 550 : 375}
+              className="w-auto h-auto"
             />
           </div>
         </div>
