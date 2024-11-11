@@ -67,6 +67,10 @@ export default function IntroOne({
     setIsLoading(true);
   }, []);
 
+  const redirectTo = () => {
+    window.open("https://bicscan.io/", "_blank");
+  };
+
   return (
     <>
       {isLoading && (
@@ -141,9 +145,10 @@ export default function IntroOne({
                     </div>
                     {index !== 2 && (
                       <div
+                        onClick={() => index === 5 && redirectTo()}
                         className={`text-white uppercase leading-snug ${
                           index === 5
-                            ? `px-3 py-1.5 bg-gradient-to-r from-[#0d6eee] to-[#c021ff] rounded-lg border-[1px] border-white/30 justify-center items-center gap-2.5 inline-flex font-pretendardRegular`
+                            ? `rounded-lg bg-gradient-to-r from-[#6a9ef2] to-[#d466ff]/70 justify-center items-center inline-flex font-pretendardRegular p-[1px] cursor-pointer`
                             : index === 4
                             ? `${
                                 isMobile
@@ -165,7 +170,14 @@ export default function IntroOne({
                             : "text-[20px]"
                         }`}
                       >
-                        {item.content}
+                        <span
+                          className={`${
+                            index === 5 &&
+                            "bg-gradient-to-r from-[#0d6eee] to-[#c021ff] w-full h-full px-[16px] py-[10px] rounded-lg"
+                          }`}
+                        >
+                          {item.content}
+                        </span>
                       </div>
                     )}
                   </div>
