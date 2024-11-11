@@ -27,8 +27,11 @@ export default function Support({ data }: SupportProps) {
   const body = encodeURIComponent("Body content goes here"); // Replace with desired body content
 
   const setupMailtoLink = () => {
-    const mailtoString = `mailto:${emailAddress}?subject=${subject}&body=${body}`;
-    setEmailLink(mailtoString);
+    // const mailtoString = `mailto:${emailAddress}?subject=${subject}&body=${body}`;
+    window.open(
+      "https://mail.google.com/mail/?view=cm&fs=1&to=help@myabcwallet.com"
+    );
+    //setEmailLink(mailtoString);
   };
   return (
     <>
@@ -45,7 +48,7 @@ export default function Support({ data }: SupportProps) {
 
         <div className="border flex flex-col">
           <span>1:1 문의</span>
-          <a href={emailLink} onClick={setupMailtoLink} target="_blank">
+          <a href={emailLink} onClick={setupMailtoLink}>
             help@myabcwallet.com
           </a>
           <span>
