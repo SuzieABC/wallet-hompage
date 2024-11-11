@@ -67,7 +67,7 @@ export default function Top({
               isMobile
                 ? "pt-[102px] px-[20px] flex-col"
                 : isTablet
-                ? "pt-[100px] px-[20px] flex-col justify-center"
+                ? "pt-[100px] px-[20px] flex-col"
                 : isDesktop
                 ? "pt-[140px] px-[40px] flex-col"
                 : "pr-[70.54px] pt-[113.43px] flex-row px-[40px] justify-between"
@@ -152,7 +152,7 @@ export default function Top({
             <Image
               src={isMobile ? mobile : isTablet ? tablet : desktop}
               alt="mobile"
-              className={`${isMobile && "w-[320px]"} ${
+              className={`h-auto ${isMobile && "w-[320px]"} ${
                 isLargeDesktop && "w-[788.083px]"
               }`}
             />
