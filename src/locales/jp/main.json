@@ -1,5 +1,59 @@
 {
-  "title": "ABC Wallet",
-  "subtitle_1": "(jp)안전한",
-  "subtitle_2": "(jp)Web3 지갑"
+  "top": {
+    "title": "ABCウォレット",
+    "subtitle_1": "安全な",
+    "subtitle_2": "Web3",
+    "subtitle_3": "ウォレット",
+    "detail" : "ABCウォレットは安全なWeb3ウォレットです。ABCウォレットは安全なWeb3ウォレットです。ABCウォレットは安全なWeb3ウォレットです。"
+  },
+  "intro_1": {
+    "intro_1_title": "キー管理不要で",
+    "intro_1_title_2": "簡単に",
+    "intro_1_content": "資産を管理しましょう",
+    "card_1_title": "ソーシャルログインで",
+    "card_1_content": "すぐにウォレットが作成されます。",
+    "card_2_title": "簡単な認証だけで",
+    "card_2_content": "ウォレットを復元できます。",
+    "card_3_title": "生体認証で",
+    "card_3_content": "簡単に署名できます。"
+  },
+  "intro_2": {
+    "intro_2_title": "多彩な機能で",
+    "intro_2_content": "豊かな体験をお楽しみください。",
+    "card_1_title": "すべての資産を",
+    "card_1_content": "一目で確認できます。",
+    "card_2_title": "簡単で迅速な送信と",
+    "card_2_content": "交換サービスを体験してください。",
+    "card_3_title": "OTP認証を通じて",
+    "card_3_content": "セキュリティを強化しましょう。",
+    "card_4_title": "多言語対応で",
+    "card_4_content": "~~"
+  },
+  "intro_3": {
+    "intro_3_title": "ABCが",
+    "intro_3_title_2": "AhnLab Blockchain Companyが",
+    "intro_3_content": "安全に守ります。",
+    "card_1_title": "MPC",
+    "card_1_content": "MPC（マルチパーティ計算）暗号化技術による安全なセルフカストディ資産管理",
+    "card_2_title": "疑わしい取引の検知",
+    "card_2_content": "端末内のマルウェア検知、ルートチェック、リモート制御検知、端末の脅威情報提供、金融セキュリティコンプライアンス対応",
+    "card_3_title": "危険サイト接続時の警告",
+    "card_3_content": "",
+    "card_4_title": "金融機関レベルのセキュリティ",
+    "card_4_content": "MPC（マルチパーティ計算）暗号化技術による安全なセルフカストディ資産管理",
+    "card_5_title": "クラウドセキュリティ",
+    "card_5_content": "24/7モニタリング",
+    "card_6_title": "ブロックチェーンセキュリティインテリジェンス",
+    "card_6_content": "BICSCANに移動"
+  },
+  "intro_4": {
+    "intro_4_title": "多様なブロックチェーン",
+    "intro_4_content": "エコシステムを楽しもう",
+    "card1_title": "対応ネットワーク",
+    "card2_title": "おすすめDApp"
+  },
+  "intro_5": {
+    "intro_5_title": "1つのアプリでより強力に",
+    "intro_5_content": "ABCウォレットとTウォレットを体験してください"
+  }
 }

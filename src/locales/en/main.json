@@ -1,5 +1,59 @@
 {
-  "title": "ABC Wallet",
-  "subtitle_1": "(en)안전한",
-  "subtitle_2": "(en)Web3 지갑"
+  "top": {
+    "title": "ABC Wallet",
+    "subtitle_1": "Secure",
+    "subtitle_2": "Web3",
+    "subtitle_3": "Wallet",
+    "detail" : "ABC Wallet, a secure Web3 wallet. ABC Wallet, a secure Web3 wallet. ABC Wallet, a secure Web3 wallet."
+  },
+  "intro_1": {
+    "intro_1_title": "Manage easily",
+    "intro_1_title_2": "without key management",
+    "intro_1_content": "Manage your assets effortlessly",
+    "card_1_title": "Instant wallet creation",
+    "card_1_content": "with social login.",
+    "card_2_title": "Easily restore",
+    "card_2_content": "your wallet with simple authentication.",
+    "card_3_title": "Sign seamlessly",
+    "card_3_content": "with biometric authentication."
+  },
+  "intro_2": {
+    "intro_2_title": "Enjoy a vibrant experience",
+    "intro_2_content": "with various features.",
+    "card_1_title": "View all assets",
+    "card_1_content": "at a glance.",
+    "card_2_title": "Experience fast and easy",
+    "card_2_content": "send and exchange services.",
+    "card_3_title": "Enhance security",
+    "card_3_content": "with OTP verification.",
+    "card_4_title": "Multilingual support",
+    "card_4_content": "~~"
+  },
+  "intro_3": {
+    "intro_3_title": "ABC",
+    "intro_3_title_2": "AhnLab Blockchain Company",
+    "intro_3_content": "protects you securely.",
+    "card_1_title": "MPC",
+    "card_1_content": "Secure self-custody asset management with MPC (Multi-Party Computation) encryption technology",
+    "card_2_title": "Suspicious transaction detection",
+    "card_2_content": "Malware detection on the device, root check, remote control detection, device threat information provision, compliance with financial security standards",
+    "card_3_title": "Warning when connecting to risky sites",
+    "card_3_content": "",
+    "card_4_title": "Bank-level security",
+    "card_4_content": "Secure self-custody asset management with MPC (Multi-Party Computation) encryption technology",
+    "card_5_title": "Cloud security",
+    "card_5_content": "24/7 monitoring",
+    "card_6_title": "Blockchain security intelligence",
+    "card_6_content": "GO TO BICSCAN"
+  },
+  "intro_4": {
+    "intro_4_title": "Explore diverse blockchain",
+    "intro_4_content": "ecosystems",
+    "card1_title": "Supported networks",
+    "card2_title": "Recommended DApps"
+  },
+  "intro_5": {
+    "intro_5_title": "Experience the powerful combination of",
+    "intro_5_content": "ABC Wallet and T Wallet in one app"
+  }
 }
