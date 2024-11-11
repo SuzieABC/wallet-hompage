@@ -21,7 +21,7 @@ export default function Footer() {
     },
     {
       name: "개인정보처리방침",
-      url: "https://dev-api.id.myabcwallet.com/query/v2/notice?language=ko&service=v2-ext",
+      url: "https://dev-api.id.myabcwallet.com/query/v2/privacy?language=ko&service=wallet-homepage",
     },
   ];
   const connect = [
