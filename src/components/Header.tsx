@@ -24,7 +24,7 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false); // 스크롤 상태 추가
 
-  const items = ["products", "company"];
+  const items = ["support"];
 
   const handleMenuToggle = () => {
     setIsMenuOpen((prev) => !prev);
@@ -61,14 +61,17 @@ export default function Header() {
           >
             <div className="flex flex-row w-full justify-between items-center">
               {/* Logo */}
-              <div className="flex flex-row items-center cursor-pointer">
+              <Link
+                className="flex flex-row items-center cursor-pointer"
+                href={`/${locale}/`}
+              >
                 <Image
                   src={logo}
                   alt="logo"
                   width={isDesktop || isLargeDesktop ? 182 : 133}
                   height={isDesktop || isLargeDesktop ? 25.14 : 18.4}
                 />
-              </div>
+              </Link>
 
               {/* Right Section */}
               <div className="flex">
@@ -84,7 +87,7 @@ export default function Header() {
                         {t(`${item}`)}
                       </Link>
                     ))}
-                    <ChangeLocale />
+                    <ChangeLocale windowWidth={windowWidth} />
                   </nav>
                 ) : (
                   <>
@@ -100,13 +103,13 @@ export default function Header() {
                             <Link
                               key={item}
                               href={`/${locale}/${item}`}
-                              className="text-white text-base font-semibold font-['Outfit'] uppercase tracking-tight"
+                              className="text-white text-base font-semibold font-['Outfit'] tracking-tight"
                             >
                               {t(`${item}`)}
                             </Link>
                           ))}
                         </nav>
-                        <ChangeLocale />
+                        <ChangeLocale windowWidth={windowWidth} />
                       </div>
                     )}
                   </>
