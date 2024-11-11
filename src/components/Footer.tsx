@@ -1,41 +1,62 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useParams } from "next/navigation";
+import { useTranslation } from "@/utils/localization/client";
+import type { LocaleTypes } from "@/utils/localization/settings";
 import logo_image from "@/assets/images/footer/footer_logo_image.png";
 import Image from "next/image";
 import Link from "next/link";
 import useWindowWidth from "@/utils/hooks/useWindowWidth";
 
 export default function Footer() {
+  const locale = useParams()?.locale as LocaleTypes;
+  const { t } = useTranslation(locale, "common");
   const windowWidth = useWindowWidth();
   const isDesktop = windowWidth >= 1024;
-  const service = [
-    { name: "다운로드", url: "#download" },
-    { name: "개발자", url: "" },
-  ];
-  const company = [
-    { name: "회사 소개", url: "https://ahnlabblockchain.company/" },
-    {
-      name: "이용약관",
-      url: "https://dev-api.id.myabcwallet.com/query/v2/terms?language=ko&service=wallet-homepage",
-    },
-    {
-      name: "개인정보처리방침",
-      url: "https://dev-api.id.myabcwallet.com/query/v2/privacy?language=ko&service=wallet-homepage",
-    },
-  ];
-  const connect = [
-    { sns_name: "facebook", url: "https://www.facebook.com/abcwallet2022" },
-    { sns_name: "X", url: "https://x.com/AhnLab_ABC" },
-    { sns_name: "Medium", url: "https://medium.com/@AhnLabBlockchainCompany" },
-    { sns_name: "Youtube", url: "https://www.youtube.com/@ABC_Wallet" },
-  ];
 
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
   }, []);
+
+  const company = [
+    { name: t("footer.company.download"), url: `/${locale}#download` },
+    {
+      name: t("footer.company.terms_of_service"),
+      url: `https://dev-api.id.myabcwallet.com/query/v2/terms?language=${locale}&service=wallet-homepage`,
+    },
+    {
+      name: t("footer.company.privacy_policy"),
+      url: `https://dev-api.id.myabcwallet.com/query/v2/privacy?language=${locale}&service=wallet-homepage`,
+    },
+  ];
+  const connect = [
+    {
+      sns_name: t("footer.connect.facebook"),
+      url: "https://www.facebook.com/abcwallet2022",
+    },
+    { sns_name: t("footer.connect.x"), url: "https://x.com/AhnLab_ABC" },
+    {
+      sns_name: t("footer.connect.medium"),
+      url: "https://medium.com/@AhnLabBlockchainCompany",
+    },
+    {
+      sns_name: t("footer.connect.youtube"),
+      url: "https://www.youtube.com/@ABC_Wallet",
+    },
+  ];
+
+  const family = [
+    {
+      name: t("footer.family.about_us"),
+      url: `https://ahnlabblockchain.company/`,
+    },
+    { name: t("footer.family.abc_waas"), url: "https://abcwaas.com/" },
+    { name: t("footer.family.bic_scan"), url: "https://bicscan.io/" },
+  ];
+
   return (
     <>
       {isLoading && (
@@ -66,45 +87,7 @@ export default function Footer() {
               <div className="self-stretch flex-col justify-start items-start gap-0.5 flex">
                 <div
                   className={`px-2 justify-center items-center gap-2.5 inline-flex ${
-                    isDesktop && "pr-[106px]"
-                  }`}
-                >
-                  <span
-                    className={`text-black  font-archivoBold ${
-                      isDesktop ? "pb-[10px] text-[17px]" : "text-[15px]"
-                    }`}
-                  >
-                    Service
-                  </span>
-                </div>
-                <div
-                  className={`justify-start items-start inline-flex ${
-                    isDesktop ? "flex-col" : "gap-2"
-                  }`}
-                >
-                  {service.map((item) => (
-                    <Link
-                      className={`${
-                        isDesktop ? "px-[8px] py-[6px]" : "px-2 py-3.5"
-                      } justify-start items-center gap-2.5 flex`}
-                      key={item.name}
-                      href={item.url}
-                    >
-                      <div
-                        className={`text-[#5c6070] font-pretendardMedium tracking-tight ${
-                          isDesktop ? "text-[16px]" : "text-[15px]"
-                        }`}
-                      >
-                        {item.name}
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-              <div className="self-stretch flex-col justify-start items-start gap-0.5 flex">
-                <div
-                  className={`px-2 justify-center items-center gap-2.5 inline-flex ${
-                    isDesktop && "pr-[110px]"
+                    isDesktop && "pr-[95px]"
                   }`}
                 >
                   <span
@@ -127,7 +110,7 @@ export default function Footer() {
                       } justify-start items-center gap-2.5 flex`}
                       key={item.name}
                       href={item.url}
-                      target="_blank"
+                      target={index === 0 ? "_self" : "_blank"}
                     >
                       <div
                         className={`text-[#5c6070] ${
@@ -147,7 +130,7 @@ export default function Footer() {
               <div className="self-stretch flex-col justify-start items-start gap-0.5 flex">
                 <div
                   className={`px-2 justify-start items-center gap-2.5 inline-flex ${
-                    isDesktop && "pr-[106px]"
+                    isDesktop && "pr-[85px]"
                   }`}
                 >
                   <span
@@ -178,6 +161,44 @@ export default function Footer() {
                         }`}
                       >
                         {item.sns_name}
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+              <div className="self-stretch flex-col justify-start items-start gap-0.5 flex">
+                <div
+                  className={`px-2 justify-center items-center gap-2.5 inline-flex ${
+                    isDesktop && "pr-[99px]"
+                  }`}
+                >
+                  <span
+                    className={`text-black  font-archivoBold ${
+                      isDesktop ? "pb-[10px] text-[17px]" : "text-[15px]"
+                    }`}
+                  >
+                    Family
+                  </span>
+                </div>
+                <div
+                  className={`justify-start items-start inline-flex ${
+                    isDesktop ? "flex-col" : "gap-2"
+                  }`}
+                >
+                  {family.map((item) => (
+                    <Link
+                      className={`${
+                        isDesktop ? "px-[8px] py-[6px]" : "px-2 py-3.5"
+                      } justify-start items-center gap-2.5 flex`}
+                      key={item.name}
+                      href={item.url}
+                    >
+                      <div
+                        className={`text-[#5c6070] font-pretendardMedium tracking-tight ${
+                          isDesktop ? "text-[16px]" : "text-[15px]"
+                        }`}
+                      >
+                        {item.name}
                       </div>
                     </Link>
                   ))}

@@ -1,4 +1,21 @@
 {
-  "products": "Products",
-  "company": "Company"
+  "support": "Support",
+  "footer": {
+    "company": {
+      "download": "ダウンロード",
+      "terms_of_service": "利用規約",
+      "privacy_policy": "個人情報保護方針"
+    },
+    "connect" : {
+      "facebook": "Facebook",
+      "x":"X",
+      "medium": "Medium",
+      "youtube": "YouTube"
+    },
+    "family":{
+      "about_us": "会社概要",
+      "abc_waas" : "ABC WaaS",
+      "bic_scan" : "BICScan"
+    }
+  }
 }

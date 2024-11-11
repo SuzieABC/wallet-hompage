@@ -1,3 +1,21 @@
 {
-  "support": "Support"
+  "support": "Support",
+  "footer": {
+    "company": {
+      "download": "Download",
+      "terms_of_service": "Terms of Service",
+      "privacy_policy": "Privacy Policy"
+    },
+    "connet" : {
+      "facebook": "Facebook",
+      "x":"X",
+      "medium": "Medium",
+      "youtube": "YouTube"
+    },
+    "family":{
+      "about_us": "About us",
+      "abc_waas" : "ABC Waas",
+      "bic_scan" : "BICScan"
+    }
+  }
 }
