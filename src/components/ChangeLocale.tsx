@@ -75,7 +75,7 @@ const ChangeLocale = ({ windowWidth }: ChangeLocaleProps) => {
           {isDropdownOpen && (
             <div
               ref={dropdownRef}
-              className="absolute top-12 left-0 bg-white border border-solid border-[#ccc] rounded-xl shadow-[0px 4px 8px rgba(0, 0, 0, 0.1)] z-10 cursor-pointer w-20"
+              className="absolute top-10 left-[-30px] bg-[#eeeeee] border border-solid rounded-xl shadow-[0px 4px 8px rgba(0, 0, 0, 0.1)] z-10 cursor-pointer py-[10px] px-[16px]"
             >
               {LANGUAGES.map(({ code, label }) => (
                 <div key={code}>
@@ -83,9 +83,13 @@ const ChangeLocale = ({ windowWidth }: ChangeLocaleProps) => {
                     className="px-4 py-2 cursor-pointer flex justify-center"
                     onClick={() => handleLocaleChange(code)}
                   >
-                    <span className="text-black text-[14px]">{label}</span>
+                    <span className="text-black text-[15px] leading-[18px]">
+                      {label}
+                    </span>
                   </div>
-                  <div className="self-stretch h-[0px] border border-black/20" />
+                  {code !== "jp" && (
+                    <div className="self-stretch h-[0px] border border-black/20 my-[4px]" />
+                  )}
                 </div>
               ))}
             </div>
