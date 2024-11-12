@@ -69,8 +69,8 @@ export default function Header() {
                 <Image
                   src={logo}
                   alt="logo"
-                  width={isDesktop || isLargeDesktop ? 182 : 133}
-                  height={isDesktop || isLargeDesktop ? 25.14 : 18.4}
+                  width={isDesktop || isLargeDesktop ? 140 : 119}
+                  height={isDesktop || isLargeDesktop ? 20 : 16.44}
                 />
               </Link>
 
@@ -83,7 +83,7 @@ export default function Header() {
                       <Link
                         key={item}
                         href={`/${locale}/${item}`}
-                        className={`text-black text-[20px] p-[16px] leading-none ${
+                        className={`text-black text-[18px] p-[16px] leading-none ${
                           pathName.includes(item)
                             ? "text-white font-archivoBold "
                             : "text-[#5C6070] font-archivoMedium "
