@@ -106,10 +106,10 @@ export default function IntroOne({
                     isMobile
                       ? "inline-flex justify-start items-center h-[131px] px-5 py-4 gap-5"
                       : isTablet
-                      ? "flex flex-col h-[212px] px-5 py-4 gap-5"
+                      ? "flex flex-col aspect-square px-5 py-4 gap-5"
                       : isDesktop
-                      ? "flex flex-col h-[304px] p-[28px] gap-[60px]"
-                      : "flex flex-col h-[402px] w-[402] p-[40px] gap-[60px]"
+                      ? "flex flex-col aspect-square p-[28px] gap-[60px]"
+                      : "flex flex-col aspect-square p-[40px] gap-[60px]"
                   }`}
                   key={index}
                 >
