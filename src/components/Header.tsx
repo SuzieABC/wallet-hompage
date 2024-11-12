@@ -50,7 +50,7 @@ export default function Header() {
     <>
       {isLoading && (
         <div
-          className={` z-50 fixed top-0 left-1/2 transform -translate-x-1/2 py-5 w-[100vw] ${
+          className={` z-50 fixed top-0 left-1/2 transform -translate-x-1/2 py-5 w-full ${
             isScrolled ? "bg-white" : "bg-transparent"
           }`}
         >

@@ -74,7 +74,7 @@ export default function IntroOne({
   return (
     <>
       {isLoading && (
-        <div className="flex flex-col items-center w-[100vw] bg-[#6d23ef] overflow-y-scroll">
+        <div className="flex flex-col items-center w-full bg-[#6d23ef] overflow-y-scroll">
           <div
             className={`max-w-[1440px] mx-auto h-auto ${
               isMobile || isTablet ? "py-20 px-5" : "py-[180px] px-[40px]"
@@ -104,7 +104,7 @@ export default function IntroOne({
                 <div
                   className={`bg-[#641ce4] rounded-xl border border-white/20 pointerhover:hover:bg-[#5209D4] ${
                     isMobile
-                      ? "inline-flex justify-start items-center h-[131px] px-5 py-4 gap-5"
+                      ? "inline-flex justify-start items-center px-5 py-4 gap-5 min-h-[180px] h-auto"
                       : isTablet
                       ? "flex flex-col aspect-square px-5 py-4 gap-5"
                       : isDesktop
