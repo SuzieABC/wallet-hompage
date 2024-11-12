@@ -2,7 +2,9 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import hexagonIcon from "@/assets/icons/hexagon_icon.png";
+import hexagonIcon_1 from "@/assets/icons/hexagon_1_icon.png";
+import hexagonIcon_2 from "@/assets/icons/hexagon_2_icon.png";
+import hexagonIcon_3 from "@/assets/icons/hexagon_3_icon.png";
 import card1 from "@/assets/images/main/firstIntro/card1_image.png";
 import card2 from "@/assets/images/main/firstIntro/card2_image.png";
 import card3 from "@/assets/images/main/firstIntro/card3_image.png";
@@ -39,12 +41,23 @@ export default function IntroOne({
   const isLargeDesktop = windowWidth >= 1440;
 
   const cards = [
-    { img: card1, title: card_1_title, content: card_1_content },
-    { img: card2, title: card_2_title, content: card_2_content },
+    {
+      img: card1,
+      title: card_1_title,
+      content: card_1_content,
+      icon: hexagonIcon_1,
+    },
+    {
+      img: card2,
+      title: card_2_title,
+      content: card_2_content,
+      icon: hexagonIcon_2,
+    },
     {
       img: isDesktop || isLargeDesktop ? card3Cut : card3,
       title: card_3_title,
       content: card_3_content,
+      icon: hexagonIcon_3,
     },
   ];
 
@@ -207,7 +220,7 @@ export default function IntroOne({
                   >
                     <div className="pl-px pr-[0.65px] pt-px flex-col justify-center items-center flex">
                       <Image
-                        src={hexagonIcon}
+                        src={item.icon}
                         alt="hexagon"
                         width={isMobile || isTablet ? 26.35 : 46}
                         height={isMobile || isTablet ? 30.36 : 53}
