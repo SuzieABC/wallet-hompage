@@ -131,7 +131,7 @@ export default function IntroOne({
                     }`}
                   >
                     <div
-                      className={`self-stretch text-white font-pretendardBold uppercase ${
+                      className={`self-stretch text-white font-pretendardBold ${
                         isMobile
                           ? "text-lg"
                           : isTablet
@@ -146,7 +146,7 @@ export default function IntroOne({
                     {index !== 2 && (
                       <div
                         onClick={() => index === 5 && redirectTo()}
-                        className={`text-white uppercase leading-snug ${
+                        className={`text-white leading-snug ${
                           index === 5
                             ? `rounded-lg bg-gradient-to-r from-[#6a9ef2] to-[#d466ff]/70 justify-center items-center inline-flex font-pretendardRegular p-[1px] cursor-pointer`
                             : index === 4

@@ -109,14 +109,14 @@ export default function IntroOne({
             {isMobile ? (
               <>
                 <div className="flex">
-                  <span className="text-[#6d23ef] text-2xl font-pretendardBold uppercase leading-[33.60px]">
+                  <span className="text-[#6d23ef] text-2xl font-pretendardBold leading-[33.60px]">
                     {title}
                   </span>
                   {/* <span className="inline-block ml-2 text-[#6d23ef] text-2xl font-pretendardBold uppercase leading-[33.60px]">
                     {title_2}
                   </span> */}
                 </div>
-                <span className="text-black text-2xl font-pretendardBold uppercase leading-[33.60px]">
+                <span className="text-black text-2xl font-pretendardBold leading-[33.60px]">
                   {content}
                 </span>
               </>
@@ -127,7 +127,7 @@ export default function IntroOne({
                     isTablet
                       ? "text-[36px] leading-[46.08px]"
                       : "text-[56px] leading-[78.40px]"
-                  } font-pretendardSemibold uppercase`}
+                  } font-pretendardSemibold`}
                 >
                   {title}
                 </span>
@@ -146,7 +146,7 @@ export default function IntroOne({
                       isTablet
                         ? "text-[36px] leading-[46.08px]"
                         : "text-[56px] leading-[78.40px]"
-                    } font-pretendardSemibold uppercase`}
+                    } font-pretendardSemibold`}
                   >
                     {content}
                   </span>
@@ -231,7 +231,7 @@ export default function IntroOne({
                         isMobile || isTablet
                           ? "text-xl leading-[26.80px]"
                           : "text-[28px] leading-[38.64px]"
-                      } font-pretendardSemibold uppercase`}
+                      } font-pretendardSemibold`}
                     >
                       {item.title}
                       <br />

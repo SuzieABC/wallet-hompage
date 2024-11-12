@@ -93,7 +93,7 @@ export default function FourthIntro({
             }`}
           >
             <div
-              className={`self-stretch text-center text-black uppercase leading-[33.60px] ${
+              className={`self-stretch text-center text-black leading-[33.60px] ${
                 isMobile
                   ? "text-2xl font-pretendardBold"
                   : isTablet

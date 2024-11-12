@@ -114,7 +114,7 @@ export default function IntroOne({
               }`}
             >
               <span
-                className={`text-[#6d23ef] uppercase ${
+                className={`text-[#6d23ef] ${
                   isMobile
                     ? "text-2xl font-pretendardBold leading-[33.60px]"
                     : isTablet
@@ -125,7 +125,7 @@ export default function IntroOne({
                 {title}
               </span>
               <span
-                className={`text-black uppercase ${
+                className={`text-black ${
                   isMobile
                     ? "text-2xl font-pretendardBold leading-[33.60px]"
                     : isTablet
@@ -208,7 +208,7 @@ export default function IntroOne({
                           isMobile || isTablet
                             ? "text-xl leading-[26.80px]"
                             : "text-[28px] leading-[38.64px]"
-                        } font-pretendardSemibold uppercase `}
+                        } font-pretendardSemibold `}
                       >
                         {item.title}
                         <br />
