@@ -99,9 +99,9 @@ export default function IntroOne({
                   <span className="text-[#6d23ef] text-2xl font-pretendardBold uppercase leading-[33.60px]">
                     {title}
                   </span>
-                  <span className="inline-block ml-2 text-[#6d23ef] text-2xl font-pretendardBold uppercase leading-[33.60px]">
+                  {/* <span className="inline-block ml-2 text-[#6d23ef] text-2xl font-pretendardBold uppercase leading-[33.60px]">
                     {title_2}
-                  </span>
+                  </span> */}
                 </div>
                 <span className="text-black text-2xl font-pretendardBold uppercase leading-[33.60px]">
                   {content}
@@ -119,7 +119,7 @@ export default function IntroOne({
                   {title}
                 </span>
                 <div className="inline-flex">
-                  <span
+                  {/* <span
                     className={`inline-block text-black ${
                       isTablet
                         ? "text-[36px] leading-[46.08px]"
@@ -127,7 +127,7 @@ export default function IntroOne({
                     } font-pretendardSemibold uppercase`}
                   >
                     {title_2}&nbsp;
-                  </span>
+                  </span> */}
                   <span
                     className={`text-black ${
                       isTablet
