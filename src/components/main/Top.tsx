@@ -153,6 +153,8 @@ export default function Top({
               src={isMobile ? mobile : isTablet ? tablet : desktop}
               alt="mobile"
               className={`h-auto ${isMobile && "w-[320px]"} ${
+                isTablet && "w-[528.84px]"
+              } ${isDesktop && "w-[649.53px]"} ${
                 isLargeDesktop && "w-[788.083px]"
               }`}
             />
