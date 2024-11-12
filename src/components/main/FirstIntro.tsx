@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import hexagonIcon from "@/assets/icons/hexagon_icon.png";
 import card1 from "@/assets/images/main/firstIntro/card1_image.png";
 import card2 from "@/assets/images/main/firstIntro/card2_image.png";
 import card3 from "@/assets/images/main/firstIntro/card3_image.png";
-import card3Cut from "@/assets/images/main/firstIntro//card3_cut_image.png";
+import card3Cut from "@/assets/images/main/firstIntro/card3_cut_image.png";
 import useWindowWidth from "@/utils/hooks/useWindowWidth";
 
 interface IntroOneProps {
@@ -33,7 +33,6 @@ export default function IntroOne({
   card_3_content,
 }: IntroOneProps) {
   const windowWidth = useWindowWidth();
-
   const isMobile = windowWidth < 700;
   const isTablet = windowWidth >= 700 && windowWidth < 1024;
   const isDesktop = windowWidth >= 1024 && windowWidth < 1440;
@@ -50,17 +49,43 @@ export default function IntroOne({
   ];
 
   const [isLoading, setIsLoading] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setIsLoading(true);
   }, []);
 
+  // 현재 스크롤 위치에 따라 currentIndex 업데이트
+
+  const handleScroll = () => {
+    if (containerRef.current) {
+      const { scrollLeft, offsetWidth, scrollWidth } = containerRef.current;
+      const totalScrollWidth = scrollWidth - offsetWidth;
+
+      // Calculate index based on current scroll position
+      let newIndex = Math.ceil(scrollLeft / offsetWidth);
+
+      // Check if the user is close to the end
+      if (scrollLeft >= totalScrollWidth - 5) {
+        newIndex = cards.length - 1; // Set to last index if near the end
+      }
+
+      setCurrentIndex(newIndex);
+    }
+  };
+
   return (
     <>
       {isLoading && (
-        <div className="max-w-[1440px] mx-auto flex flex-col items-center w-full relative">
+        <div
+          className={`max-w-[1440px] mx-auto flex flex-col items-center w-full relative ${
+            isMobile || isTablet ? "mb-[80px]" : "mb-[180px]"
+          }`}
+        >
+          {/* 제목 섹션 */}
           <div
-            className={`flex flex-col   ${
+            className={`flex flex-col ${
               isMobile ? "items-start" : "items-center"
             } ${
               isMobile || isTablet
@@ -116,11 +141,15 @@ export default function IntroOne({
               </>
             )}
           </div>
+
+          {/* 카드 섹션 */}
           <div
+            ref={containerRef} // Ref로 가로 스크롤 컨테이너 참조
+            onScroll={handleScroll} // 스크롤 이벤트 리스너 추가
             className={`w-full ${
               isMobile || isTablet
-                ? "px-[20px] overflow-x-auto space-x-4 mb-[80px] flex"
-                : "px-[40px] grid gap-6 mb-[180px]"
+                ? "px-[20px] space-x-4 mb-[24px] flex snap-x snap-mandatory overflow-x-auto scrollbar-hidden"
+                : "px-[40px] grid gap-6"
             }`}
             style={{
               gridTemplateColumns:
@@ -131,25 +160,24 @@ export default function IntroOne({
           >
             {cards.map((item, index) => (
               <div
+                key={item.title}
+                style={{
+                  gridColumn:
+                    ((isDesktop || isLargeDesktop) && index === 2) ||
+                    index === 3
+                      ? "1 / span 2"
+                      : "auto",
+                  width: isDesktop || isLargeDesktop ? "auto" : undefined,
+                }}
                 className={`${
                   isMobile
-                    ? "w-[280px]"
+                    ? "w-[280px] snap-center"
                     : isTablet
-                    ? "w-[340px]"
+                    ? "w-[340px] snap-center"
                     : index === 2
                     ? "w-full col-span-2"
                     : "w-full"
-                } rounded-xl gap-2.5`}
-                key={item.title}
-                style={{
-                  // Make the third card span across the width on desktop
-                  gridColumn:
-                    (isDesktop || isLargeDesktop) && index === 2
-                      ? "1 / span 2"
-                      : "auto",
-                  // Adjust card width based on viewport
-                  width: isDesktop || isLargeDesktop ? "auto" : undefined,
-                }}
+                } rounded-xl justify-start items-start gap-2.5 flex-shrink-0`}
               >
                 <div
                   className={`inline-flex ${
@@ -208,6 +236,28 @@ export default function IntroOne({
               </div>
             ))}
           </div>
+
+          {/* 페이지네이션 점 */}
+          {(isMobile || isTablet) && (
+            <div className="flex justify-center space-x-2">
+              {cards.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => {
+                    if (containerRef.current) {
+                      containerRef.current.scrollTo({
+                        left: index * containerRef.current.offsetWidth,
+                        behavior: "smooth",
+                      });
+                    }
+                  }}
+                  className={`w-2 h-2 rounded-full ${
+                    index === currentIndex ? "bg-[#454854]" : "bg-[#ABAEBA]"
+                  }`}
+                />
+              ))}
+            </div>
+          )}
         </div>
       )}
     </>

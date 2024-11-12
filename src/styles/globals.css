@@ -28,3 +28,13 @@ body {
     text-wrap: balance;
   }
 }
+
+/* 스크롤바 숨기기 */
+.scrollbar-hidden {
+  -ms-overflow-style: none; /* IE와 Edge용 */
+  scrollbar-width: none; /* Firefox용 */
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera용 */
+}

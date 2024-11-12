@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import hexagonIcon from "@/assets/icons/hexagon_icon.png";
 import card1 from "@/assets/images/main/secondIntro/second_card1_image.png";
@@ -59,17 +59,37 @@ export default function IntroOne({
   ];
 
   const [isLoading, setIsLoading] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setIsLoading(true);
   }, []);
+
+  const handleScroll = () => {
+    if (containerRef.current) {
+      const { scrollLeft, offsetWidth, scrollWidth } = containerRef.current;
+      const totalScrollWidth = scrollWidth - offsetWidth;
+
+      let newIndex = Math.ceil(scrollLeft / offsetWidth);
+
+      if (scrollLeft >= totalScrollWidth - 5) {
+        newIndex = cards.length - 1;
+      }
+      setCurrentIndex(newIndex);
+    }
+  };
 
   return (
     <>
       {isLoading && (
         <div className="flex flex-col items-center bg-[#F5F5F5]">
           {/* 콘텐츠 컨테이너 */}
-          <div className="max-w-[1440px] w-full mx-auto flex flex-col items-center relative">
+          <div
+            className={`max-w-[1440px] w-full mx-auto flex flex-col items-center relative ${
+              isMobile || isTablet ? "mb-[80px]" : "mb-[180px]"
+            }`}
+          >
             <div
               className={`flex flex-col w-full ${
                 isMobile ? "items-start" : "items-center"
@@ -103,10 +123,12 @@ export default function IntroOne({
               </span>
             </div>
             <div
+              ref={containerRef}
+              onScroll={handleScroll}
               className={`w-full ${
                 isMobile || isTablet
-                  ? "overflow-x-auto space-x-4 mb-[80px] px-[20px] flex"
-                  : "grid gap-6 mb-[180px] px-[40px]"
+                  ? "space-x-4 mb-[24px] px-[20px] flex snap-x snap-mandatory overflow-x-auto scrollbar-hidden"
+                  : "grid gap-6 px-[40px]"
               }`}
               style={{
                 gridTemplateColumns:
@@ -190,6 +212,26 @@ export default function IntroOne({
                 </div>
               ))}
             </div>
+            {(isMobile || isTablet) && (
+              <div className="flex justify-center space-x-2">
+                {cards.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => {
+                      if (containerRef.current) {
+                        containerRef.current.scrollTo({
+                          left: index * containerRef.current.offsetWidth,
+                          behavior: "smooth",
+                        });
+                      }
+                    }}
+                    className={`w-2 h-2 rounded-full ${
+                      index === currentIndex ? "bg-[#454854]" : "bg-[#ABAEBA]"
+                    }`}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         </div>
       )}
