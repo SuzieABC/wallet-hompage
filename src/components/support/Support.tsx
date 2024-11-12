@@ -1,8 +1,7 @@
 "use client";
 
 import Notice from "@/components/support/Notice";
-import Link from "next/link";
-import { useState } from "react";
+import FAQ from "@/components/support/FAQ";
 
 interface SupportRow {
   title?: string;
@@ -14,25 +13,21 @@ interface SupportRow {
 }
 
 interface SupportProps {
-  data: {
+  noticeData: {
+    rows: SupportRow[];
+  };
+  faqData: {
     rows: SupportRow[];
   };
 }
 
-export default function Support({ data }: SupportProps) {
-  const [emailLink, setEmailLink] = useState("#");
-
-  const emailAddress = "help@myabcwallet.com";
-  const subject = encodeURIComponent("Subject goes here"); // Replace with desired subject
-  const body = encodeURIComponent("Body content goes here"); // Replace with desired body content
-
+export default function Support({ noticeData, faqData }: SupportProps) {
   const setupMailtoLink = () => {
-    // const mailtoString = `mailto:${emailAddress}?subject=${subject}&body=${body}`;
     window.open(
       "https://mail.google.com/mail/?view=cm&fs=1&to=help@myabcwallet.com"
     );
-    //setEmailLink(mailtoString);
   };
+
   return (
     <>
       <div className="w-full bg-black text-white h-[40vh] flex justify-center items-center text-[50px]">
@@ -40,15 +35,12 @@ export default function Support({ data }: SupportProps) {
       </div>
       <div className="flex flex-col w-full px-[360px] py-[100px] border gap-[49px]">
         <div className="flex border justify-between gap-[49px]">
-          <Notice datas={data["rows"]} />
-          <div className="border w-full flex flex-col">
-            자주 묻는 질문 <span>전체 보기</span>
-          </div>
+          <Notice datas={noticeData["rows"]} />
+          <FAQ datas={faqData["rows"]} />
         </div>
-
         <div className="border flex flex-col">
           <span>1:1 문의</span>
-          <a href={emailLink} onClick={setupMailtoLink}>
+          <a href={"#"} onClick={setupMailtoLink}>
             help@myabcwallet.com
           </a>
           <span>
