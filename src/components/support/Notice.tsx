@@ -23,7 +23,7 @@ export default function Notice({ datas }: NoticeProps) {
     notice_id: data.notice_id,
     service_type: data.service_type,
   }));
-  console.log("items", items);
+
   return (
     <div className="border w-full flex flex-col">
       공지사항
