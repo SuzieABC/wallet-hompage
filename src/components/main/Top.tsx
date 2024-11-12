@@ -98,7 +98,11 @@ export default function Top({
                 >
                   {title}
                 </span>
-                <div>
+                <div
+                  className={`${
+                    isMobile && "flex flex-wrap justify-center items-center"
+                  }`}
+                >
                   <span
                     className={`text-black ${
                       isMobile
@@ -127,7 +131,7 @@ export default function Top({
                     {subtitle_2}&nbsp;
                   </span>
                   <span
-                    className={`text-[#6d23ef] leading-none ${
+                    className={`text-[#6d23ef] leading-none  ${
                       isMobile
                         ? "text-[38px] font-pretendardBold"
                         : isTablet
