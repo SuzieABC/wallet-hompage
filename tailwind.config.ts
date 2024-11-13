@@ -8,6 +8,7 @@ const fonts = [
   "pretendardSemibold",
   "pretendardBold",
   "pretendardExtrabold",
+  "archivoRegular",
   "archivoMedium",
   "archivoSemibold",
   "archivoBold",
