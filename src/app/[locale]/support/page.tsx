@@ -1,6 +1,9 @@
 import { createTranslation } from "@/utils/localization/server";
 import { LocaleTypes } from "@/utils/localization/settings";
-import Support from "@/components/support/Support";
+import SupportTop from "@/components/support/SupportTop";
+import Notice from "@/components/support/Notice";
+import FAQ from "@/components/support/FAQ";
+import Enquiry from "@/components/support/Enquriy";
 
 export default async function Page({
   params: { locale },
@@ -38,7 +41,10 @@ export default async function Page({
 
   return (
     <div className="flex flex-col justify-center items-center">
-      <Support noticeData={noticeData} faqData={faqData} />
+      <SupportTop />
+      <Notice datas={noticeData["rows"]} />
+      <FAQ datas={faqData["rows"]} />
+      <Enquiry />
     </div>
   );
 }
