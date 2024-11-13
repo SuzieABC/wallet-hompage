@@ -15,6 +15,8 @@ import xLayerIcon from "@/assets/icons/main/fourthIntro/x_layer.png";
 import scrollIcon from "@/assets/icons/main/fourthIntro/scroll.png";
 import arrowDownIcon from "@/assets/icons/main/arrow_down_icon.png";
 import useWindowWidth from "@/utils/hooks/useWindowWidth";
+import dappsImage from "@/assets/images/main/dapp_image.png";
+import dappsMobileImage from "@/assets/images/main/dapp_mobile_image.png";
 
 interface CarouselItem {
   title: string;
@@ -192,7 +194,11 @@ export default function FourthIntro({
                   {card2_title}
                 </div>
               </div>
-              <div className="flex flex-wrap justify-center items-center gap-2">
+              <Image
+                src={isMobile ? dappsMobileImage : dappsImage}
+                alt={"Dapp Image"}
+              />
+              {/* <div className="flex flex-wrap justify-center items-center gap-2">
                 {items.map((item) => (
                   <div
                     className="grow shrink basis-0 px-3 py-5 bg-[#ececec] rounded-xl flex-col justify-start items-center gap-3 inline-flex"
@@ -234,7 +240,7 @@ export default function FourthIntro({
                     />
                   </div>
                 )}
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
