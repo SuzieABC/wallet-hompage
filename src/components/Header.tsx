@@ -8,7 +8,6 @@ import ChangeLocale from "./ChangeLocale";
 import { useTranslation } from "@/utils/localization/client";
 import type { LocaleTypes } from "@/utils/localization/settings";
 import logo from "@/assets/images/header/bi_color.png";
-import menuIcon from "@/assets/icons/Menu.png";
 import useWindowWidth from "@/utils/hooks/useWindowWidth";
 
 export default function Header() {
@@ -22,14 +21,10 @@ export default function Header() {
 
   const locale = useParams()?.locale as LocaleTypes;
   const { t } = useTranslation(locale, "common");
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const [isScrolled, setIsScrolled] = useState(false); // 스크롤 상태 추가
 
   const items = ["support"];
-
-  const handleMenuToggle = () => {
-    setIsMenuOpen((prev) => !prev);
-  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,11 +45,10 @@ export default function Header() {
     <>
       {isLoading && (
         <div
-          className={` z-50 fixed top-0 left-1/2 transform -translate-x-1/2 py-5 w-full ${
-            isScrolled ? "bg-white" : "bg-transparent"
-          }`}
+          className={`z-50 fixed top-0 left-1/2 transform -translate-x-1/2 ${
+            isDesktop || isLargeDesktop ? "py-5" : "py-[7px]"
+          } w-full ${isScrolled ? "bg-white" : "bg-transparent"}`}
         >
-          {" "}
           <header
             className={`max-w-[1440px] mx-auto w-full flex flex-col justify-center    ${
               isMobile || isTablet ? "pl-[20px] pr-[16px]" : "px-[40px]"
@@ -77,48 +71,31 @@ export default function Header() {
               {/* Right Section */}
               <div className="flex">
                 {/* Desktop Navigation */}
-                {isDesktop || isLargeDesktop ? (
-                  <nav className="flex flex-row justify-center items-center gap-2.5">
-                    {items.map((item) => (
-                      <Link
-                        key={item}
-                        href={`/${locale}/${item}`}
-                        className={`text-black text-[18px] p-[16px] leading-none ${
-                          pathName.includes(item)
-                            ? "text-white font-archivoBold "
-                            : "text-[#5C6070] font-archivoMedium "
-                        }`}
-                      >
-                        {t(`${item}`)}
-                      </Link>
-                    ))}
-                    <ChangeLocale windowWidth={windowWidth} />
-                  </nav>
-                ) : (
-                  <>
-                    {/* Mobile Menu Icon */}
-                    <button onClick={handleMenuToggle} className="p-2">
-                      <Image src={menuIcon} alt="menu" width={24} height={24} />
-                    </button>
-                    {/* Mobile Navigation */}
-                    {isMenuOpen && (
-                      <div className="absolute top-16 right-0 bg-gray-800 rounded-lg shadow-lg p-4 border">
-                        <nav className="flex flex-col space-y-3">
-                          {items.map((item) => (
-                            <Link
-                              key={item}
-                              href={`/${locale}/${item}`}
-                              className="text-white text-base font-archivoMedium tracking-tight"
-                            >
-                              {t(`${item}`)}
-                            </Link>
-                          ))}
-                        </nav>
-                        <ChangeLocale windowWidth={windowWidth} />
-                      </div>
-                    )}
-                  </>
-                )}
+
+                <nav
+                  className={`flex flex-row justify-center items-center ${
+                    isDesktop || isLargeDesktop ? "gap-2.5" : ""
+                  }`}
+                >
+                  {items.map((item) => (
+                    <Link
+                      key={item}
+                      href={`/${locale}/${item}`}
+                      className={`p-[16px] ${
+                        isDesktop || isLargeDesktop
+                          ? "text-[18px]"
+                          : "text-[15px]"
+                      } leading-none ${
+                        pathName.includes(item)
+                          ? "text-[#000000] font-archivoSemibold "
+                          : "text-[#454854] font-archivoMedium "
+                      }`}
+                    >
+                      {t(`${item}`)}
+                    </Link>
+                  ))}
+                  <ChangeLocale windowWidth={windowWidth} />
+                </nav>
               </div>
             </div>
           </header>
