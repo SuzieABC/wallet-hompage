@@ -102,22 +102,22 @@ export default function IntroOne({
             >
               {functions.map((item, index) => (
                 <div
-                  className={`bg-[#641ce4] rounded-xl border border-white/20 pointerhover:hover:bg-[#5209D4] ${
+                  className={`bg-[#6d23ef] rounded-xl border border-white/20 pointerhover:hover:bg-[#641ce4] group ${
                     isMobile
-                      ? "inline-flex justify-start items-center px-5 py-4 gap-5 min-h-[180px] h-auto"
+                      ? "inline-flex justify-start items-center px-5 py-4 gap-5 min-h-[131px] h-auto"
                       : isTablet
                       ? "flex flex-col aspect-square px-5 py-4 gap-5"
                       : isDesktop
                       ? "flex flex-col aspect-square p-[28px] gap-[60px]"
-                      : "flex flex-col aspect-square p-[40px] gap-[60px]"
+                      : "flex flex-col aspect-square p-[40px] gap-[80px]"
                   }`}
                   key={index}
                 >
                   <Image
                     src={item.icon}
                     alt="icon"
-                    width={isDesktop || isLargeDesktop ? 40 : 28}
-                    height={isDesktop || isLargeDesktop ? 40 : 28}
+                    width={isLargeDesktop ? 60 : isDesktop ? 40 : 28}
+                    height={isLargeDesktop ? 60 : isDesktop ? 40 : 28}
                   />
                   <div
                     className={`grow shrink basis-0 flex-col justify-start items-start inline-flex ${
@@ -148,7 +148,11 @@ export default function IntroOne({
                         onClick={() => index === 5 && redirectTo()}
                         className={`text-white leading-snug ${
                           index === 5
-                            ? `rounded-lg bg-gradient-to-r from-[#6a9ef2] to-[#d466ff]/70 justify-center items-center inline-flex font-pretendardRegular p-[1px] cursor-pointer`
+                            ? `rounded-lg  bg-[#641CE4] ${
+                                isMobile || isTablet
+                                  ? "bg-gradient-to-r"
+                                  : "group-hover:bg-gradient-to-r border border-white/30"
+                              } from-[#6a9ef2] to-[#d466ff]/70 justify-center items-center inline-flex font-pretendardRegular p-[1px] cursor-pointer`
                             : index === 4
                             ? `${
                                 isMobile
@@ -173,7 +177,11 @@ export default function IntroOne({
                         <span
                           className={`${
                             index === 5 &&
-                            "bg-gradient-to-r from-[#0d6eee] to-[#c021ff] w-full h-full px-[16px] py-[10px] rounded-lg"
+                            `${
+                              isMobile || isTablet
+                                ? "bg-gradient-to-r"
+                                : "group-hover:bg-gradient-to-r"
+                            } from-[#0d6eee] to-[#c021ff] w-full h-full px-[16px] py-[10px] rounded-lg`
                           }`}
                         >
                           {item.content}
