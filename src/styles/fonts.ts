@@ -60,6 +60,13 @@ export const geistSans = localFont({
     variable: "--font-pretendardExtrabold",
   });
 
+  export const archivoRegular = localFont({
+    src: "./../assets/fonts/Archivo-Regular.ttf",
+    display: "swap",
+    weight: "45 920",
+    variable: "--font-archivoRegular",
+  });
+
 export const archivoMedium = localFont({
   src: "./../assets/fonts/Archivo-Medium.ttf",
   display: "swap",

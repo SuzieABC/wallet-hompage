@@ -10,6 +10,7 @@ import {
   pretendardSemibold,
   pretendardBold,
   pretendardExtrabold,
+  archivoRegular,
   archivoMedium,
   archivoSemibold,
   archivoBold,
@@ -45,6 +46,7 @@ export default function RootLayout({
           ${pretendardSemibold.variable}
           ${pretendardBold.variable}
           ${pretendardExtrabold.variable}
+          ${archivoRegular.variable}
           ${archivoMedium.variable}
           ${archivoSemibold.variable}
           ${archivoBold.variable}
