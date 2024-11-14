@@ -15,7 +15,6 @@ import {
 import worldIcon from "@/assets/icons/world_icon.png";
 import worldLightIcon from "@/assets/icons/world_light_icon.png";
 import Image from "next/image";
-import { isFloat32Array } from "util/types";
 
 const LANGUAGES = [
   { code: "ko", label: "한국어" },
@@ -66,8 +65,6 @@ const ChangeLocale = ({ windowWidth }: ChangeLocaleProps) => {
     };
   }, [handleClickOutside]);
 
-  console.log("pathName", pathName);
-
   return (
     <div>
       <div className="relative">
@@ -93,7 +90,9 @@ const ChangeLocale = ({ windowWidth }: ChangeLocaleProps) => {
                   <span
                     className={`text-[16px] leading-[18px] 
     ${
-      (code === "ko" && pathName === "/") || pathName.includes(`/${code}`)
+      (code === "ko" && pathName === "/") ||
+      (code === "ko" && pathName === "/support") ||
+      pathName.includes(`/${code}`)
         ? `text-[#000] ${
             code === "en" ? "font-archivoMedium" : "font-pretendardMedium"
           }`
