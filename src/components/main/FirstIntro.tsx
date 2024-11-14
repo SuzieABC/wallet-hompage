@@ -9,6 +9,12 @@ import card1 from "@/assets/images/main/firstIntro/card1_image.png";
 import card2 from "@/assets/images/main/firstIntro/card2_image.png";
 import card3 from "@/assets/images/main/firstIntro/card3_image.png";
 import card3Cut from "@/assets/images/main/firstIntro/card3_cut_image.png";
+import largeCard1 from "@/assets/images/main/firstIntro/main_1440_card_1.image.png";
+import largeCard2 from "@/assets/images/main/firstIntro/main_1440_card_2.image.png";
+import largeCard3 from "@/assets/images/main/firstIntro/main_1440_card_3.image.png";
+import largeHoveredCard1 from "@/assets/images/main/firstIntro/main_1440_card_1_hover.image.png";
+import largeHoveredCard2 from "@/assets/images/main/firstIntro/main_1440_card_2_hover.image.png";
+import largeHoveredCard3 from "@/assets/images/main/firstIntro/main_1440_card_3_hover.image.png";
 import useWindowWidth from "@/utils/hooks/useWindowWidth";
 
 interface IntroOneProps {
@@ -42,19 +48,22 @@ export default function IntroOne({
 
   const cards = [
     {
-      img: card1,
+      img: isLargeDesktop ? largeCard1 : card1,
+      hovered: isLargeDesktop ? largeHoveredCard1 : card1,
       title: card_1_title,
       content: card_1_content,
       icon: hexagonIcon_1,
     },
     {
-      img: card2,
+      img: isLargeDesktop ? largeCard2 : card2,
+      hovered: isLargeDesktop ? largeHoveredCard2 : card2,
       title: card_2_title,
       content: card_2_content,
       icon: hexagonIcon_2,
     },
     {
-      img: isDesktop || isLargeDesktop ? card3Cut : card3,
+      img: isDesktop || isLargeDesktop ? largeCard3 : card3,
+      hovered: isDesktop || isLargeDesktop ? largeHoveredCard3 : card3Cut,
       title: card_3_title,
       content: card_3_content,
       icon: hexagonIcon_3,
@@ -190,15 +199,15 @@ export default function IntroOne({
                     : index === 2
                     ? "w-full col-span-2"
                     : "w-full"
-                } rounded-xl justify-start items-start gap-2.5 flex-shrink-0`}
+                } rounded-xl justify-start items-start gap-2.5 flex-shrink-0 group`}
               >
                 <div
                   className={`inline-flex ${
                     isMobile || isTablet
                       ? "pt-5 px-5 gap-5"
                       : index === 2
-                      ? `pt-10 px-[40px] gap-10 ${
-                          isLargeDesktop && "pl-[60px] pr-[120px]"
+                      ? `pt-10 group-hover:pt-[28px] px-[40px] gap-10 ${
+                          isLargeDesktop && "pl-[60px] pr-[120px] pt-[28]"
                         }`
                       : isDesktop
                       ? "pt-10 px-[30px] gap-10"
@@ -207,7 +216,7 @@ export default function IntroOne({
                     (isDesktop || isLargeDesktop) && index === 2
                       ? "flex-row w-full"
                       : "flex-col"
-                  } items-start w-full pointerhover:hover:text-white pointerhover:hover:bg-[#6F49E2]`}
+                  } items-start w-full pointerhover:hover:text-white pointerhover:hover:bg-[#6F49E2] h-auto`}
                 >
                   <div
                     className={`self-stretch flex-col justify-start items-start ${
@@ -216,9 +225,15 @@ export default function IntroOne({
                         : index === 2
                         ? "gap-6 w-full"
                         : "gap-6 pl-[10px]"
-                    } inline-flex`}
+                    } inline-flex ${
+                      isLargeDesktop && "group-hover:pb-[4.5px]"
+                    }`}
                   >
-                    <div className="pl-px pr-[0.65px] pt-px flex-col justify-center items-center flex">
+                    <div
+                      className={`pl-px pr-[0.65px] pt-px flex-col justify-center items-center flex ${
+                        isLargeDesktop && "group-hover:hidden"
+                      }`}
+                    >
                       <Image
                         src={item.icon}
                         alt="hexagon"
@@ -243,8 +258,23 @@ export default function IntroOne({
                     alt="wallet introduction card"
                     className={`${
                       isMobile || isTablet ? "max-w-[240px]" : "max-w-[420px]"
-                    } mx-auto w-auto h-auto`}
+                    } mx-auto w-auto h-auto ${
+                      isLargeDesktop && "group-hover:hidden"
+                    }`}
                   />
+                  {isLargeDesktop && (
+                    <Image
+                      src={item.hovered}
+                      alt="wallet introduction card"
+                      className={`${
+                        isMobile || isTablet
+                          ? "max-w-[240px]"
+                          : isDesktop
+                          ? "max-w-[420px]"
+                          : "max-w-[440px]"
+                      } mx-auto w-auto h-auto hidden group-hover:block`}
+                    />
+                  )}
                 </div>
               </div>
             ))}

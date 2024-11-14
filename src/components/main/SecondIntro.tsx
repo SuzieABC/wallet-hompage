@@ -13,6 +13,15 @@ import card4 from "@/assets/images/main/secondIntro/second_card4_image.png";
 import card4Cut from "@/assets/images/main/secondIntro/second_card4_cut_image.png";
 import useWindowWidth from "@/utils/hooks/useWindowWidth";
 
+import largeCard1 from "@/assets/images/main/secondIntro/second_main_1440_card_1_image.png";
+import largeCard2 from "@/assets/images/main/secondIntro/second_main_1440_card_2_image.png";
+import largeCard3 from "@/assets/images/main/secondIntro/second_main_1440_card_3_image.png";
+import largeCard4 from "@/assets/images/main/secondIntro/second_main_1440_card_4_image.png";
+import largeCardHoveredCard1 from "@/assets/images/main/secondIntro/second_main_1440_card_hover_1_image.png";
+import largeCardHoveredCard2 from "@/assets/images/main/secondIntro/second_main_1440_card_hover_2_image.png";
+import largeCardHoveredCard3 from "@/assets/images/main/secondIntro/second_main_1440_card_hover_3_image.png";
+import largeCardHoveredCard4 from "@/assets/images/main/secondIntro/second_main_1440_card_hover_4_image.png";
+
 interface IntroOneProps {
   title: string;
   content: string;
@@ -47,25 +56,29 @@ export default function IntroOne({
 
   const cards = [
     {
-      img: card1,
+      img: isLargeDesktop ? largeCard1 : card1,
+      hovered: isLargeDesktop ? largeCardHoveredCard1 : card1,
       title: card_1_title,
       content: card_1_content,
       icon: hexagonIcon_1,
     },
     {
-      img: card2,
+      img: isLargeDesktop ? largeCard2 : card2,
+      hovered: isLargeDesktop ? largeCardHoveredCard2 : card2,
       title: card_2_title,
       content: card_2_content,
       icon: hexagonIcon_2,
     },
     {
-      img: isDesktop || isLargeDesktop ? card3Cut : card3,
+      img: isDesktop || isLargeDesktop ? largeCard3 : card3,
+      hovered: isLargeDesktop ? largeCardHoveredCard3 : card3,
       title: card_3_title,
       content: card_3_content,
       icon: hexagonIcon_3,
     },
     {
-      img: isDesktop || isLargeDesktop ? card4Cut : card4,
+      img: isDesktop || isLargeDesktop ? largeCard4 : card4,
+      hovered: isLargeDesktop ? largeCardHoveredCard4 : card4,
       title: card_4_title,
       content: card_4_content,
       icon: hexagonIcon_1,
@@ -164,14 +177,14 @@ export default function IntroOne({
                   }}
                   className={`${
                     isMobile ? "w-[280px]" : isTablet ? "w-[340px]" : "w-full"
-                  } rounded-xl justify-start items-start gap-2.5 flex-shrink-0`}
+                  } rounded-xl justify-start items-start gap-2.5 flex-shrink-0 group`}
                 >
                   <div
                     className={`inline-flex ${
                       isMobile || isTablet
                         ? "pt-5 px-5 gap-5"
                         : index === 2 || index === 3
-                        ? `pt-10 px-[40px] gap-10 ${
+                        ? `pt-10 group-hover:pt-[28px] px-[40px] gap-10 ${
                             isLargeDesktop && "pl-[60px] pr-[120px]"
                           }`
                         : isDesktop
@@ -191,10 +204,14 @@ export default function IntroOne({
                           : index === 2 || index === 3
                           ? "gap-6 w-full"
                           : "gap-6 pl-[10px]"
-                      } inline-flex`}
+                      } inline-flex ${
+                        isLargeDesktop && "group-hover:pb-[4.5px]"
+                      }`}
                     >
                       <div
-                        className={`"pl-px pr-[0.65px] pt-px flex-col justify-center items-center flex"`}
+                        className={`pl-px pr-[0.65px] pt-px flex-col justify-center items-center flex ${
+                          isLargeDesktop && "group-hover:hidden"
+                        }`}
                       >
                         <Image
                           src={item.icon}
@@ -220,8 +237,23 @@ export default function IntroOne({
                       alt="wallet introduction card"
                       className={`${
                         isMobile || isTablet ? "max-w-[240px]" : "max-w-[420px]"
-                      } mx-auto w-auto h-auto`}
+                      } mx-auto w-auto h-auto ${
+                        isLargeDesktop && "group-hover:hidden"
+                      }`}
                     />
+                    {isLargeDesktop && (
+                      <Image
+                        src={item.hovered}
+                        alt="wallet introduction card"
+                        className={`${
+                          isMobile || isTablet
+                            ? "max-w-[240px]"
+                            : isDesktop
+                            ? "max-w-[420px]"
+                            : "max-w-[440px]"
+                        } mx-auto w-auto h-auto hidden group-hover:block`}
+                      />
+                    )}
                   </div>
                 </div>
               ))}
