@@ -31,7 +31,7 @@ interface IntroOneProps {
 
 export default function IntroOne({
   title,
-  title_2,
+  // title_2,
   content,
   card_1_title,
   card_1_content,
