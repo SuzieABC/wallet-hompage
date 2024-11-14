@@ -8,9 +8,9 @@ import hexagonIcon_3 from "@/assets/icons/hexagon_3_icon.png";
 import card1 from "@/assets/images/main/secondIntro/second_card1_image.png";
 import card2 from "@/assets/images/main/secondIntro/second_card2_image.png";
 import card3 from "@/assets/images/main/secondIntro/second_card3_image.png";
-import card3Cut from "@/assets/images/main/secondIntro/second_card3_cut_image.png";
+// import card3Cut from "@/assets/images/main/secondIntro/second_card3_cut_image.png";
 import card4 from "@/assets/images/main/secondIntro/second_card4_image.png";
-import card4Cut from "@/assets/images/main/secondIntro/second_card4_cut_image.png";
+// import card4Cut from "@/assets/images/main/secondIntro/second_card4_cut_image.png";
 import useWindowWidth from "@/utils/hooks/useWindowWidth";
 
 import largeCard1 from "@/assets/images/main/secondIntro/second_main_1440_card_1_image.png";
@@ -176,7 +176,11 @@ export default function IntroOne({
                     width: isDesktop || isLargeDesktop ? "auto" : undefined,
                   }}
                   className={`${
-                    isMobile ? "w-[280px]" : isTablet ? "w-[340px]" : "w-full"
+                    isMobile
+                      ? "w-[280px] snap-center"
+                      : isTablet
+                      ? "w-[340px] snap-center"
+                      : "w-full"
                   } rounded-xl justify-start items-start gap-2.5 flex-shrink-0 group`}
                 >
                   <div
