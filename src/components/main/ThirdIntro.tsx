@@ -118,6 +118,10 @@ export default function IntroOne({
                     alt="icon"
                     width={isLargeDesktop ? 60 : isDesktop ? 40 : 28}
                     height={isLargeDesktop ? 60 : isDesktop ? 40 : 28}
+                    className={`${
+                      (isDesktop || isLargeDesktop) &&
+                      "transition-transform duration-300 ease-in-out group-hover:translate-y-[-5px]"
+                    }`}
                   />
                   <div
                     className={`grow shrink basis-0 flex-col justify-start items-start inline-flex ${
@@ -151,7 +155,7 @@ export default function IntroOne({
                             ? `rounded-lg  bg-[#641CE4] ${
                                 isMobile || isTablet
                                   ? "bg-gradient-to-r"
-                                  : "group-hover:bg-gradient-to-r border border-white/30"
+                                  : "group-hover:bg-gradient-to-r group-hover:border-none border border-white/30"
                               } from-[#6a9ef2] to-[#d466ff]/70 justify-center items-center inline-flex font-pretendardRegular p-[1px] cursor-pointer`
                             : index === 4
                             ? `${
