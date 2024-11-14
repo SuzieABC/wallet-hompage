@@ -1,3 +1,16 @@
 {
-  "title": "Company"
+  "title": "Customer Support",
+  "view_all": "View All",
+  "notice": {
+    "title": "Announcements"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions"
+  },
+  "enquiry": {
+    "title_1": "1:1",
+    "title_2": "Inquiry",
+    "content_1": "Please let us know if you have any questions or suggestions for improvement.",
+    "content_2": "We look forward to hearing your valuable feedback."
+  }
 }
