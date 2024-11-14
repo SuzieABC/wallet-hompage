@@ -30,31 +30,29 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const fontClasses = [
+    geistSans.variable,
+    geistMono.variable,
+    pretendard.variable,
+    pretendardLight.variable,
+    pretendardRegular.variable,
+    pretendardMedium.variable,
+    pretendardSemibold.variable,
+    pretendardBold.variable,
+    pretendardExtrabold.variable,
+    archivoRegular.variable,
+    archivoMedium.variable,
+    archivoSemibold.variable,
+    archivoBold.variable,
+    outfitExtrabold.variable,
+  ].join(" ");
+
   return (
     <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
-      <body
-        className={`
-          ${geistSans.variable} 
-          ${geistMono.variable} 
-          ${pretendard.variable} 
-          ${pretendardLight.variable} 
-          ${pretendardRegular.variable}
-          ${pretendardMedium.variable}
-          ${pretendardSemibold.variable}
-          ${pretendardBold.variable}
-          ${pretendardExtrabold.variable}
-          ${archivoRegular.variable}
-          ${archivoMedium.variable}
-          ${archivoSemibold.variable}
-          ${archivoBold.variable}
-          ${outfitExtrabold.variable}
-          antialiased bg-white`}
-      >
-        {children}
-      </body>
+      <body className={`${fontClasses} antialiased bg-white`}>{children}</body>
     </html>
   );
 }
