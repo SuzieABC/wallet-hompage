@@ -13,18 +13,7 @@ export default async function Page({
 }: {
   params: { locale: LocaleTypes };
 }) {
-  // Make sure to use the correct namespace here.
   const { t } = await createTranslation(locale, "main");
-
-  const res = await fetch("https://api.id.myabcwallet.com/query/v2/app-dapps", {
-    cache: "no-store", // API 데이터가 항상 최신이도록 설정
-  });
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
-
-  const data = await res.json();
 
   return (
     <>
@@ -76,7 +65,6 @@ export default async function Page({
         card_6_content={t("intro_3.card_6_content")}
       />
       <FourthIntro
-        datas={data}
         intro_4_title={t("intro_4.intro_4_title")}
         intro_4_content={t("intro_4.intro_4_content")}
         card1_title={t("intro_4.card1_title")}
