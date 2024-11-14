@@ -206,7 +206,9 @@ export default function IntroOne({
                     isMobile || isTablet
                       ? "pt-5 px-5 gap-5"
                       : index === 2
-                      ? `pt-10 group-hover:pt-[28px] px-[40px] gap-10 ${
+                      ? `pt-10 ${
+                          isLargeDesktop && "group-hover:pt-[28px]"
+                        } px-[40px] gap-10 ${
                           isLargeDesktop && "pl-[60px] pr-[120px] pt-[28]"
                         }`
                       : isDesktop
