@@ -41,10 +41,23 @@ export default async function Page({
 
   return (
     <div className="flex flex-col justify-center items-center">
-      <SupportTop />
-      <Notice datas={noticeData["rows"]} />
-      <FAQ datas={faqData["rows"]} />
-      <Enquiry />
+      <SupportTop title={t("title")} />
+      <Notice
+        datas={noticeData["rows"]}
+        notice_title={t("notice.title")}
+        button={t("view_all")}
+      />
+      <FAQ
+        datas={faqData["rows"]}
+        faq_title={t("faq.title")}
+        button={t("view_all")}
+      />
+      <Enquiry
+        title_1={t("enquiry.title_1")}
+        title_2={t("enquiry.title_2")}
+        content_1={t("enquiry.content_1")}
+        content_2={t("enquiry.content_2")}
+      />
     </div>
   );
 }

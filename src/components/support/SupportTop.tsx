@@ -4,7 +4,10 @@ import bg_tablet from "@/assets/images/support/support_tablet_top_background_ima
 import bg_desktop from "@/assets/images/support/support_top_background_image.png";
 import useWindowWidth from "@/utils/hooks/useWindowWidth";
 
-export default function SupportTop() {
+interface SupportTopProps {
+  title: string;
+}
+export default function SupportTop({ title }: SupportTopProps) {
   const windowWidth = useWindowWidth();
   const isMobile = windowWidth < 700;
   const isTablet = windowWidth >= 700 && windowWidth < 1024;
@@ -35,7 +38,7 @@ export default function SupportTop() {
               "text-[56px] pb-[189px] pt-[184px]"
         }`}
       >
-        고객센터
+        {title}
       </span>
     </div>
   );

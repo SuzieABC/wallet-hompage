@@ -7,7 +7,7 @@ import arrow_right_colour from "@/assets/icons/support/support_arrow_right_colou
 import arrow_right from "@/assets/icons/support/support_arrow_right_icon.png";
 import arrow_down from "@/assets/icons/support/support_arrow_down_icon.png";
 import arrow_down_white from "@/assets/icons/support/support_arrow_down_white_icon.png";
-import MOCKDATA from "@/data/NOTICE.json";
+// import MOCKDATA from "@/data/NOTICE.json";
 import useWindowWidth from "@/utils/hooks/useWindowWidth";
 
 interface NoticeData {
@@ -20,9 +20,11 @@ interface NoticeData {
 }
 
 interface NoticeProps {
-  test: NoticeData[];
+  datas: NoticeData[];
+  faq_title: string;
+  button: string;
 }
-export default function FAQ({ test = MOCKDATA.rows }: NoticeProps) {
+export default function FAQ({ datas, faq_title, button }: NoticeProps) {
   const windowWidth = useWindowWidth();
 
   const isDesktop = windowWidth >= 1024;
@@ -30,7 +32,7 @@ export default function FAQ({ test = MOCKDATA.rows }: NoticeProps) {
   const [selectedNoticeId, setSelectedNoticeId] = useState<string | null>(null);
   const [isHovering, setIsHovering] = useState(false);
 
-  const items: NoticeData[] = test
+  const items: NoticeData[] = datas
     .slice(0, isDesktop ? 5 : 4)
     .map((data: NoticeData) => ({
       title: data.title,
@@ -52,7 +54,7 @@ export default function FAQ({ test = MOCKDATA.rows }: NoticeProps) {
           isDesktop ? "text-[37px] leading-[51.80px]" : "text-[26px] leading-9"
         } font-pretendardBold uppercase`}
       >
-        자주 묻는 질문
+        {faq_title}
       </span>
       <ul className={`${isDesktop ? "mt-[20px]" : "mt-[16px]"} `}>
         {items.map((item) => (
@@ -143,7 +145,7 @@ export default function FAQ({ test = MOCKDATA.rows }: NoticeProps) {
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}
         >
-          <span>전체 보기</span>
+          <span>{button}</span>
           <Image
             src={isHovering ? arrow_down_white : arrow_down}
             alt="arrow_down"

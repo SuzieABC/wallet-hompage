@@ -2,7 +2,19 @@
 
 import useWindowWidth from "@/utils/hooks/useWindowWidth";
 
-export default function Enquiry() {
+interface EnquiryProps {
+  title_1: string;
+  title_2: string;
+  content_1: string;
+  content_2: string;
+}
+
+export default function Enquiry({
+  title_1,
+  title_2,
+  content_1,
+  content_2,
+}: EnquiryProps) {
   const windowWidth = useWindowWidth();
 
   const isMobile = windowWidth < 700;
@@ -35,14 +47,15 @@ export default function Enquiry() {
               isMobile || isTablet ? "text-2xl" : "text-[28px]"
             } `}
           >
-            1:1
+            {title_1}
           </span>
+          &nbsp;
           <span
             className={`font-pretendardBold ${
               isMobile || isTablet ? "text-2xl" : "text-[26px]"
             }`}
           >
-            문의
+            {title_2}
           </span>
         </p>
         {/* <a href={"#"} onClick={setupMailtoLink}> */}
@@ -63,12 +76,11 @@ export default function Enquiry() {
             isMobile || isTablet ? "text-base pt-[20px]" : "text-lg pt-[28px]"
           }`}
         >
-          궁금한 점이나 개선사항을 알려주세요.
-          {isMobile || (isTablet && <br />)}
-          여러분의 소중한 의견을 기다립니다.
+          {content_1}
+          {(isMobile || isTablet) && <br />}
+          {content_2}
         </p>
       </div>
     </div>
   );
 }
-2;

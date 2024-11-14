@@ -7,7 +7,7 @@ import arrow_right_colour from "@/assets/icons/support/support_arrow_right_colou
 import arrow_right from "@/assets/icons/support/support_arrow_right_icon.png";
 import arrow_down from "@/assets/icons/support/support_arrow_down_icon.png";
 import arrow_down_white from "@/assets/icons/support/support_arrow_down_white_icon.png";
-import MockData from "@/data/NOTICE.json";
+// import MockData from "@/data/NOTICE.json";
 import useWindowWidth from "@/utils/hooks/useWindowWidth";
 
 interface NoticeData {
@@ -20,10 +20,12 @@ interface NoticeData {
 }
 
 interface NoticeProps {
-  test: NoticeData[];
+  datas: NoticeData[];
+  notice_title: string;
+  button: string;
 }
 
-export default function Notice({ test = MockData.rows }: NoticeProps) {
+export default function Notice({ datas, notice_title, button }: NoticeProps) {
   const windowWidth = useWindowWidth();
   const isDesktop = windowWidth >= 1024;
   const [selectedNoticeId, setSelectedNoticeId] = useState<string | null>(null);
@@ -31,7 +33,7 @@ export default function Notice({ test = MockData.rows }: NoticeProps) {
   // 새로운 상태 변수: 전체 보기 버튼의 hover 상태를 관리
   const [isHovering, setIsHovering] = useState(false);
 
-  const items: NoticeData[] = test.slice(0, 4).map((data: NoticeData) => ({
+  const items: NoticeData[] = datas.slice(0, 4).map((data: NoticeData) => ({
     title: data.title,
     update_time: data.update_time,
     language_type: data.language_type,
@@ -55,7 +57,7 @@ export default function Notice({ test = MockData.rows }: NoticeProps) {
           isDesktop ? "text-[37px] leading-[51.80px]" : "text-[26px] leading-9"
         } font-pretendardBold uppercase`}
       >
-        공지사항
+        {notice_title}
       </span>
       <ul className={`${isDesktop ? "mt-[20px]" : "mt-[16px]"} `}>
         {items.map((item) => (
@@ -147,7 +149,7 @@ export default function Notice({ test = MockData.rows }: NoticeProps) {
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}
         >
-          <span>전체 보기</span>
+          <span>{button}</span>
           <Image
             src={isHovering ? arrow_down_white : arrow_down}
             alt="arrow_down"
