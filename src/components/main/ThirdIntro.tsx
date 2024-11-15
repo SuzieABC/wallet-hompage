@@ -120,7 +120,7 @@ export default function IntroOne({
                     height={isLargeDesktop ? 60 : isDesktop ? 40 : 28}
                     className={`${
                       (isDesktop || isLargeDesktop) &&
-                      "transition-transform duration-300 ease-in-out group-hover:translate-y-[-5px]"
+                      "transition-transform duration-300 ease-in-out group-hover:translate-y-[-8px]"
                     }`}
                   />
                   <div
