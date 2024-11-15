@@ -74,7 +74,7 @@ export default function IntroOne({
   return (
     <>
       {isLoading && (
-        <div className="flex flex-col items-center w-full bg-[#6d23ef] overflow-y-scroll">
+        <div className="flex flex-col items-center w-full bg-[#6d23ef]">
           <div
             className={`max-w-[1440px] mx-auto h-auto ${
               isMobile || isTablet ? "py-20 px-5" : "py-[180px] px-[40px]"
@@ -183,9 +183,9 @@ export default function IntroOne({
                             index === 5 &&
                             `${
                               isMobile || isTablet
-                                ? "bg-gradient-to-r"
-                                : "group-hover:bg-gradient-to-r"
-                            } from-[#0d6eee] to-[#c021ff] w-full h-full px-[16px] py-[10px] rounded-lg`
+                                ? "bg-gradient-to-r px-[12px] py-[6px]"
+                                : "group-hover:bg-gradient-to-r px-[16px] py-[10px]"
+                            } from-[#0d6eee] to-[#c021ff] w-full h-full rounded-lg`
                           }`}
                         >
                           {item.content}
