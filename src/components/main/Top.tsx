@@ -104,9 +104,11 @@ export default function Top({
                   }`}
                 >
                   <span
-                    className={`text-black ${
+                    className={`text-black text-center ${
                       isMobile
-                        ? "text-[38px] font-pretendardBold"
+                        ? `text-[38px] font-pretendardBold ${
+                            windowWidth < 359 && "mx-[50px]"
+                          }`
                         : isTablet
                         ? "text-[50px] font-pretendardSemibold"
                         : isDesktop
@@ -118,7 +120,7 @@ export default function Top({
                   </span>
                   {isLargeDesktop && <br />}
                   <span
-                    className={`text-[#6d23ef] font-archivoSemibold leading-none ${
+                    className={`text-[#6d23ef] font-archivoSemibold leading-none text-center ${
                       isMobile
                         ? "text-[38px]"
                         : isTablet
