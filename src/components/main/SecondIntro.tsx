@@ -48,11 +48,13 @@ export default function IntroOne({
   card_4_content,
 }: IntroOneProps) {
   const windowWidth = useWindowWidth();
-
   const isMobile = windowWidth < 700;
   const isTablet = windowWidth >= 700 && windowWidth < 1024;
   const isDesktop = windowWidth >= 1024 && windowWidth < 1440;
   const isLargeDesktop = windowWidth >= 1440;
+
+  const containerRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]); // 각 카드의 ref를 배열로 저장
 
   const cards = [
     {
@@ -87,7 +89,6 @@ export default function IntroOne({
 
   const [isLoading, setIsLoading] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setIsLoading(true);
@@ -96,14 +97,30 @@ export default function IntroOne({
   const handleScroll = () => {
     if (containerRef.current) {
       const { scrollLeft, offsetWidth, scrollWidth } = containerRef.current;
+      const cardWidth = scrollWidth / cards.length; // 전체 콘텐츠 너비에서 각 카드의 너비 계산
+      let newIndex = Math.ceil(scrollLeft / cardWidth); // 정확한 인덱스 계산을 위해 반올림 사용
       const totalScrollWidth = scrollWidth - offsetWidth;
 
-      let newIndex = Math.ceil(scrollLeft / offsetWidth);
-
-      if (scrollLeft >= totalScrollWidth - 5) {
+      // 마지막 카드 도달 시 인덱스 조정
+      if (scrollLeft >= totalScrollWidth) {
         newIndex = cards.length - 1;
       }
+
       setCurrentIndex(newIndex);
+    }
+  };
+
+  // 페이지네이션 버튼 클릭 시 정확한 카드 위치로 스크롤
+  const scrollToCard = (index: number) => {
+    if (containerRef.current) {
+      const { scrollWidth } = containerRef.current;
+      const cardWidth = scrollWidth / cards.length; // 전체 콘텐츠 너비에서 각 카드의 너비 계산
+      const cardPosition = index * cardWidth; // 인덱스에 따라 카드 위치 계산
+      containerRef.current.scrollTo({
+        left: cardPosition,
+        behavior: "smooth",
+      });
+      setCurrentIndex(index); // 현재 인덱스 업데이트
     }
   };
 
@@ -167,6 +184,9 @@ export default function IntroOne({
               {cards.map((item, index) => (
                 <div
                   key={item.title}
+                  ref={(el) => {
+                    cardRefs.current[index] = el;
+                  }} // 카드 ref 설정
                   style={{
                     gridColumn:
                       ((isDesktop || isLargeDesktop) && index === 2) ||
@@ -269,14 +289,7 @@ export default function IntroOne({
                 {cards.map((_, index) => (
                   <button
                     key={index}
-                    onClick={() => {
-                      if (containerRef.current) {
-                        containerRef.current.scrollTo({
-                          left: index * containerRef.current.offsetWidth,
-                          behavior: "smooth",
-                        });
-                      }
-                    }}
+                    onClick={() => scrollToCard(index)}
                     className={`w-2 h-2 rounded-full ${
                       index === currentIndex ? "bg-[#454854]" : "bg-[#ABAEBA]"
                     }`}
