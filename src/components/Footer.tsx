@@ -61,7 +61,7 @@ export default function Footer() {
     <>
       {isLoading && (
         <div
-          className={`max-w-[1440px] mx-auto pb-20 flex-col justify-start items-start gap-2.5 min-w-[320px] overflow-x-hidden min-h-screen ${
+          className={`max-w-[1440px] mx-auto pb-20 flex-col justify-start items-start gap-2.5 min-w-[320px] overflow-x-hidden ${
             isDesktop ? "px-[40px] pt-[48px]" : "px-4 pt-10"
           }`}
         >
