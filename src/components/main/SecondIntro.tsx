@@ -113,14 +113,16 @@ export default function IntroOne({
   // 페이지네이션 버튼 클릭 시 정확한 카드 위치로 스크롤
   const scrollToCard = (index: number) => {
     if (containerRef.current) {
-      const { scrollWidth } = containerRef.current;
-      const cardWidth = scrollWidth / cards.length; // 전체 콘텐츠 너비에서 각 카드의 너비 계산
-      const cardPosition = index * cardWidth; // 인덱스에 따라 카드 위치 계산
+      const { scrollWidth, offsetWidth } = containerRef.current; // Total scrollable width and visible width
+      const cardWidth = scrollWidth / cards.length; // Calculate each card's width
+      const cardPosition = index * cardWidth; // Position of the card
+      const centerOffset = (offsetWidth - cardWidth) / 2; // Offset to center the card
+
       containerRef.current.scrollTo({
-        left: cardPosition,
+        left: cardPosition - centerOffset, // Adjust position to center the card
         behavior: "smooth",
       });
-      setCurrentIndex(index); // 현재 인덱스 업데이트
+      setCurrentIndex(index); // Update the current index
     }
   };
 
@@ -166,12 +168,14 @@ export default function IntroOne({
                 {content}
               </span>
             </div>
+
+            {/* 카드 섹션 */}
             <div
               ref={containerRef}
               onScroll={handleScroll}
               className={`w-full ${
                 isMobile || isTablet
-                  ? "space-x-4 mb-[24px] px-[20px] flex snap-x snap-mandatory overflow-x-auto scrollbar-hidden"
+                  ? "space-x-4 mb-[24px] px-[20px] flex overflow-x-auto scrollbar-hidden"
                   : "grid gap-6 px-[40px]"
               }`}
               style={{
@@ -179,6 +183,7 @@ export default function IntroOne({
                   isDesktop || isLargeDesktop ? "1fr 1fr" : "1fr",
                 gridTemplateRows:
                   isDesktop || isLargeDesktop ? "auto auto" : "auto",
+                // scrollSnapType: "x mandatory",
               }}
             >
               {cards.map((item, index) => (
@@ -270,6 +275,7 @@ export default function IntroOne({
                     {isLargeDesktop && (
                       <Image
                         src={item.hovered}
+                        priority={isLargeDesktop}
                         alt="wallet introduction card"
                         className={`${
                           isMobile || isTablet

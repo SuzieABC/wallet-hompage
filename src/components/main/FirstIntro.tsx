@@ -83,17 +83,31 @@ export default function IntroOne({
   const handleScroll = () => {
     if (containerRef.current) {
       const { scrollLeft, offsetWidth, scrollWidth } = containerRef.current;
+      const cardWidth = scrollWidth / cards.length; // 전체 콘텐츠 너비에서 각 카드의 너비 계산
+      let newIndex = Math.ceil(scrollLeft / cardWidth); // 정확한 인덱스 계산을 위해 반올림 사용
       const totalScrollWidth = scrollWidth - offsetWidth;
 
-      // Calculate index based on current scroll position
-      let newIndex = Math.ceil(scrollLeft / offsetWidth);
-
-      // Check if the user is close to the end
-      if (scrollLeft >= totalScrollWidth - 5) {
-        newIndex = cards.length - 1; // Set to last index if near the end
+      // 마지막 카드 도달 시 인덱스 조정
+      if (scrollLeft >= totalScrollWidth) {
+        newIndex = cards.length - 1;
       }
 
       setCurrentIndex(newIndex);
+    }
+  };
+
+  const scrollToCard = (index: number) => {
+    if (containerRef.current) {
+      const { scrollWidth, offsetWidth } = containerRef.current; // Total scrollable width and visible width
+      const cardWidth = scrollWidth / cards.length; // Calculate each card's width
+      const cardPosition = index * cardWidth; // Position of the card
+      const centerOffset = (offsetWidth - cardWidth) / 2; // Offset to center the card
+
+      containerRef.current.scrollTo({
+        left: cardPosition - centerOffset, // Adjust position to center the card
+        behavior: "smooth",
+      });
+      setCurrentIndex(index); // Update the current index
     }
   };
 
@@ -170,7 +184,7 @@ export default function IntroOne({
             onScroll={handleScroll} // 스크롤 이벤트 리스너 추가
             className={`w-full ${
               isMobile || isTablet
-                ? "px-[20px] space-x-4 mb-[24px] flex snap-x snap-mandatory overflow-x-auto scrollbar-hidden"
+                ? "px-[20px] space-x-4 mb-[24px] flex overflow-x-auto scrollbar-hidden"
                 : "px-[40px] grid gap-6"
             }`}
             style={{
@@ -178,6 +192,7 @@ export default function IntroOne({
                 isDesktop || isLargeDesktop ? "1fr 1fr" : "1fr",
               gridTemplateRows:
                 isDesktop || isLargeDesktop ? "auto auto" : "auto",
+              // scrollSnapType: "x mandatory",
             }}
           >
             {cards.map((item, index) => (
@@ -267,6 +282,7 @@ export default function IntroOne({
                   {isLargeDesktop && (
                     <Image
                       src={item.hovered}
+                      priority={isLargeDesktop}
                       alt="wallet introduction card"
                       className={`${
                         isMobile || isTablet
@@ -288,14 +304,7 @@ export default function IntroOne({
               {cards.map((_, index) => (
                 <button
                   key={index}
-                  onClick={() => {
-                    if (containerRef.current) {
-                      containerRef.current.scrollTo({
-                        left: index * containerRef.current.offsetWidth,
-                        behavior: "smooth",
-                      });
-                    }
-                  }}
+                  onClick={() => scrollToCard(index)}
                   className={`w-2 h-2 rounded-full ${
                     index === currentIndex ? "bg-[#454854]" : "bg-[#ABAEBA]"
                   }`}
