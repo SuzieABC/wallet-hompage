@@ -61,7 +61,7 @@ export default function Footer() {
     <>
       {isLoading && (
         <div
-          className={`max-w-[1440px] mx-auto w-full pb-20 bg-white flex-col justify-start items-start gap-2.5 overflow-hidden ${
+          className={`mx-auto pb-20 flex-col justify-start items-start gap-2.5 min-w-[320px] overflow-x-hidden min-h-screen ${
             isDesktop ? "px-[40px] pt-[48px]" : "px-4 pt-10"
           }`}
         >
@@ -134,7 +134,7 @@ export default function Footer() {
                   }`}
                 >
                   <span
-                    className={`text-black text-[15px] font-bold font-archivoBold ${
+                    className={`text-black font-archivoBold ${
                       isDesktop ? "pb-[10px] text-[17px]" : "text-[15px]"
                     }`}
                   >
@@ -208,7 +208,7 @@ export default function Footer() {
           </div>
 
           <div
-            className={`px-2 justify-start items-center ${
+            className={`px-2 justify-start items-center border] ${
               isDesktop ? "mt-[10px]" : "mt-[35px]"
             }`}
           >
