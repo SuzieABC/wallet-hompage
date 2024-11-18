@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-
 import {
   geistSans,
   geistMono,
@@ -20,9 +19,18 @@ import "@/styles/globals.css";
 
 /* TODO */
 export const metadata: Metadata = {
-  title: "Ahnlab Blockchain Company",
-  description:
-    "AhnLab Blockchain Company provides a safe and convenient blockchain wallet service based on AhnLab’s security DNA.",
+  metadataBase: new URL("https://myabcwallet.io/"),
+
+  title: "ABC Wallet - AhnLab Blockchain Company",
+  description: "Stay Secure, Explore Freely",
+  openGraph: {
+    images: [
+      {
+        url: "/images/abc_logo.png",
+        alt: "ABC Wallet Logo",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
