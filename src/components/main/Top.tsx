@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import useWindowWidth from "@/utils/hooks/useWindowWidth";
+import DeepLinkButton from "@/components/elements/DeepLinkButton";
 import backgroundMobile from "@/assets/images/main/top/top_background_mobile_image.png";
 import backgroundTablet from "@/assets/images/main/top/top_background_tablet_image.png";
 import backgroundDesktop from "@/assets/images/main/top/top_background_desktop_image.png";
@@ -9,8 +11,6 @@ import backgroundLargeDesktop from "@/assets/images/main/top/top_background_larg
 import mobile from "@/assets/images/main/top/top_mobile_image.png";
 import tablet from "@/assets/images/main/top/top_tablet_image.png";
 import desktop from "@/assets/images/main/top/top_desktop_image.png";
-import useWindowWidth from "@/utils/hooks/useWindowWidth";
-import Button from "@/components/elements/Button";
 
 interface TopProps {
   title: string;
@@ -152,7 +152,7 @@ export default function Top({
                   </p>
                 )}
               </div>
-              <Button />
+              <DeepLinkButton />
             </div>
 
             <Image
