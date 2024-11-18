@@ -2,15 +2,13 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import hexagonIcon_1 from "@/assets/icons/hexagon_1_icon.png";
-import hexagonIcon_2 from "@/assets/icons/hexagon_2_icon.png";
-import hexagonIcon_3 from "@/assets/icons/hexagon_3_icon.png";
+import hexagonIcon_1 from "@/assets/icons/main/hexagon_1_icon.png";
+import hexagonIcon_2 from "@/assets/icons/main/hexagon_2_icon.png";
+import hexagonIcon_3 from "@/assets/icons/main/hexagon_3_icon.png";
 import card1 from "@/assets/images/main/secondIntro/second_card1_image.png";
 import card2 from "@/assets/images/main/secondIntro/second_card2_image.png";
 import card3 from "@/assets/images/main/secondIntro/second_card3_image.png";
-// import card3Cut from "@/assets/images/main/secondIntro/second_card3_cut_image.png";
 import card4 from "@/assets/images/main/secondIntro/second_card4_image.png";
-// import card4Cut from "@/assets/images/main/secondIntro/second_card4_cut_image.png";
 import useWindowWidth from "@/utils/hooks/useWindowWidth";
 
 import largeCard1 from "@/assets/images/main/secondIntro/second_main_1440_card_1_image.png";
@@ -122,10 +120,9 @@ export default function IntroOne({
         left: cardPosition - centerOffset, // Adjust position to center the card
         behavior: "smooth",
       });
-      setCurrentIndex(index); // Update the current index
+      // setCurrentIndex(index); // Update the current index
     }
   };
-
   return (
     <>
       {isLoading && (
@@ -183,7 +180,7 @@ export default function IntroOne({
                   isDesktop || isLargeDesktop ? "1fr 1fr" : "1fr",
                 gridTemplateRows:
                   isDesktop || isLargeDesktop ? "auto auto" : "auto",
-                // scrollSnapType: "x mandatory",
+                scrollSnapType: "x mandatory",
               }}
             >
               {cards.map((item, index) => (
@@ -215,9 +212,7 @@ export default function IntroOne({
                         : index === 2 || index === 3
                         ? `pt-10 ${
                             isLargeDesktop && "group-hover:pt-[28px]"
-                          } px-[40px] gap-10 ${
-                            isLargeDesktop && "pl-[60px] pr-[120px]"
-                          }`
+                          } px-[40px] gap-10 ${isLargeDesktop && "pl-[60px]"}`
                         : isDesktop
                         ? "pt-10 px-[30px] gap-10"
                         : "pt-10 px-[60px] gap-10"
@@ -230,6 +225,10 @@ export default function IntroOne({
                   >
                     <div
                       className={`self-stretch flex-col justify-start items-start ${
+                        (index === 2 || index === 3) &&
+                        (isDesktop || isLargeDesktop) &&
+                        "w-[50%]"
+                      } ${
                         isMobile || isTablet
                           ? "gap-4"
                           : index === 2 || index === 3

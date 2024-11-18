@@ -2,9 +2,9 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import hexagonIcon_1 from "@/assets/icons/hexagon_1_icon.png";
-import hexagonIcon_2 from "@/assets/icons/hexagon_2_icon.png";
-import hexagonIcon_3 from "@/assets/icons/hexagon_3_icon.png";
+import hexagonIcon_1 from "@/assets/icons/main/hexagon_1_icon.png";
+import hexagonIcon_2 from "@/assets/icons/main/hexagon_2_icon.png";
+import hexagonIcon_3 from "@/assets/icons/main/hexagon_3_icon.png";
 import card1 from "@/assets/images/main/firstIntro/card1_image.png";
 import card2 from "@/assets/images/main/firstIntro/card2_image.png";
 import card3 from "@/assets/images/main/firstIntro/card3_image.png";
@@ -16,6 +16,7 @@ import largeHoveredCard1 from "@/assets/images/main/firstIntro/main_1440_card_1_
 import largeHoveredCard2 from "@/assets/images/main/firstIntro/main_1440_card_2_hover.image.png";
 import largeHoveredCard3 from "@/assets/images/main/firstIntro/main_1440_card_3_hover.image.png";
 import useWindowWidth from "@/utils/hooks/useWindowWidth";
+// import HoverVideo from "@/components/elements/HoverVideo";
 
 interface IntroOneProps {
   title: string;
@@ -107,7 +108,6 @@ export default function IntroOne({
         left: cardPosition - centerOffset, // Adjust position to center the card
         behavior: "smooth",
       });
-      setCurrentIndex(index); // Update the current index
     }
   };
 
@@ -192,7 +192,7 @@ export default function IntroOne({
                 isDesktop || isLargeDesktop ? "1fr 1fr" : "1fr",
               gridTemplateRows:
                 isDesktop || isLargeDesktop ? "auto auto" : "auto",
-              // scrollSnapType: "x mandatory",
+              scrollSnapType: "x mandatory",
             }}
           >
             {cards.map((item, index) => (
@@ -200,8 +200,7 @@ export default function IntroOne({
                 key={item.title}
                 style={{
                   gridColumn:
-                    ((isDesktop || isLargeDesktop) && index === 2) ||
-                    index === 3
+                    (isDesktop || isLargeDesktop) && index === 2
                       ? "1 / span 2"
                       : "auto",
                   width: isDesktop || isLargeDesktop ? "auto" : undefined,
@@ -224,7 +223,7 @@ export default function IntroOne({
                       ? `pt-10 ${
                           isLargeDesktop && "group-hover:pt-[28px]"
                         } px-[40px] gap-10 ${
-                          isLargeDesktop && "pl-[60px] pr-[120px] pt-[28]"
+                          isLargeDesktop && "pl-[60px] pt-[28px]"
                         }`
                       : isDesktop
                       ? "pt-10 px-[30px] gap-10"
@@ -237,6 +236,8 @@ export default function IntroOne({
                 >
                   <div
                     className={`self-stretch flex-col justify-start items-start ${
+                      index === 2 && (isDesktop || isLargeDesktop) && "w-[50%]"
+                    } ${
                       isMobile || isTablet
                         ? "gap-4"
                         : index === 2
@@ -261,7 +262,7 @@ export default function IntroOne({
                     <div
                       className={`self-stretch ${
                         isMobile || isTablet
-                          ? "text-xl leading-[26.80px]"
+                          ? "text-[20px] leading-[26.80px]"
                           : "text-[28px] leading-[38.64px]"
                       } font-pretendardSemibold`}
                     >
@@ -292,6 +293,11 @@ export default function IntroOne({
                           : "max-w-[440px]"
                       } mx-auto w-auto h-auto hidden group-hover:block`}
                     />
+                    // <HoverVideo
+                    //   videoSrc="https://cdn.sanity.io/files/2epdaewr/production/570221c8d835e1f26f699d1d2dbb04bbe5cf0103.mp4"
+                    //   posterSrc="https://sanity-images.imgix.net/production/8814733691ec9126ee72c1f73c11a78b2f0c0fc3-1040x1000.png?h=450&amp;dpr=2&amp;w=&amp;auto=format%2Ccompress"
+                    //   alt="abc wallet"
+                    // />
                   )}
                 </div>
               </div>
