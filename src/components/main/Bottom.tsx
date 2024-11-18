@@ -23,7 +23,13 @@ export default function Bottom() {
       {isLoading && (
         <div
           className={`flex flex-col items-center w-full relative bg-[#211837] ${
-            isDesktop || isLargeDesktop ? "pt-[104px]" : "pt-[56px]"
+            isLargeDesktop
+              ? "pt-[32px] mb-[72px] pb-[166px]"
+              : isDesktop
+              ? "pt-[104px] pb-[166px]"
+              : isTablet
+              ? "pt-[90px] pb-[139px] mb-[42px]"
+              : "pt-[56px] pb-[92px] mb-[32px]"
           } `}
           style={{
             backgroundImage: `url(${shape.src})`,
@@ -59,10 +65,10 @@ export default function Bottom() {
             }
           />
           <div
-            className={`flex flex-col justify-center items-center text-white  font-outfitExtrabold uppercase ${
+            className={`flex flex-col justify-center items-center text-white font-outfitExtrabold uppercase ${
               isDesktop || isLargeDesktop
-                ? "pt-[40px] pb-[166px] text-5xl leading-[59.52px]"
-                : "pt-[20px] pb-[92px] text-4xl leading-[46.08px]"
+                ? "pt-[40px] text-5xl leading-[59.52px]"
+                : "pt-[20px] text-4xl leading-[46.08px]"
             } text-center`}
           >
             Stay&nbsp;
