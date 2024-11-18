@@ -14,8 +14,9 @@ import fncyIcon from "@/assets/icons/main/fourthIntro/fncy.png";
 import xLayerIcon from "@/assets/icons/main/fourthIntro/x_layer.png";
 import scrollIcon from "@/assets/icons/main/fourthIntro/scroll.png";
 import useWindowWidth from "@/utils/hooks/useWindowWidth";
-import dappsImage from "@/assets/images/main/dapp_image.png";
+import dapps1024Image from "@/assets/images/main/dapp_1024_image.png";
 import dappsMobileImage from "@/assets/images/main/dapp_mobile_image.png";
+import dapps1440Image from "@/assets/images/main/dapp_1440_image.png";
 
 export default function FourthIntro({
   intro_4_title,
@@ -32,7 +33,8 @@ export default function FourthIntro({
 
   const isMobile = windowWidth < 700;
   const isTablet = windowWidth >= 700 && windowWidth < 1024;
-  const isDesktop = windowWidth >= 1024;
+  const isDesktop = windowWidth >= 1024 && windowWidth < 1440;
+  const isLargeDesktop = windowWidth >= 1440;
 
   const coins = [
     { name: "Bitcoin", icon: bitcoinIcon },
@@ -61,17 +63,17 @@ export default function FourthIntro({
           <div
             className={`w-full flex-col justify-start items-start  inline-flex ${
               isMobile || isTablet
-                ? "py-20 gap-[60px] px-5"
-                : "py-[180px] gap-[160px] px-10"
+                ? "py-20 gap-[60px]"
+                : "py-[180px] gap-[160px]"
             }`}
           >
             <div
               className={`self-stretch text-center text-black leading-[33.60px] ${
                 isMobile
-                  ? "text-2xl font-pretendardBold"
+                  ? "text-2xl font-pretendardBold mx-5"
                   : isTablet
-                  ? "text-4xl font-pretendardSemibold"
-                  : "text-[56px] font-pretendardSemibold"
+                  ? "text-4xl font-pretendardSemibold mx-5"
+                  : "text-[56px] font-pretendardSemibold mx-10"
               }`}
             >
               {intro_4_title}&nbsp;
@@ -81,22 +83,26 @@ export default function FourthIntro({
 
             <div
               className={`self-stretch flex-col justify-start items-start flex ${
-                isMobile ? "gap-6" : isTablet ? "px-8 gap-10" : "gap-[60px]"
+                isMobile
+                  ? "gap-6 mx-5"
+                  : isTablet
+                  ? "px-8 gap-10 mx-5"
+                  : "gap-[60px] mx-10"
               }`}
             >
               <div
                 className={`self-stretch flex flex-col justify-center items-center ${
-                  isDesktop ? "gap-7" : "gap-4"
+                  isDesktop || isLargeDesktop ? "gap-7" : "gap-4"
                 }`}
               >
                 <div
                   className={`${
-                    isDesktop ? "w-10 h-0.5" : "w-6 h-px"
+                    isDesktop || isLargeDesktop ? "w-10 h-0.5" : "w-6 h-px"
                   }  bg-[#454854]`}
                 />
                 <div
                   className={`self-stretch text-center text-[#454854] ${
-                    isDesktop ? "text-[32px]" : "text-xl"
+                    isDesktop || isLargeDesktop ? "text-[32px]" : "text-xl"
                   } font-pretendardBold uppercase`}
                 >
                   {card1_title}
@@ -124,12 +130,14 @@ export default function FourthIntro({
                       <Image
                         src={item.icon}
                         alt={item.name}
-                        width={isDesktop ? 48 : 24}
-                        height={isDesktop ? 48 : 24}
+                        width={isDesktop || isLargeDesktop ? 48 : 24}
+                        height={isDesktop || isLargeDesktop ? 48 : 24}
                       />
                       <div
                         className={`text-center text-black  font-pretendardMedium ${
-                          isDesktop ? "text-xl" : "text-[15px]"
+                          isDesktop || isLargeDesktop
+                            ? "text-xl"
+                            : "text-[15px]"
                         }`}
                       >
                         {item.name}
@@ -147,17 +155,17 @@ export default function FourthIntro({
             >
               <div
                 className={`self-stretch flex-col justify-center items-center ${
-                  isDesktop ? "gap-7" : "gap-4"
+                  isDesktop || isLargeDesktop ? "gap-7 mx-10" : "gap-4 mx-5"
                 } flex`}
               >
                 <div
                   className={`${
-                    isDesktop ? "w-10 h-0.5" : "w-6 h-px"
+                    isDesktop || isLargeDesktop ? "w-10 h-0.5" : "w-6 h-px"
                   }  bg-[#454854]`}
                 />
                 <div
                   className={`self-stretch text-center text-[#454854] font-pretendardBold uppercase  ${
-                    isDesktop
+                    isDesktop || isLargeDesktop
                       ? "text-[32px] leading-[44.80px]"
                       : "text-xl leading-7"
                   }`}
@@ -166,8 +174,15 @@ export default function FourthIntro({
                 </div>
               </div>
               <Image
-                src={isMobile ? dappsMobileImage : dappsImage}
+                src={
+                  isMobile
+                    ? dappsMobileImage
+                    : isDesktop
+                    ? dapps1024Image
+                    : dapps1440Image
+                }
                 alt={"Dapp Image"}
+                className={`${isLargeDesktop ? "h-[388.2px]" : ""}`}
               />
             </div>
           </div>
