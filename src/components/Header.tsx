@@ -46,7 +46,7 @@ export default function Header() {
       {isLoading && (
         <div
           className={`z-50 fixed top-0 left-1/2 transform -translate-x-1/2 ${
-            isDesktop || isLargeDesktop ? "py-5" : "py-[7px]"
+            isDesktop || isLargeDesktop ? "py-[12px]" : "py-[7px]"
           } w-full ${isScrolled ? "bg-white" : "bg-transparent"}`}
         >
           <header
