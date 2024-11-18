@@ -35,7 +35,7 @@ export default function SupportTop({ title }: SupportTopProps) {
           isMobile || isTablet
             ? "text-[32px] pb-[192px] pt-[210px]"
             : (isDesktop || isLargeDesktop) &&
-              "text-[56px] pb-[189px] pt-[184px]"
+              "text-[56px] pb-[207px] pt-[166px]"
         }`}
       >
         {title}

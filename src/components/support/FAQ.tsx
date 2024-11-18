@@ -139,15 +139,15 @@ export default function FAQ({ datas, faq_title, button }: NoticeProps) {
           href={`https://dev-api.id.myabcwallet.com/query/v2/faq?language=ko&service=wallet-homepage`}
           className={`flex ${
             isDesktop
-              ? "mt-[60px] py-[20px] pr-[100px] pl-[90px] text-xl leading-normal text-[#454854] rounded-lg border border-[#5c6070] hover:bg-[#6d23ef] hover:text-[#fff] gap-2"
-              : "mt-[28px] py-[14px] text-base leading-tight text-[#5c6070] gap-1"
+              ? "mt-[60px] py-[18px] pr-[80px] pl-[100px] text-xl leading-normal text-[#454854] rounded-lg border border-[#5c6070] hover:bg-[#6d23ef] hover:text-[#fff] gap-2"
+              : "mt-[28px] py-[14px] pr-[44px] pl-[56px] text-base leading-tight text-[#5c6070] gap-1"
           }`}
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}
         >
           <span>{button}</span>
           <Image
-            src={isHovering ? arrow_down_white : arrow_down}
+            src={isDesktop && isHovering ? arrow_down_white : arrow_down}
             alt="arrow_down"
             width={24}
             height={24}

@@ -29,30 +29,34 @@ export default function Enquiry({
   return (
     <div className={`flex flex-col max-w-[1440px] w-full`}>
       <div
-        className={`bg-[#F5F5F5] flex flex-col  ${
-          isMobile ? "px-[16px]" : isTablet ? "px-[20px]" : "px-[60px]"
+        className={`bg-[#6D23EF] flex flex-col  ${
+          isMobile
+            ? "px-[16px] pt-[50px] pb-[60px]"
+            : isTablet
+            ? "px-[20px] pt-[50px] pb-[60px]"
+            : "p-[60px]"
         } ${
           isDesktop || isLargeDesktop
-            ? "mx-[40px] mb-[160px] rounded-3xl py-[72px] items-start"
-            : "py-[80px] items-center"
+            ? "mx-[40px] mb-[160px] rounded-3xl items-start"
+            : "items-center"
         }`}
       >
         <p
           className={`text-black uppercase leading-[33.60px] ${
-            isMobile || isTablet ? "mb-[36px]" : "mb-[40px]"
+            isMobile || isTablet ? "mb-[16px]" : "mb-[40px]"
           }`}
         >
           <span
-            className={`font-pretendardSemibold ${
-              isMobile || isTablet ? "text-2xl" : "text-[28px]"
+            className={`font-pretendardSemibold text-[#fff] ${
+              isMobile || isTablet ? "text-[22px]" : "text-[28px]"
             } `}
           >
             {title_1}
           </span>
           &nbsp;
           <span
-            className={`font-pretendardBold ${
-              isMobile || isTablet ? "text-2xl" : "text-[26px]"
+            className={`font-pretendardBold text-[#fff] ${
+              isMobile || isTablet ? "text-[22px]" : "text-[26px]"
             }`}
           >
             {title_2}
@@ -61,9 +65,9 @@ export default function Enquiry({
         {/* <a href={"#"} onClick={setupMailtoLink}> */}
         <a
           href={"mailto:help@myabcwallet.com"}
-          className={`text-center text-black font-archivoSemibold ${
+          className={`text-center font-archivoSemibold text-[#fff] ${
             isMobile
-              ? "text-[28px] leading-10 "
+              ? "text-[26px] leading-10 "
               : isTablet
               ? "text-[32px] leading-[45.44px]"
               : "text-[40px]"
@@ -72,7 +76,7 @@ export default function Enquiry({
           help@myabcwallet.com
         </a>
         <p
-          className={`text-center text-[#454854] font-pretendardRegular leading-snug ${
+          className={`text-center text-[#454854] font-pretendardRegular leading-snug text-[#dddddd]/80 ${
             isMobile || isTablet ? "text-base pt-[20px]" : "text-lg pt-[28px]"
           }`}
         >
