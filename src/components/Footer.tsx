@@ -61,16 +61,18 @@ export default function Footer() {
     <>
       {isLoading && (
         <div
-          className={`max-w-[1440px] mx-auto pb-20 flex-col justify-start items-start gap-2.5 min-w-[320px] overflow-x-hidden ${
-            isDesktop ? "px-[40px] pt-[48px]" : "px-4 pt-10"
+          className={`max-w-[1440px] mx-auto  flex-col justify-start items-start gap-2.5 min-w-[320px] overflow-x-hidden ${
+            isDesktop
+              ? "px-[40px] pt-[48px] pb-[80px]"
+              : `px-4 pb-[60px] pt-[40px]`
           }`}
         >
           <div
             className={`self-stretch ${
               isDesktop ? "flex-row" : "flex-col"
-            } justify-between items-start gap-12 flex`}
+            } justify-between items-start gap-[44px] flex`}
           >
-            <div className="px-2 flex-col justify-start items-center gap-2.5 flex">
+            <div className="px-2 flex-col justify-start items-center flex">
               <Image
                 src={logo_image}
                 alt="logo"
@@ -82,12 +84,12 @@ export default function Footer() {
             <div
               className={`self-stretch ${
                 isDesktop ? "flex-row" : "flex-col"
-              } justify-start items-start gap-[20px] flex`}
+              } justify-start items-start gap-[16px] flex`}
             >
               <div className="self-stretch flex-col justify-start items-start gap-0.5 flex">
                 <div
-                  className={`px-2 justify-center items-center gap-2.5 inline-flex ${
-                    isDesktop && "pr-[95px]"
+                  className={`px-2 justify-center items-center inline-flex ${
+                    isDesktop && "pr-[110px]"
                   }`}
                 >
                   <span
@@ -95,7 +97,7 @@ export default function Footer() {
                       isDesktop ? "pb-[10px] text-[17px]" : "text-[15px]"
                     }`}
                   >
-                    Company
+                    Service
                   </span>
                 </div>
                 <div
