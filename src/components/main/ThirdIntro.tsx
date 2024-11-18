@@ -2,12 +2,12 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import icon1 from "@/assets/icons/main/icon_01.png";
-import icon2 from "@/assets/icons/main/icon_02.png";
-import icon3 from "@/assets/icons/main/icon_03.png";
-import icon4 from "@/assets/icons/main/icon_04.png";
-import icon5 from "@/assets/icons/main/icon_05.png";
-import icon6 from "@/assets/icons/main/icon_06.png";
+import icon1 from "@/assets/icons/main/thirdIntro/icon_01.png";
+import icon2 from "@/assets/icons/main/thirdIntro/icon_02.png";
+import icon3 from "@/assets/icons/main/thirdIntro/icon_03.png";
+import icon4 from "@/assets/icons/main/thirdIntro/icon_04.png";
+import icon5 from "@/assets/icons/main/thirdIntro/icon_05.png";
+import icon6 from "@/assets/icons/main/thirdIntro/icon_06.png";
 import useWindowWidth from "@/utils/hooks/useWindowWidth";
 
 interface IntroOneProps {
