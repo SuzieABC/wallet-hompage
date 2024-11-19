@@ -63,6 +63,7 @@ export default function Header() {
                 <Image
                   src={logo}
                   alt="logo"
+                  priority
                   width={isDesktop || isLargeDesktop ? 140 : 119}
                   height={isDesktop || isLargeDesktop ? 20 : 16.44}
                 />

@@ -158,6 +158,7 @@ export default function Top({
             <Image
               src={isMobile ? mobile : isTablet ? tablet : desktop}
               alt="mobile"
+              priority
               className={`h-auto ${isMobile && "w-[320px]"} ${
                 isTablet && "w-[528.84px]"
               } ${isDesktop && "w-[649.53px]"} ${
