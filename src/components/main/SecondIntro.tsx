@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
 import hexagonIcon_1 from "@/assets/icons/main/hexagon_1_icon.png";
 import hexagonIcon_2 from "@/assets/icons/main/hexagon_2_icon.png";
@@ -85,12 +85,7 @@ export default function IntroOne({
     },
   ];
 
-  const [isLoading, setIsLoading] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    setIsLoading(true);
-  }, []);
 
   const handleScroll = () => {
     if (containerRef.current) {
@@ -125,186 +120,188 @@ export default function IntroOne({
   };
   return (
     <>
-      {isLoading && (
-        <div className="flex flex-col items-center bg-[#F5F5F5]">
-          {/* 콘텐츠 컨테이너 */}
+      <div
+        className="flex flex-col items-center bg-[#F5F5F5]"
+        style={{ visibility: windowWidth ? "visible" : "hidden" }}
+      >
+        {/* 콘텐츠 컨테이너 */}
+        <div
+          className={`max-w-[1440px] w-full mx-auto flex flex-col items-center relative ${
+            isMobile || isTablet ? "mb-[80px]" : "mb-[180px]"
+          }`}
+        >
           <div
-            className={`max-w-[1440px] w-full mx-auto flex flex-col items-center relative ${
-              isMobile || isTablet ? "mb-[80px]" : "mb-[180px]"
+            className={`flex flex-col w-full ${
+              isMobile ? "items-start" : "items-center"
+            } ${
+              isMobile || isTablet
+                ? "pt-[80px] pb-[40px] px-[20px]"
+                : "pt-[180px] pb-[100px] px-[40px]"
             }`}
           >
-            <div
-              className={`flex flex-col w-full ${
-                isMobile ? "items-start" : "items-center"
-              } ${
-                isMobile || isTablet
-                  ? "pt-[80px] pb-[40px] px-[20px]"
-                  : "pt-[180px] pb-[100px] px-[40px]"
+            <span
+              className={`text-[#6d23ef] ${
+                isMobile
+                  ? "text-2xl font-pretendardBold leading-[33.60px]"
+                  : isTablet
+                  ? "text-[36px] font-pretendardSemibold leading-[46.08px]"
+                  : "text-[56px] font-pretendardSemibold leading-[78.40px]"
               }`}
             >
-              <span
-                className={`text-[#6d23ef] ${
-                  isMobile
-                    ? "text-2xl font-pretendardBold leading-[33.60px]"
-                    : isTablet
-                    ? "text-[36px] font-pretendardSemibold leading-[46.08px]"
-                    : "text-[56px] font-pretendardSemibold leading-[78.40px]"
-                }`}
-              >
-                {title}
-              </span>
-              <span
-                className={`text-black ${
-                  isMobile
-                    ? "text-2xl font-pretendardBold leading-[33.60px]"
-                    : isTablet
-                    ? "text-[36px] font-pretendardSemibold leading-[46.08px]"
-                    : "text-[56px] font-pretendardSemibold leading-[78.40px]"
-                }`}
-              >
-                {content}
-              </span>
-            </div>
+              {title}
+            </span>
+            <span
+              className={`text-black ${
+                isMobile
+                  ? "text-2xl font-pretendardBold leading-[33.60px]"
+                  : isTablet
+                  ? "text-[36px] font-pretendardSemibold leading-[46.08px]"
+                  : "text-[56px] font-pretendardSemibold leading-[78.40px]"
+              }`}
+            >
+              {content}
+            </span>
+          </div>
 
-            {/* 카드 섹션 */}
-            <div
-              ref={containerRef}
-              onScroll={handleScroll}
-              className={`w-full ${
-                isMobile || isTablet
-                  ? "space-x-4 mb-[24px] px-[20px] flex overflow-x-auto scrollbar-hidden"
-                  : "grid gap-6 px-[40px]"
-              }`}
-              style={{
-                gridTemplateColumns:
-                  isDesktop || isLargeDesktop ? "1fr 1fr" : "1fr",
-                gridTemplateRows:
-                  isDesktop || isLargeDesktop ? "auto auto" : "auto",
-                scrollSnapType: "x mandatory",
-              }}
-            >
-              {cards.map((item, index) => (
+          {/* 카드 섹션 */}
+          <div
+            ref={containerRef}
+            onScroll={handleScroll}
+            className={`w-full ${
+              isMobile || isTablet
+                ? "space-x-4 mb-[24px] px-[20px] flex overflow-x-auto scrollbar-hidden"
+                : "grid gap-6 px-[40px]"
+            }`}
+            style={{
+              gridTemplateColumns:
+                isDesktop || isLargeDesktop ? "1fr 1fr" : "1fr",
+              gridTemplateRows:
+                isDesktop || isLargeDesktop ? "auto auto" : "auto",
+              scrollSnapType: "x mandatory",
+            }}
+          >
+            {cards.map((item, index) => (
+              <div
+                key={item.title}
+                ref={(el) => {
+                  cardRefs.current[index] = el;
+                }} // 카드 ref 설정
+                style={{
+                  gridColumn:
+                    ((isDesktop || isLargeDesktop) && index === 2) ||
+                    index === 3
+                      ? "1 / span 2"
+                      : "auto",
+                  width: isDesktop || isLargeDesktop ? "auto" : undefined,
+                }}
+                className={`${
+                  isMobile
+                    ? "w-[280px] snap-center"
+                    : isTablet
+                    ? "w-[340px] snap-center"
+                    : "w-full"
+                } rounded-xl justify-start items-start gap-2.5 flex-shrink-0 group`}
+                aria-label={`Go to card ${index + 1}`}
+              >
                 <div
-                  key={item.title}
-                  ref={(el) => {
-                    cardRefs.current[index] = el;
-                  }} // 카드 ref 설정
-                  style={{
-                    gridColumn:
-                      ((isDesktop || isLargeDesktop) && index === 2) ||
-                      index === 3
-                        ? "1 / span 2"
-                        : "auto",
-                    width: isDesktop || isLargeDesktop ? "auto" : undefined,
-                  }}
-                  className={`${
-                    isMobile
-                      ? "w-[280px] snap-center"
-                      : isTablet
-                      ? "w-[340px] snap-center"
-                      : "w-full"
-                  } rounded-xl justify-start items-start gap-2.5 flex-shrink-0 group`}
+                  className={`inline-flex ${
+                    isMobile || isTablet
+                      ? "pt-5 px-5 gap-5"
+                      : index === 2 || index === 3
+                      ? `pt-10 ${
+                          isLargeDesktop && "group-hover:pt-[28px]"
+                        } px-[40px] gap-10 ${isLargeDesktop && "pl-[60px]"}`
+                      : isDesktop
+                      ? "pt-10 px-[30px] gap-10"
+                      : "pt-10 px-[60px] gap-10"
+                  } bg-[#E3E4E8] text-black  rounded-2xl ${
+                    (isDesktop || isLargeDesktop) &&
+                    (index === 2 || index === 3)
+                      ? "flex-row w-full"
+                      : "flex-col"
+                  } items-start w-full pointerhover:hover:bg-[#6F49E2] pointerhover:hover:text-white`}
                 >
                   <div
-                    className={`inline-flex ${
-                      isMobile || isTablet
-                        ? "pt-5 px-5 gap-5"
-                        : index === 2 || index === 3
-                        ? `pt-10 ${
-                            isLargeDesktop && "group-hover:pt-[28px]"
-                          } px-[40px] gap-10 ${isLargeDesktop && "pl-[60px]"}`
-                        : isDesktop
-                        ? "pt-10 px-[30px] gap-10"
-                        : "pt-10 px-[60px] gap-10"
-                    } bg-[#E3E4E8] text-black  rounded-2xl ${
+                    className={`self-stretch flex-col justify-start items-start ${
+                      (index === 2 || index === 3) &&
                       (isDesktop || isLargeDesktop) &&
-                      (index === 2 || index === 3)
-                        ? "flex-row w-full"
-                        : "flex-col"
-                    } items-start w-full pointerhover:hover:bg-[#6F49E2] pointerhover:hover:text-white`}
+                      "w-[50%]"
+                    } ${
+                      isMobile || isTablet
+                        ? "gap-4"
+                        : index === 2 || index === 3
+                        ? "gap-6 w-full"
+                        : "gap-6 pl-[10px]"
+                    } inline-flex ${
+                      isLargeDesktop && "group-hover:pb-[4.5px]"
+                    }`}
                   >
                     <div
-                      className={`self-stretch flex-col justify-start items-start ${
-                        (index === 2 || index === 3) &&
-                        (isDesktop || isLargeDesktop) &&
-                        "w-[50%]"
-                      } ${
-                        isMobile || isTablet
-                          ? "gap-4"
-                          : index === 2 || index === 3
-                          ? "gap-6 w-full"
-                          : "gap-6 pl-[10px]"
-                      } inline-flex ${
-                        isLargeDesktop && "group-hover:pb-[4.5px]"
-                      }`}
-                    >
-                      <div
-                        className={`pl-px pr-[0.65px] pt-px flex-col justify-center items-center flex ${
-                          isLargeDesktop && "group-hover:hidden"
-                        }`}
-                      >
-                        <Image
-                          src={item.icon}
-                          alt="hexagon"
-                          width={isMobile || isTablet ? 26.35 : 46}
-                          height={isMobile || isTablet ? 30.36 : 53}
-                        />
-                      </div>
-                      <div
-                        className={`self-stretch ${
-                          isMobile || isTablet
-                            ? "text-xl leading-[26.80px]"
-                            : "text-[28px] leading-[38.64px]"
-                        } font-pretendardSemibold `}
-                      >
-                        {item.title}
-                        <br />
-                        {item.content}
-                      </div>
-                    </div>
-                    <Image
-                      src={item.img}
-                      alt="wallet introduction card"
-                      className={`${
-                        isMobile || isTablet ? "max-w-[240px]" : "max-w-[420px]"
-                      } mx-auto w-auto h-auto ${
+                      className={`pl-px pr-[0.65px] pt-px flex-col justify-center items-center flex ${
                         isLargeDesktop && "group-hover:hidden"
                       }`}
-                    />
-                    {isLargeDesktop && (
+                    >
                       <Image
-                        src={item.hovered}
-                        priority={isLargeDesktop}
-                        alt="wallet introduction card"
-                        className={`${
-                          isMobile || isTablet
-                            ? "max-w-[240px]"
-                            : isDesktop
-                            ? "max-w-[420px]"
-                            : "max-w-[440px]"
-                        } mx-auto w-auto h-auto hidden group-hover:block`}
+                        src={item.icon}
+                        alt="hexagon"
+                        width={isMobile || isTablet ? 26.35 : 46}
+                        height={isMobile || isTablet ? 30.36 : 53}
                       />
-                    )}
+                    </div>
+                    <div
+                      className={`self-stretch ${
+                        isMobile || isTablet
+                          ? "text-xl leading-[26.80px]"
+                          : "text-[28px] leading-[38.64px]"
+                      } font-pretendardSemibold `}
+                    >
+                      {item.title}
+                      <br />
+                      {item.content}
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
-            {(isMobile || isTablet) && (
-              <div className="flex justify-center space-x-2">
-                {cards.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => scrollToCard(index)}
-                    className={`w-2 h-2 rounded-full ${
-                      index === currentIndex ? "bg-[#454854]" : "bg-[#ABAEBA]"
+                  <Image
+                    src={item.img}
+                    alt="wallet introduction card"
+                    className={`${
+                      isMobile || isTablet ? "max-w-[240px]" : "max-w-[420px]"
+                    } mx-auto w-auto h-auto ${
+                      isLargeDesktop && "group-hover:hidden"
                     }`}
                   />
-                ))}
+                  {isLargeDesktop && (
+                    <Image
+                      src={item.hovered}
+                      priority={isLargeDesktop}
+                      alt="wallet introduction card"
+                      className={`${
+                        isMobile || isTablet
+                          ? "max-w-[240px]"
+                          : isDesktop
+                          ? "max-w-[420px]"
+                          : "max-w-[440px]"
+                      } mx-auto w-auto h-auto hidden group-hover:block`}
+                    />
+                  )}
+                </div>
               </div>
-            )}
+            ))}
           </div>
+          {(isMobile || isTablet) && (
+            <div className="flex justify-center space-x-2">
+              {cards.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => scrollToCard(index)}
+                  className={`w-2 h-2 rounded-full ${
+                    index === currentIndex ? "bg-[#454854]" : "bg-[#ABAEBA]"
+                  }`}
+                />
+              ))}
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </>
   );
 }

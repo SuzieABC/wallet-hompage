@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import { useTranslation } from "@/utils/localization/client";
 import type { LocaleTypes } from "@/utils/localization/settings";
@@ -14,12 +13,6 @@ export default function Footer() {
   const { t } = useTranslation(locale, "common");
   const windowWidth = useWindowWidth();
   const isDesktop = windowWidth >= 1024;
-
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    setIsLoading(true);
-  }, []);
 
   const company = [
     { name: t("footer.company.download"), url: `/${locale}#download` },
@@ -58,170 +51,165 @@ export default function Footer() {
   ];
 
   return (
-    <>
-      {isLoading && (
-        <div
-          className={`max-w-[1440px] mx-auto  flex-col justify-start items-start gap-2.5 min-w-[320px] overflow-x-hidden ${
-            isDesktop
-              ? "px-[40px] pt-[48px] pb-[80px]"
-              : `px-4 pb-[60px] pt-[40px]`
-          }`}
-        >
-          <div
-            className={`self-stretch ${
-              isDesktop ? "flex-row" : "flex-col"
-            } justify-between items-start gap-[44px] flex`}
-          >
-            <div className="px-2 flex-col justify-start items-center flex">
-              <Image
-                src={logo_image}
-                alt="logo"
-                width={isDesktop ? 147 : 126.998}
-                height={isDesktop ? 20.3 : 17.41}
-              />
-            </div>
+    <div
+      className={`max-w-[1440px] mx-auto  flex-col justify-start items-start gap-2.5 min-w-[320px] overflow-x-hidden ${
+        isDesktop ? "px-[40px] pt-[48px] pb-[80px]" : `px-4 pb-[60px] pt-[40px]`
+      }`}
+      style={{ visibility: windowWidth ? "visible" : "hidden" }}
+    >
+      <div
+        className={`self-stretch ${
+          isDesktop ? "flex-row" : "flex-col"
+        } justify-between items-start gap-[44px] flex`}
+      >
+        <div className="px-2 flex-col justify-start items-center flex">
+          <Image
+            src={logo_image}
+            alt="logo"
+            width={isDesktop ? 147 : 126.998}
+            height={isDesktop ? 20.3 : 17.41}
+          />
+        </div>
 
+        <div
+          className={`self-stretch ${
+            isDesktop ? "flex-row" : "flex-col"
+          } justify-start items-start gap-[16px] flex`}
+        >
+          <div className="self-stretch flex-col justify-start items-start gap-0.5 flex">
             <div
-              className={`self-stretch ${
-                isDesktop ? "flex-row" : "flex-col"
-              } justify-start items-start gap-[16px] flex`}
+              className={`px-2 justify-center items-center inline-flex ${
+                isDesktop && "pr-[110px]"
+              }`}
             >
-              <div className="self-stretch flex-col justify-start items-start gap-0.5 flex">
-                <div
-                  className={`px-2 justify-center items-center inline-flex ${
-                    isDesktop && "pr-[110px]"
-                  }`}
+              <span
+                className={`text-black text-[15px] font-bold font-archivoBold ${
+                  isDesktop ? "pb-[10px] text-[17px]" : "text-[15px]"
+                }`}
+              >
+                Service
+              </span>
+            </div>
+            <div
+              className={`justify-start inline-flex ${
+                isDesktop ? "flex-col" : "items-center gap-2"
+              }`}
+            >
+              {company.map((item, index) => (
+                <Link
+                  className={`${
+                    isDesktop ? "px-[8px] py-[6px]" : "px-2 py-3.5"
+                  } justify-start items-center gap-2.5 flex`}
+                  key={item.name}
+                  href={item.url}
+                  target={index === 0 ? "_self" : "_blank"}
                 >
-                  <span
-                    className={`text-black text-[15px] font-bold font-archivoBold ${
-                      isDesktop ? "pb-[10px] text-[17px]" : "text-[15px]"
+                  <div
+                    className={`text-[#5c6070] ${
+                      index === 2
+                        ? "font-pretendardBold"
+                        : "font-pretendardMedium"
+                    } tracking-tight ${
+                      isDesktop ? "text-[16px]" : "text-[15px]"
                     }`}
                   >
-                    Service
-                  </span>
-                </div>
-                <div
-                  className={`justify-start inline-flex ${
-                    isDesktop ? "flex-col" : "items-center gap-2"
-                  }`}
-                >
-                  {company.map((item, index) => (
-                    <Link
-                      className={`${
-                        isDesktop ? "px-[8px] py-[6px]" : "px-2 py-3.5"
-                      } justify-start items-center gap-2.5 flex`}
-                      key={item.name}
-                      href={item.url}
-                      target={index === 0 ? "_self" : "_blank"}
-                    >
-                      <div
-                        className={`text-[#5c6070] ${
-                          index === 2
-                            ? "font-pretendardBold"
-                            : "font-pretendardMedium"
-                        } tracking-tight ${
-                          isDesktop ? "text-[16px]" : "text-[15px]"
-                        }`}
-                      >
-                        {item.name}
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-              <div className="self-stretch flex-col justify-start items-start gap-0.5 flex">
-                <div
-                  className={`px-2 justify-start items-center gap-2.5 inline-flex ${
-                    isDesktop && "pr-[85px]"
-                  }`}
-                >
-                  <span
-                    className={`text-black font-archivoBold ${
-                      isDesktop ? "pb-[10px] text-[17px]" : "text-[15px]"
-                    }`}
-                  >
-                    Connect
-                  </span>
-                </div>
-                <div
-                  className={`justify-start items-start inline-flex ${
-                    isDesktop ? "flex-col" : "gap-2"
-                  }`}
-                >
-                  {connect.map((item) => (
-                    <Link
-                      className={`${
-                        isDesktop ? "px-[8px] py-[6px]" : "px-2 py-3.5"
-                      } justify-start items-center gap-2.5 flex`}
-                      key={item.sns_name}
-                      href={item.url}
-                      target="_blank"
-                    >
-                      <div
-                        className={`text-[#5c6070] font-pretendardMedium tracking-tight ${
-                          isDesktop ? "text-[16px]" : "text-[15px]"
-                        }`}
-                      >
-                        {item.sns_name}
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-              <div className="self-stretch flex-col justify-start items-start gap-0.5 flex">
-                <div
-                  className={`px-2 justify-center items-center gap-2.5 inline-flex ${
-                    isDesktop && "pr-[99px]"
-                  }`}
-                >
-                  <span
-                    className={`text-black  font-archivoBold ${
-                      isDesktop ? "pb-[10px] text-[17px]" : "text-[15px]"
-                    }`}
-                  >
-                    Family
-                  </span>
-                </div>
-                <div
-                  className={`justify-start items-start inline-flex ${
-                    isDesktop ? "flex-col" : "gap-2"
-                  }`}
-                >
-                  {family.map((item) => (
-                    <Link
-                      className={`${
-                        isDesktop ? "px-[8px] py-[6px]" : "px-2 py-3.5"
-                      } justify-start items-center gap-2.5 flex`}
-                      key={item.name}
-                      href={item.url}
-                    >
-                      <div
-                        className={`text-[#5c6070] font-pretendardMedium tracking-tight ${
-                          isDesktop ? "text-[16px]" : "text-[15px]"
-                        }`}
-                      >
-                        {item.name}
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </div>
+                    {item.name}
+                  </div>
+                </Link>
+              ))}
             </div>
           </div>
-
-          <div
-            className={`px-2 justify-start items-center border] ${
-              isDesktop ? "mt-[10px]" : "mt-[35px]"
-            }`}
-          >
-            <p
-              className={`text-[#5c6070] tracking-tight text-[11px] font-pretendardRegular`}
+          <div className="self-stretch flex-col justify-start items-start gap-0.5 flex">
+            <div
+              className={`px-2 justify-start items-center gap-2.5 inline-flex ${
+                isDesktop && "pr-[85px]"
+              }`}
             >
-              © AhnLab Blockchain Company. All rights reserved.
-            </p>
+              <span
+                className={`text-black font-archivoBold ${
+                  isDesktop ? "pb-[10px] text-[17px]" : "text-[15px]"
+                }`}
+              >
+                Connect
+              </span>
+            </div>
+            <div
+              className={`justify-start items-start inline-flex ${
+                isDesktop ? "flex-col" : "gap-2"
+              }`}
+            >
+              {connect.map((item) => (
+                <Link
+                  className={`${
+                    isDesktop ? "px-[8px] py-[6px]" : "px-2 py-3.5"
+                  } justify-start items-center gap-2.5 flex`}
+                  key={item.sns_name}
+                  href={item.url}
+                  target="_blank"
+                >
+                  <div
+                    className={`text-[#5c6070] font-pretendardMedium tracking-tight ${
+                      isDesktop ? "text-[16px]" : "text-[15px]"
+                    }`}
+                  >
+                    {item.sns_name}
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+          <div className="self-stretch flex-col justify-start items-start gap-0.5 flex">
+            <div
+              className={`px-2 justify-center items-center gap-2.5 inline-flex ${
+                isDesktop && "pr-[99px]"
+              }`}
+            >
+              <span
+                className={`text-black  font-archivoBold ${
+                  isDesktop ? "pb-[10px] text-[17px]" : "text-[15px]"
+                }`}
+              >
+                Family
+              </span>
+            </div>
+            <div
+              className={`justify-start items-start inline-flex ${
+                isDesktop ? "flex-col" : "gap-2"
+              }`}
+            >
+              {family.map((item) => (
+                <Link
+                  className={`${
+                    isDesktop ? "px-[8px] py-[6px]" : "px-2 py-3.5"
+                  } justify-start items-center gap-2.5 flex`}
+                  key={item.name}
+                  href={item.url}
+                >
+                  <div
+                    className={`text-[#5c6070] font-pretendardMedium tracking-tight ${
+                      isDesktop ? "text-[16px]" : "text-[15px]"
+                    }`}
+                  >
+                    {item.name}
+                  </div>
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
-      )}
-    </>
+      </div>
+
+      <div
+        className={`px-2 justify-start items-center border] ${
+          isDesktop ? "mt-[10px]" : "mt-[35px]"
+        }`}
+      >
+        <p
+          className={`text-[#5c6070] tracking-tight text-[11px] font-pretendardRegular`}
+        >
+          © AhnLab Blockchain Company. All rights reserved.
+        </p>
+      </div>
+    </div>
   );
 }

@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Image from "next/image";
 import bitcoinIcon from "@/assets/icons/main/fourthIntro/bitcoin.png";
 import ethereumIcon from "@/assets/icons/main/fourthIntro/ethereum.png";
@@ -50,144 +49,133 @@ export default function FourthIntro({
     { name: "Scroll", icon: scrollIcon },
   ];
 
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    setIsLoading(true);
-  }, []);
-
   return (
-    <>
-      {isLoading && (
-        <div className="max-w-[1440px] mx-auto">
+    <div
+      className="max-w-[1440px] mx-auto"
+      style={{ visibility: windowWidth ? "visible" : "hidden" }}
+    >
+      <div
+        className={`w-full flex-col justify-start items-start  inline-flex ${
+          isMobile || isTablet ? "py-20 gap-[60px]" : "py-[180px] gap-[160px]"
+        }`}
+      >
+        <div
+          className={`self-stretch text-center text-black leading-[33.60px] ${
+            isMobile
+              ? "text-2xl font-pretendardBold mx-5"
+              : isTablet
+              ? "text-4xl font-pretendardSemibold mx-5"
+              : "text-[56px] font-pretendardSemibold mx-10"
+          }`}
+        >
+          {intro_4_title}&nbsp;
+          {isMobile && <br />}
+          {intro_4_content}
+        </div>
+
+        <div
+          className={`self-stretch flex-col justify-start items-start flex ${
+            isMobile
+              ? "gap-6 mx-5"
+              : isTablet
+              ? "px-8 gap-10 mx-5"
+              : "gap-[60px] mx-10"
+          }`}
+        >
           <div
-            className={`w-full flex-col justify-start items-start  inline-flex ${
-              isMobile || isTablet
-                ? "py-20 gap-[60px]"
-                : "py-[180px] gap-[160px]"
+            className={`self-stretch flex flex-col justify-center items-center ${
+              isDesktop || isLargeDesktop ? "gap-7" : "gap-4"
             }`}
           >
             <div
-              className={`self-stretch text-center text-black leading-[33.60px] ${
-                isMobile
-                  ? "text-2xl font-pretendardBold mx-5"
-                  : isTablet
-                  ? "text-4xl font-pretendardSemibold mx-5"
-                  : "text-[56px] font-pretendardSemibold mx-10"
-              }`}
-            >
-              {intro_4_title}&nbsp;
-              {isMobile && <br />}
-              {intro_4_content}
-            </div>
-
+              className={`${
+                isDesktop || isLargeDesktop ? "w-10 h-0.5" : "w-6 h-px"
+              }  bg-[#454854]`}
+            />
             <div
-              className={`self-stretch flex-col justify-start items-start flex ${
-                isMobile
-                  ? "gap-6 mx-5"
-                  : isTablet
-                  ? "px-8 gap-10 mx-5"
-                  : "gap-[60px] mx-10"
-              }`}
+              className={`self-stretch text-center text-[#454854] ${
+                isDesktop || isLargeDesktop ? "text-[32px]" : "text-xl"
+              } font-pretendardBold uppercase`}
             >
-              <div
-                className={`self-stretch flex flex-col justify-center items-center ${
-                  isDesktop || isLargeDesktop ? "gap-7" : "gap-4"
-                }`}
-              >
-                <div
-                  className={`${
-                    isDesktop || isLargeDesktop ? "w-10 h-0.5" : "w-6 h-px"
-                  }  bg-[#454854]`}
-                />
-                <div
-                  className={`self-stretch text-center text-[#454854] ${
-                    isDesktop || isLargeDesktop ? "text-[32px]" : "text-xl"
-                  } font-pretendardBold uppercase`}
-                >
-                  {card1_title}
-                </div>
-              </div>
-              <div
-                className={`flex justify-center flex-wrap ${
-                  isMobile ? "gap-2" : "gap-3"
-                } px-[1px]`}
-              >
-                {coins.map((item) => (
-                  <div
-                    key={item.name}
-                    className="self-stretch justify-center items-center gap-2 inline-flex"
-                  >
-                    <div
-                      className={`${
-                        isMobile
-                          ? "p-3"
-                          : isTablet
-                          ? "px-[16px] py-[12px]"
-                          : "px-[32px] py-[20px]"
-                      } bg-[#e3e4e8] rounded-[80px] justify-center items-center gap-1.5 flex`}
-                    >
-                      <Image
-                        src={item.icon}
-                        alt={item.name}
-                        width={isDesktop || isLargeDesktop ? 48 : 24}
-                        height={isDesktop || isLargeDesktop ? 48 : 24}
-                      />
-                      <div
-                        className={`text-center text-black  font-pretendardMedium ${
-                          isDesktop || isLargeDesktop
-                            ? "text-xl"
-                            : "text-[15px]"
-                        }`}
-                      >
-                        {item.name}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div
-              className={`self-stretch flex-col justify-start items-start flex ${
-                isMobile ? "gap-6" : isTablet ? "gap-10" : "gap-[60px]"
-              }`}
-            >
-              <div
-                className={`self-stretch flex-col justify-center items-center ${
-                  isDesktop || isLargeDesktop ? "gap-7 mx-10" : "gap-4 mx-5"
-                } flex`}
-              >
-                <div
-                  className={`${
-                    isDesktop || isLargeDesktop ? "w-10 h-0.5" : "w-6 h-px"
-                  }  bg-[#454854]`}
-                />
-                <div
-                  className={`self-stretch text-center text-[#454854] font-pretendardBold uppercase  ${
-                    isDesktop || isLargeDesktop
-                      ? "text-[32px] leading-[44.80px]"
-                      : "text-xl leading-7"
-                  }`}
-                >
-                  {card2_title}
-                </div>
-              </div>
-              <Image
-                src={
-                  isMobile
-                    ? dappsMobileImage
-                    : isDesktop
-                    ? dapps1024Image
-                    : dapps1440Image
-                }
-                alt={"Dapp Image"}
-                className={`${isLargeDesktop ? "h-[388.2px]" : ""}`}
-              />
+              {card1_title}
             </div>
           </div>
+          <div
+            className={`flex justify-center flex-wrap ${
+              isMobile ? "gap-2" : "gap-3"
+            } px-[1px]`}
+          >
+            {coins.map((item) => (
+              <div
+                key={item.name}
+                className="self-stretch justify-center items-center gap-2 inline-flex"
+              >
+                <div
+                  className={`${
+                    isMobile
+                      ? "p-3"
+                      : isTablet
+                      ? "px-[16px] py-[12px]"
+                      : "px-[32px] py-[20px]"
+                  } bg-[#e3e4e8] rounded-[80px] justify-center items-center gap-1.5 flex`}
+                >
+                  <Image
+                    src={item.icon}
+                    alt={item.name}
+                    width={isDesktop || isLargeDesktop ? 48 : 24}
+                    height={isDesktop || isLargeDesktop ? 48 : 24}
+                  />
+                  <div
+                    className={`text-center text-black  font-pretendardMedium ${
+                      isDesktop || isLargeDesktop ? "text-xl" : "text-[15px]"
+                    }`}
+                  >
+                    {item.name}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-      )}
-    </>
+
+        <div
+          className={`self-stretch flex-col justify-start items-start flex ${
+            isMobile ? "gap-6" : isTablet ? "gap-10" : "gap-[60px]"
+          }`}
+        >
+          <div
+            className={`self-stretch flex-col justify-center items-center ${
+              isDesktop || isLargeDesktop ? "gap-7 mx-10" : "gap-4 mx-5"
+            } flex`}
+          >
+            <div
+              className={`${
+                isDesktop || isLargeDesktop ? "w-10 h-0.5" : "w-6 h-px"
+              }  bg-[#454854]`}
+            />
+            <div
+              className={`self-stretch text-center text-[#454854] font-pretendardBold uppercase  ${
+                isDesktop || isLargeDesktop
+                  ? "text-[32px] leading-[44.80px]"
+                  : "text-xl leading-7"
+              }`}
+            >
+              {card2_title}
+            </div>
+          </div>
+          <Image
+            src={
+              isMobile
+                ? dappsMobileImage
+                : isDesktop
+                ? dapps1024Image
+                : dapps1440Image
+            }
+            alt={"Dapp Image"}
+            className={`${isLargeDesktop ? "h-[388.2px]" : ""}`}
+          />
+        </div>
+      </div>
+    </div>
   );
 }

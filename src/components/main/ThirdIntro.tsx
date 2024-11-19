@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Image from "next/image";
 import icon1 from "@/assets/icons/main/thirdIntro/icon_01.png";
 import icon2 from "@/assets/icons/main/thirdIntro/icon_02.png";
@@ -61,144 +60,137 @@ export default function IntroOne({
     { icon: icon6, title: card_6_title, content: card_6_content },
   ];
 
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    setIsLoading(true);
-  }, []);
-
   const redirectTo = () => {
     window.open("https://bicscan.io/", "_blank");
   };
 
   return (
-    <>
-      {isLoading && (
-        <div className="flex flex-col items-center w-full bg-[#6d23ef]">
-          <div
-            className={`max-w-[1440px] mx-auto h-auto ${
-              isMobile || isTablet ? "py-20 px-5" : "py-[180px] px-[40px]"
-            }  flex-col justify-start items-start gap-10`}
-          >
+    <div
+      className="flex flex-col items-center w-full bg-[#6d23ef]"
+      style={{ visibility: windowWidth ? "visible" : "hidden" }}
+    >
+      <div
+        className={`max-w-[1440px] mx-auto h-auto ${
+          isMobile || isTablet ? "py-20 px-5" : "py-[180px] px-[40px]"
+        }  flex-col justify-start items-start gap-10`}
+      >
+        <div
+          className={`self-stretch h-auto text-white leading-[33.60px] ${
+            isMobile
+              ? "text-2xl font-pretendardBold pb-[40px]"
+              : isTablet
+              ? "flex justify-center font-pretendardSemibold text-4xl pb-[40px]"
+              : "flex justify-start font-pretendardSemibold text-[56px] leading-[78.4px] pb-[100px]"
+          }`}
+        >
+          {isMobile || isTablet ? title : title_2}&nbsp;
+          {(isMobile || isDesktop || isLargeDesktop) && <br />}
+          {content}
+        </div>
+        <div
+          className={`self-stretch grid ${
+            isTablet || isDesktop || isLargeDesktop
+              ? "grid-cols-3 gap-4"
+              : "grid-cols-1 gap-3"
+          }`}
+        >
+          {functions.map((item, index) => (
             <div
-              className={`self-stretch h-auto text-white leading-[33.60px] ${
+              className={`bg-[#6d23ef] rounded-xl border border-white/20 pointerhover:hover:bg-[#641ce4] group ${
                 isMobile
-                  ? "text-2xl font-pretendardBold pb-[40px]"
+                  ? "inline-flex justify-start items-center px-5 py-4 gap-5 min-h-[131px] h-auto"
                   : isTablet
-                  ? "flex justify-center font-pretendardSemibold text-4xl pb-[40px]"
-                  : "flex justify-start font-pretendardSemibold text-[56px] leading-[78.4px] pb-[100px]"
+                  ? "flex flex-col aspect-square px-5 py-4 gap-5"
+                  : isDesktop
+                  ? "flex flex-col aspect-square p-[28px] gap-[60px]"
+                  : "flex flex-col aspect-square p-[40px] gap-[80px]"
               }`}
+              key={index}
             >
-              {isMobile || isTablet ? title : title_2}&nbsp;
-              {(isMobile || isDesktop || isLargeDesktop) && <br />}
-              {content}
-            </div>
-            <div
-              className={`self-stretch grid ${
-                isTablet || isDesktop || isLargeDesktop
-                  ? "grid-cols-3 gap-4"
-                  : "grid-cols-1 gap-3"
-              }`}
-            >
-              {functions.map((item, index) => (
+              <Image
+                src={item.icon}
+                alt="icon"
+                width={isLargeDesktop ? 60 : isDesktop ? 40 : 28}
+                height={isLargeDesktop ? 60 : isDesktop ? 40 : 28}
+                className={`${
+                  (isDesktop || isLargeDesktop) &&
+                  "transition-transform duration-300 ease-in-out group-hover:translate-y-[-8px]"
+                }`}
+              />
+              <div
+                className={`grow shrink basis-0 flex-col justify-start items-start inline-flex ${
+                  index !== 4 && isMobile
+                    ? "gap-2"
+                    : index !== 4 && isTablet
+                    ? "gap-3"
+                    : index !== 4 && (isDesktop || isLargeDesktop)
+                    ? "gap-5"
+                    : ""
+                }`}
+              >
                 <div
-                  className={`bg-[#6d23ef] rounded-xl border border-white/20 pointerhover:hover:bg-[#641ce4] group ${
+                  className={`self-stretch text-white font-pretendardBold ${
                     isMobile
-                      ? "inline-flex justify-start items-center px-5 py-4 gap-5 min-h-[131px] h-auto"
+                      ? "text-lg"
                       : isTablet
-                      ? "flex flex-col aspect-square px-5 py-4 gap-5"
+                      ? "text-[16px]"
                       : isDesktop
-                      ? "flex flex-col aspect-square p-[28px] gap-[60px]"
-                      : "flex flex-col aspect-square p-[40px] gap-[80px]"
+                      ? "text-[20px]"
+                      : "text-[28px]"
                   }`}
-                  key={index}
                 >
-                  <Image
-                    src={item.icon}
-                    alt="icon"
-                    width={isLargeDesktop ? 60 : isDesktop ? 40 : 28}
-                    height={isLargeDesktop ? 60 : isDesktop ? 40 : 28}
-                    className={`${
-                      (isDesktop || isLargeDesktop) &&
-                      "transition-transform duration-300 ease-in-out group-hover:translate-y-[-8px]"
-                    }`}
-                  />
+                  {item.title}
+                </div>
+                {index !== 2 && (
                   <div
-                    className={`grow shrink basis-0 flex-col justify-start items-start inline-flex ${
-                      index !== 4 && isMobile
-                        ? "gap-2"
-                        : index !== 4 && isTablet
-                        ? "gap-3"
-                        : index !== 4 && (isDesktop || isLargeDesktop)
-                        ? "gap-5"
-                        : ""
+                    onClick={() => index === 5 && redirectTo()}
+                    className={`text-white leading-snug ${
+                      index === 5
+                        ? `rounded-lg  bg-[#641CE4] ${
+                            isMobile || isTablet
+                              ? "bg-gradient-to-r"
+                              : "group-hover:bg-gradient-to-r group-hover:border-none border border-white/30"
+                          } from-[#6a9ef2] to-[#d466ff]/70 justify-center items-center inline-flex font-pretendardRegular p-[1px] cursor-pointer`
+                        : index === 4
+                        ? `${
+                            isMobile
+                              ? "text-[15px]"
+                              : isTablet
+                              ? "text-[16px]"
+                              : isDesktop
+                              ? "text-[20px]"
+                              : "text-[28px]"
+                          } font-pretendardBold leading-[25.20px]`
+                        : "self-stretch font-pretendardRegular"
+                    } ${
+                      isMobile
+                        ? "text-[15px]"
+                        : isTablet
+                        ? "text-[14px]"
+                        : isDesktop
+                        ? "text-[16px]"
+                        : "text-[20px]"
                     }`}
                   >
-                    <div
-                      className={`self-stretch text-white font-pretendardBold ${
-                        isMobile
-                          ? "text-lg"
-                          : isTablet
-                          ? "text-[16px]"
-                          : isDesktop
-                          ? "text-[20px]"
-                          : "text-[28px]"
+                    <span
+                      className={`${
+                        index === 5 &&
+                        `${
+                          isMobile || isTablet
+                            ? "bg-gradient-to-r px-[12px] py-[6px]"
+                            : "group-hover:bg-gradient-to-r px-[16px] py-[10px]"
+                        } from-[#0d6eee] to-[#c021ff] w-full h-full rounded-lg`
                       }`}
                     >
-                      {item.title}
-                    </div>
-                    {index !== 2 && (
-                      <div
-                        onClick={() => index === 5 && redirectTo()}
-                        className={`text-white leading-snug ${
-                          index === 5
-                            ? `rounded-lg  bg-[#641CE4] ${
-                                isMobile || isTablet
-                                  ? "bg-gradient-to-r"
-                                  : "group-hover:bg-gradient-to-r group-hover:border-none border border-white/30"
-                              } from-[#6a9ef2] to-[#d466ff]/70 justify-center items-center inline-flex font-pretendardRegular p-[1px] cursor-pointer`
-                            : index === 4
-                            ? `${
-                                isMobile
-                                  ? "text-[15px]"
-                                  : isTablet
-                                  ? "text-[16px]"
-                                  : isDesktop
-                                  ? "text-[20px]"
-                                  : "text-[28px]"
-                              } font-pretendardBold leading-[25.20px]`
-                            : "self-stretch font-pretendardRegular"
-                        } ${
-                          isMobile
-                            ? "text-[15px]"
-                            : isTablet
-                            ? "text-[14px]"
-                            : isDesktop
-                            ? "text-[16px]"
-                            : "text-[20px]"
-                        }`}
-                      >
-                        <span
-                          className={`${
-                            index === 5 &&
-                            `${
-                              isMobile || isTablet
-                                ? "bg-gradient-to-r px-[12px] py-[6px]"
-                                : "group-hover:bg-gradient-to-r px-[16px] py-[10px]"
-                            } from-[#0d6eee] to-[#c021ff] w-full h-full rounded-lg`
-                          }`}
-                        >
-                          {item.content}
-                        </span>
-                      </div>
-                    )}
+                      {item.content}
+                    </span>
                   </div>
-                </div>
-              ))}
+                )}
+              </div>
             </div>
-          </div>
+          ))}
         </div>
-      )}
-    </>
+      </div>
+    </div>
   );
 }
