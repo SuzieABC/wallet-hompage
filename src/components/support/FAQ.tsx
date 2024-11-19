@@ -11,11 +11,11 @@ import arrow_down_white from "@/assets/icons/support/support_arrow_down_white_ic
 import useWindowWidth from "@/utils/hooks/useWindowWidth";
 
 interface NoticeData {
-  title?: string;
+  question?: string;
   update_time?: string;
   language_type?: number;
   create_time?: string;
-  notice_id?: string;
+  faq_id?: string;
   service_type?: number;
 }
 
@@ -23,8 +23,9 @@ interface NoticeProps {
   datas: NoticeData[];
   faq_title: string;
   button: string;
+  locale: string;
 }
-export default function FAQ({ datas, faq_title, button }: NoticeProps) {
+export default function FAQ({ datas, faq_title, button, locale }: NoticeProps) {
   const windowWidth = useWindowWidth();
 
   const isDesktop = windowWidth >= 1024;
@@ -35,18 +36,18 @@ export default function FAQ({ datas, faq_title, button }: NoticeProps) {
   const items: NoticeData[] = datas
     .slice(0, isDesktop ? 5 : 4)
     .map((data: NoticeData) => ({
-      title: data.title,
+      question: data.question,
       update_time: data.update_time,
       language_type: data.language_type,
       create_time: data.create_time,
-      notice_id: data.notice_id,
+      faq_id: data.faq_id,
       service_type: data.service_type,
     }));
 
   return (
     <div
       className={`max-w-[1440px] w-full flex flex-col  ${
-        isDesktop ? "pt-[100px] pb-[160px] px-[40px]" : "py-[60px] px-[20px]"
+        isDesktop ? "pb-[160px] px-[40px]" : "py-[60px] px-[20px]"
       }`}
     >
       <span
@@ -59,15 +60,15 @@ export default function FAQ({ datas, faq_title, button }: NoticeProps) {
       <ul className={`${isDesktop ? "mt-[20px]" : "mt-[16px]"} `}>
         {items.map((item) => (
           <Link
-            key={item.notice_id}
+            key={item.faq_id}
             target="_blank"
-            href={`https://dev-api.id.myabcwallet.com/query/v2/faq?language=ko&service=wallet-homepage&id=${item.notice_id}`}
+            href={`https://dev-api.id.myabcwallet.com/query/v2/faq?language=${locale}&service=wallet-homepage&id=${item.faq_id}`}
           >
             <li
               className={`flex flex-col justify-between group ${
                 isDesktop ? "mt-[40px]" : "mt-[24px]"
               }`}
-              onClick={() => setSelectedNoticeId(item.notice_id || null)}
+              onClick={() => setSelectedNoticeId(item.faq_id || null)}
             >
               <div
                 className={`flex flex-col w-full py-[11px] pr-[88px] ${
@@ -92,19 +93,19 @@ export default function FAQ({ datas, faq_title, button }: NoticeProps) {
                     }}
                     className={`text-black font-pretendardSemibold overflow-hidden text-ellipsis text-xl leading-[30px]`}
                   >
-                    {item.title}
+                    {item.question}
                   </p>
                 ) : (
                   <p
                     className={`text-lg leading-[27px] whitespace-nowrap text-black font-pretendardSemibold overflow-hidden text-ellipsis`}
                   >
-                    {item.title}
+                    {item.question}
                   </p>
                 )}
 
                 <Image
                   src={
-                    selectedNoticeId === item.notice_id
+                    selectedNoticeId === item.faq_id
                       ? arrow_right_colour
                       : arrow_right
                   }
@@ -136,7 +137,7 @@ export default function FAQ({ datas, faq_title, button }: NoticeProps) {
         <Link
           target="_blank"
           onClick={() => setSelectedNoticeId(null)}
-          href={`https://dev-api.id.myabcwallet.com/query/v2/faq?language=ko&service=wallet-homepage`}
+          href={`https://dev-api.id.myabcwallet.com/query/v2/faq?language=${locale}&service=wallet-homepage`}
           className={`flex ${
             isDesktop
               ? "mt-[60px] py-[18px] pr-[80px] pl-[100px] text-xl leading-normal text-[#454854] rounded-lg border border-[#5c6070] hover:bg-[#6d23ef] hover:text-[#fff] gap-2"

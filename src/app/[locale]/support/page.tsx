@@ -14,7 +14,7 @@ export default async function Page({
   const { t } = await createTranslation(locale, "support");
 
   const resNotice = await fetch(
-    "https://dev-api.id.myabcwallet.com/query/v2/notice/items?service=wallet-homepage&sort=create-time&order=desc&language=ko&offset=0&limit=999",
+    `https://dev-api.id.myabcwallet.com/query/v2/notice/items?service=wallet-homepage&sort=create-time&order=desc&language=${locale}&offset=0&limit=999`,
     {
       cache: "no-store", // API 데이터가 항상 최신이도록 설정
     }
@@ -27,7 +27,7 @@ export default async function Page({
   const noticeData = await resNotice.json();
 
   const resFAQ = await fetch(
-    "https://dev-api.id.myabcwallet.com/query/v2/faq/items?service=wallet-homepage&category=all&sort=update-time&order=desc&language=ko&offset=0&limit=999",
+    `https://dev-api.id.myabcwallet.com/query/v2/faq/items?service=wallet-homepage&category=all&sort=update-time&order=desc&language=${locale}&offset=0&limit=999`,
     {
       cache: "no-store", // API 데이터가 항상 최신이도록 설정
     }
@@ -46,11 +46,13 @@ export default async function Page({
         datas={noticeData["rows"]}
         notice_title={t("notice.title")}
         button={t("view_all")}
+        locale={locale}
       />
       <FAQ
         datas={faqData["rows"]}
         faq_title={t("faq.title")}
         button={t("view_all")}
+        locale={locale}
       />
       <Enquiry
         title_1={t("enquiry.title_1")}

@@ -31,7 +31,7 @@ export default function DeepLinkButton() {
     // const isIOS = /iPhone|iPad|iPod|Macintosh|Mac OS X/i.test(userAgent || "");
     const isIOS = /iPhone|iPad|iPod/i.test(userAgent || "");
 
-    const isChrome = /chrome|chromium|crios/i.test(userAgent || "");
+    const isChrome = /chrome|chromium|crios|Safari/i.test(userAgent || "");
 
     if (isAndroid) {
       setStoreUrl(
@@ -46,9 +46,7 @@ export default function DeepLinkButton() {
     } else if (isChrome) {
       setPlatform("Chrome");
       setStoreUrl(
-        `https://chromewebstore.google.com/detail/abc-wallet/mlhakagmgkmonhdonhkpjeebfphligng?hl=${
-          locale === "jp" ? "ja" : locale
-        }`
+        `https://chromewebstore.google.com/detail/abc-wallet/mlhakagmgkmonhdonhkpjeebfphligng?hl=${locale}`
       );
     } else {
       setPlatform("Unknown");

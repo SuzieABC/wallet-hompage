@@ -19,7 +19,7 @@ import Image from "next/image";
 const LANGUAGES = [
   { code: "ko", label: "한국어" },
   { code: "en", label: "English" },
-  { code: "jp", label: "日本語" },
+  { code: "ja", label: "日本語" },
 ];
 
 interface ChangeLocaleProps {
@@ -104,7 +104,7 @@ const ChangeLocale = ({ windowWidth }: ChangeLocaleProps) => {
                     {label}
                   </span>
                 </div>
-                {code !== "jp" && (
+                {code !== "ja" && (
                   <div className="self-stretch h-[0px] border border-[#E3E4E8] my-[4px]" />
                 )}
               </div>

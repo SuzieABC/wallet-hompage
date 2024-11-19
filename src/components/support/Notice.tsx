@@ -7,7 +7,7 @@ import arrow_right_colour from "@/assets/icons/support/support_arrow_right_colou
 import arrow_right from "@/assets/icons/support/support_arrow_right_icon.png";
 import arrow_down from "@/assets/icons/support/support_arrow_down_icon.png";
 import arrow_down_white from "@/assets/icons/support/support_arrow_down_white_icon.png";
-import MockData from "@/data/NOTICE.json";
+// import MockData from "@/data/NOTICE.json";
 import useWindowWidth from "@/utils/hooks/useWindowWidth";
 
 interface NoticeData {
@@ -20,15 +20,17 @@ interface NoticeData {
 }
 
 interface NoticeProps {
-  test: NoticeData[];
+  datas: NoticeData[];
   notice_title: string;
   button: string;
+  locale: string;
 }
 
 export default function Notice({
-  test = MockData.rows,
+  datas,
   notice_title,
   button,
+  locale,
 }: NoticeProps) {
   const windowWidth = useWindowWidth();
 
@@ -42,7 +44,7 @@ export default function Notice({
   // 새로운 상태 변수: 전체 보기 버튼의 hover 상태를 관리
   const [isHovering, setIsHovering] = useState(false);
 
-  const items: NoticeData[] = test.slice(0, 4).map((data: NoticeData) => ({
+  const items: NoticeData[] = datas.slice(0, 4).map((data: NoticeData) => ({
     title: data.title,
     update_time: data.update_time,
     language_type: data.language_type,
@@ -59,7 +61,7 @@ export default function Notice({
     <div
       className={`max-w-[1440px] w-full flex flex-col  ${
         isDesktop || isLargeDesktop
-          ? "pt-[100px] pb-[200px] px-[40px]"
+          ? "pt-[100px] pb-[196px] px-[40px]"
           : "py-[60px] px-[20px]"
       }`}
     >
@@ -81,7 +83,7 @@ export default function Notice({
           <Link
             key={item.notice_id}
             target="_blank"
-            href={`https://dev-api.id.myabcwallet.com/query/v2/notice?language=ko&service=wallet-homepage&id=${item.notice_id}`}
+            href={`https://dev-api.id.myabcwallet.com/query/v2/notice?language=${locale}&service=wallet-homepage&id=${item.notice_id}`}
           >
             <li
               className={`flex flex-col justify-between ${
@@ -157,7 +159,7 @@ export default function Notice({
         <Link
           target="_blank"
           onClick={() => setSelectedNoticeId(null)}
-          href={`https://dev-api.id.myabcwallet.com/query/v2/notice?language=ko&service=wallet-homepage`}
+          href={`https://dev-api.id.myabcwallet.com/query/v2/notice?language=${locale}&service=wallet-homepage`}
           className={`flex ${
             isDesktop || isLargeDesktop
               ? "mt-[60px] py-[18px] pr-[80px] pl-[100px] text-xl leading-normal text-[#454854] rounded-lg border border-[#5c6070] hover:bg-[#6d23ef] hover:text-[#fff] gap-2"
