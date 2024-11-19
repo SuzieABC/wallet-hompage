@@ -27,7 +27,10 @@ export default function Enquiry({
   //     );
   //   };
   return (
-    <div className={`flex flex-col max-w-[1440px] w-full`}>
+    <div
+      className={`flex flex-col max-w-[1440px] w-full`}
+      style={{ visibility: windowWidth ? "visible" : "hidden" }}
+    >
       <div
         className={`bg-[#6D23EF] flex flex-col  ${
           isMobile

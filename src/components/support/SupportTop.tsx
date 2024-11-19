@@ -25,6 +25,7 @@ export default function SupportTop({ title }: SupportTopProps) {
             ? bg_desktop.src
             : bg_desktop.src
         })`,
+        visibility: windowWidth ? "visible" : "hidden",
         backgroundPosition: "center",
         backgroundSize: "cover",
         overflow: "hidden",
