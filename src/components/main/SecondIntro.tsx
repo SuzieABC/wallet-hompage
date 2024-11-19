@@ -96,7 +96,7 @@ export default function IntroOne({
     if (containerRef.current) {
       const { scrollLeft, offsetWidth, scrollWidth } = containerRef.current;
       const cardWidth = scrollWidth / cards.length; // 전체 콘텐츠 너비에서 각 카드의 너비 계산
-      let newIndex = Math.ceil(scrollLeft / cardWidth); // 정확한 인덱스 계산을 위해 반올림 사용
+      let newIndex = Math.round(scrollLeft / cardWidth); // 정확한 인덱스 계산을 위해 반올림 사용
       const totalScrollWidth = scrollWidth - offsetWidth;
 
       // 마지막 카드 도달 시 인덱스 조정
