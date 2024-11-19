@@ -1,12 +1,13 @@
 import { createTranslation } from "@/utils/localization/server";
 import { LocaleTypes } from "@/utils/localization/settings";
-import Top from "@/components/main/Top";
-import FirstIntro from "@/components/main/FirstIntro";
-import SecondIntro from "@/components/main/SecondIntro";
-import ThirdIntro from "@/components/main/ThirdIntro";
-import FourthIntro from "@/components/main/FourthIntro";
-import FifthIntro from "@/components/main/FifthIntro";
-import Bottom from "@/components/main/Bottom";
+import dynamic from "next/dynamic";
+const Top = dynamic(() => import("@/components/main/Top"));
+const FirstIntro = dynamic(() => import("@/components/main/FirstIntro"));
+const SecondIntro = dynamic(() => import("@/components/main/SecondIntro"));
+const ThirdIntro = dynamic(() => import("@/components/main/ThirdIntro"));
+const FourthIntro = dynamic(() => import("@/components/main/FourthIntro"));
+const FifthIntro = dynamic(() => import("@/components/main/FifthIntro"));
+const Bottom = dynamic(() => import("@/components/main/Bottom"));
 
 export default async function Page({
   params: { locale },
