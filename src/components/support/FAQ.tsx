@@ -5,10 +5,9 @@ import Link from "next/link";
 import Image from "next/image";
 import arrow_right_colour from "@/assets/icons/support/support_arrow_right_colour_icon.png";
 import arrow_right from "@/assets/icons/support/support_arrow_right_icon.png";
-import arrow_down from "@/assets/icons/support/support_arrow_down_icon.png";
-import arrow_down_white from "@/assets/icons/support/support_arrow_down_white_icon.png";
 // import MOCKDATA from "@/data/NOTICE.json";
 import useWindowWidth from "@/utils/hooks/useWindowWidth";
+import ViewAllButton from "@/components/elements/ViewAllButton";
 
 interface NoticeData {
   question?: string;
@@ -27,11 +26,9 @@ interface NoticeProps {
 }
 export default function FAQ({ datas, faq_title, button, locale }: NoticeProps) {
   const windowWidth = useWindowWidth();
-
   const isDesktop = windowWidth >= 1024;
 
   const [selectedNoticeId, setSelectedNoticeId] = useState<string | null>(null);
-  const [isHovering, setIsHovering] = useState(false);
 
   const items: NoticeData[] = datas
     .slice(0, isDesktop ? 5 : 4)
@@ -46,6 +43,7 @@ export default function FAQ({ datas, faq_title, button, locale }: NoticeProps) {
 
   return (
     <div
+      style={{ visibility: windowWidth ? "visible" : "hidden" }}
       className={`max-w-[1440px] w-full flex flex-col  ${
         isDesktop ? "pb-[160px] px-[40px]" : "py-[60px] px-[20px]"
       }`}
@@ -131,30 +129,13 @@ export default function FAQ({ datas, faq_title, button, locale }: NoticeProps) {
           </Link>
         ))}
       </ul>
-      <div
-        className={`font-pretendardMedium uppercase  flex items-center justify-center`}
-      >
-        <Link
-          target="_blank"
-          onClick={() => setSelectedNoticeId(null)}
-          href={`https://dev-api.id.myabcwallet.com/query/v2/faq?language=${locale}&service=wallet-homepage`}
-          className={`flex ${
-            isDesktop
-              ? "mt-[60px] py-[18px] pr-[80px] pl-[100px] text-xl leading-normal text-[#454854] rounded-lg border border-[#5c6070] hover:bg-[#6d23ef] hover:text-[#fff] gap-2"
-              : "mt-[28px] py-[14px] pr-[44px] pl-[56px] text-base leading-tight text-[#5c6070] gap-1"
-          }`}
-          onMouseEnter={() => setIsHovering(true)}
-          onMouseLeave={() => setIsHovering(false)}
-        >
-          <span>{button}</span>
-          <Image
-            src={isDesktop && isHovering ? arrow_down_white : arrow_down}
-            alt="arrow_down"
-            width={24}
-            height={24}
-          />
-        </Link>
-      </div>
+      <ViewAllButton
+        button={button}
+        setSelectedNoticeId={(id) =>
+          setSelectedNoticeId(id ? String(id) : null)
+        }
+        url={`https://dev-api.id.myabcwallet.com/query/v2/faq?language=${locale}&service=wallet-homepage`}
+      />
     </div>
   );
 }
