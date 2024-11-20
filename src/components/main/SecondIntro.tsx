@@ -10,7 +10,6 @@ import card2 from "@/assets/images/main/secondIntro/second_card2_image.png";
 import card3 from "@/assets/images/main/secondIntro/second_card3_image.png";
 import card4 from "@/assets/images/main/secondIntro/second_card4_image.png";
 import useWindowWidth from "@/utils/hooks/useWindowWidth";
-
 import largeCard1 from "@/assets/images/main/secondIntro/second_main_1440_card_1_image.png";
 import largeCard2 from "@/assets/images/main/secondIntro/second_main_1440_card_2_image.png";
 import largeCard3 from "@/assets/images/main/secondIntro/second_main_1440_card_3_image.png";
@@ -91,7 +90,10 @@ export default function IntroOne({
     if (containerRef.current) {
       const { scrollLeft, offsetWidth, scrollWidth } = containerRef.current;
       const cardWidth = scrollWidth / cards.length; // 전체 콘텐츠 너비에서 각 카드의 너비 계산
-      let newIndex = Math.round(scrollLeft / cardWidth); // 정확한 인덱스 계산을 위해 반올림 사용
+      let newIndex =
+        scrollLeft < 45
+          ? Math.round(scrollLeft / cardWidth)
+          : Math.ceil(scrollLeft / cardWidth);
       const totalScrollWidth = scrollWidth - offsetWidth;
 
       // 마지막 카드 도달 시 인덱스 조정
