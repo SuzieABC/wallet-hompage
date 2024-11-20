@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import Tags from "@/components/elements/Tags";
+import useWindowWidth from "@/utils/hooks/useWindowWidth";
 import bitcoinIcon from "@/assets/icons/main/fourthIntro/bitcoin.png";
 import ethereumIcon from "@/assets/icons/main/fourthIntro/ethereum.png";
 import kaiaIcon from "@/assets/icons/main/fourthIntro/kaia.png";
@@ -12,7 +14,6 @@ import oasysIcon from "@/assets/icons/main/fourthIntro/oasys.png";
 import fncyIcon from "@/assets/icons/main/fourthIntro/fncy.png";
 import xLayerIcon from "@/assets/icons/main/fourthIntro/x_layer.png";
 import scrollIcon from "@/assets/icons/main/fourthIntro/scroll.png";
-import useWindowWidth from "@/utils/hooks/useWindowWidth";
 import dapps1024Image from "@/assets/images/main/dapp_1024_image.png";
 import dappsMobileImage from "@/assets/images/main/dapp_mobile_image.png";
 import dapps1440Image from "@/assets/images/main/dapp_1440_image.png";
@@ -105,36 +106,12 @@ export default function FourthIntro({
               isMobile ? "gap-2" : "gap-3"
             } px-[1px]`}
           >
-            {coins.map((item) => (
-              <div
-                key={item.name}
-                className="self-stretch justify-center items-center gap-2 inline-flex"
-              >
-                <div
-                  className={`${
-                    isMobile
-                      ? "p-3"
-                      : isTablet
-                      ? "px-[16px] py-[12px]"
-                      : "px-[32px] py-[20px]"
-                  } bg-[#e3e4e8] rounded-[80px] justify-center items-center gap-1.5 flex`}
-                >
-                  <Image
-                    src={item.icon}
-                    alt={item.name}
-                    width={isDesktop || isLargeDesktop ? 48 : 24}
-                    height={isDesktop || isLargeDesktop ? 48 : 24}
-                  />
-                  <div
-                    className={`text-center text-black  font-pretendardMedium ${
-                      isDesktop || isLargeDesktop ? "text-xl" : "text-[15px]"
-                    }`}
-                  >
-                    {item.name}
-                  </div>
-                </div>
-              </div>
-            ))}
+            <Tags
+              coins={coins.map((coin) => ({
+                name: coin.name,
+                icon: coin.icon.src,
+              }))}
+            />
           </div>
         </div>
 
