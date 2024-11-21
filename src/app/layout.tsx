@@ -21,8 +21,8 @@ import "@/styles/globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://myabcwallet.io/"),
 
-  title: "ABC Wallet - AhnLab Blockchain Company",
-  description: "Stay Secure, Explore Freely",
+  title: "ABC Wallet",
+  description: "안전한 Web3 지갑 | Ahnlab Blockchain Company",
   openGraph: {
     images: [
       {
