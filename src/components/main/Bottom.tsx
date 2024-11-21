@@ -16,7 +16,7 @@ export default function Bottom() {
     <div
       className={`flex flex-col items-center w-full relative bg-[#211837] ${
         isLargeDesktop
-          ? "pt-[32px] mb-[72px] pb-[166px]"
+          ? "pt-[104px] mb-[72px] pb-[166px]"
           : isDesktop
           ? "pt-[104px] pb-[166px]"
           : isTablet
@@ -40,7 +40,7 @@ export default function Bottom() {
             : isTablet
             ? 166
             : isDesktop
-            ? 128
+            ? 218
             : isLargeDesktop
             ? 218
             : 166
