@@ -62,7 +62,7 @@ export default function Top({
             ? "pt-[100px] px-[20px] flex-col"
             : isDesktop
             ? "pt-[140px] px-[40px] flex-col"
-            : "pr-[70.54px] pt-[113.43px] flex-row px-[40px] justify-between"
+            : "pt-[113.43px] flex-row px-[40px] justify-between"
         }`}
       >
         <div
@@ -71,7 +71,7 @@ export default function Top({
           }`}
         >
           <div
-            className={`mx-[20px] flex flex-col ${
+            className={`flex flex-col ${
               isLargeDesktop ? "items-start w-[494px]" : "items-center"
             } tracking-[-0.19px]`}
           >
@@ -117,7 +117,7 @@ export default function Top({
                 {subtitle_2}&nbsp;
               </span>
               <span
-                className="text-[#6d23ef] leading-none
+                className="text-[#6d23ef] leading-none whitespace-pre
                   mobile:text-[38px] mobile:font-pretendardBold
                   tablet:text-[50px] tablet:font-pretendardSemibold
                   desktop:text-[64px] desktop:font-pretendardSemibold
@@ -139,8 +139,8 @@ export default function Top({
           src={isMobile ? mobile : isTablet ? tablet : desktop}
           alt="mobile"
           priority
-          className={`h-auto mobile:w-[320px] tablet:w-[528.84px]
-              desktop:w-[649.53px] largeDesktop:w-[788.083px]`}
+          className={`h-auto mobile:w-[320px] tablet:w-[530px]
+              desktop:w-[649.53px] largeDesktop:w-[772px]`}
         />
       </div>
     </div>

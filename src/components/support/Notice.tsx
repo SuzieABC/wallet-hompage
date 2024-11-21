@@ -1,13 +1,14 @@
 "use client";
+
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import dayjs from "dayjs";
+import useWindowWidth from "@/utils/hooks/useWindowWidth";
+import ViewAllButton from "@/components/elements/ViewAllButton";
 import arrow_right_colour from "@/assets/icons/support/support_arrow_right_colour_icon.png";
 import arrow_right from "@/assets/icons/support/support_arrow_right_icon.png";
 // import MockData from "@/data/NOTICE.json";
-import useWindowWidth from "@/utils/hooks/useWindowWidth";
-import ViewAllButton from "@/components/elements/ViewAllButton";
 
 interface NoticeData {
   title?: string;
@@ -40,14 +41,7 @@ export default function Notice({
 
   const [selectedNoticeId, setSelectedNoticeId] = useState<string | null>(null);
 
-  const items: NoticeData[] = datas.slice(0, 4).map((data: NoticeData) => ({
-    title: data.title,
-    update_time: data.update_time,
-    language_type: data.language_type,
-    create_time: data.create_time,
-    notice_id: data.notice_id,
-    service_type: data.service_type,
-  }));
+  const items = datas.slice(0, 4);
 
   const formatDate = (date?: string) => {
     return date ? dayjs(date).format("YYYY. MM. DD") : "";

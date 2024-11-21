@@ -3,11 +3,11 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import useWindowWidth from "@/utils/hooks/useWindowWidth";
+import ViewAllButton from "@/components/elements/ViewAllButton";
 import arrow_right_colour from "@/assets/icons/support/support_arrow_right_colour_icon.png";
 import arrow_right from "@/assets/icons/support/support_arrow_right_icon.png";
 // import MOCKDATA from "@/data/NOTICE.json";
-import useWindowWidth from "@/utils/hooks/useWindowWidth";
-import ViewAllButton from "@/components/elements/ViewAllButton";
 
 interface NoticeData {
   question?: string;
@@ -30,16 +30,7 @@ export default function FAQ({ datas, faq_title, button, locale }: NoticeProps) {
 
   const [selectedNoticeId, setSelectedNoticeId] = useState<string | null>(null);
 
-  const items: NoticeData[] = datas
-    .slice(0, isDesktop ? 5 : 4)
-    .map((data: NoticeData) => ({
-      question: data.question,
-      update_time: data.update_time,
-      language_type: data.language_type,
-      create_time: data.create_time,
-      faq_id: data.faq_id,
-      service_type: data.service_type,
-    }));
+  const items = datas.slice(0, isDesktop ? 5 : 4);
 
   return (
     <div
@@ -73,13 +64,6 @@ export default function FAQ({ datas, faq_title, button, locale }: NoticeProps) {
                   isDesktop ? "gap-6" : "gap-4"
                 } relative`}
               >
-                {/* <p
-                className={`text-[#5c6070] ${
-                  isDesktop ? "text-base" : "text-sm"
-                } font-pretendardMedium`}
-              >
-                {formatDate(item.update_time)}
-              </p> */}
                 {isDesktop ? (
                   <p
                     style={{
