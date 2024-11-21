@@ -235,7 +235,7 @@ export default function IntroOne({
                   isMobile || isTablet
                     ? "gap-4"
                     : index === 2
-                    ? "gap-6 w-full"
+                    ? "gap-6"
                     : "gap-6 pl-[10px]"
                 } inline-flex ${isLargeDesktop && "group-hover:pb-[4.5px]"}`}
               >
