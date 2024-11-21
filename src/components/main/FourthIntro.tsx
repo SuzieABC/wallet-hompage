@@ -14,6 +14,8 @@ import oasysIcon from "@/assets/icons/main/fourthIntro/oasys.png";
 import fncyIcon from "@/assets/icons/main/fourthIntro/fncy.png";
 import xLayerIcon from "@/assets/icons/main/fourthIntro/x_layer.png";
 import scrollIcon from "@/assets/icons/main/fourthIntro/scroll.png";
+import avalancheIcon from "@/assets/icons/main/fourthIntro/avalanche.png";
+import tWalletIcon from "@/assets/icons/main/fourthIntro/t_wallet.png";
 import dapps1024Image from "@/assets/images/main/dapp_1024_image.png";
 import dappsMobileImage from "@/assets/images/main/dapp_mobile_image.png";
 import dapps1440Image from "@/assets/images/main/dapp_1440_image.png";
@@ -40,12 +42,14 @@ export default function FourthIntro({
     { name: "Bitcoin", icon: bitcoinIcon },
     { name: "Ethereum", icon: ethereumIcon },
     { name: "Kaia", icon: kaiaIcon },
-    { name: "Polygon PoS", icon: polygonIcon },
-    { name: "BNB Smart Chain", icon: bnbIcon },
+    { name: "Polygon", icon: polygonIcon },
+    { name: "BNB", icon: bnbIcon },
     { name: "Aptos", icon: aptosIcon },
-    { name: "Arbitrum One", icon: arbitrumIcon },
+    { name: "Arbitrum", icon: arbitrumIcon },
+    { name: "Avalanche C", icon: avalancheIcon },
     { name: "Oasys", icon: oasysIcon },
     { name: "FNCY", icon: fncyIcon },
+    { name: "T wallet mainnet", icon: tWalletIcon },
     { name: "X Layer", icon: xLayerIcon },
     { name: "Scroll", icon: scrollIcon },
   ];
