@@ -131,16 +131,27 @@ export default function Top({
               </span>
               {(isLargeDesktop || isExtraLargeDesktop) && <br />}
               <span
-                className={`text-[#6d23ef] font-archivoSemibold text-center 
-                    mobile:text-[38px] 
-                    tablet:text-[50px] 
-                    desktop:text-[64px] ${
-                      pathName === "/ja" && isExtraLargeDesktop
-                        ? "leading-[92.40px] text-[84px]"
-                        : (pathName === "/en" || pathName === "/ko") &&
-                          isExtraLargeDesktop &&
-                          "leading-[97.44px] text-[84px]"
-                    }`}
+                // className={`text-[#6d23ef] font-archivoSemibold text-center
+                //     mobile:text-[38px]
+                //     tablet:text-[50px]
+                //     desktop:text-[64px] ${
+                //       pathName === "/ja" && isExtraLargeDesktop
+                //         ? "leading-[92.40px] text-[84px]"
+                //         : (pathName === "/en" || pathName === "/ko") &&
+                //           isExtraLargeDesktop &&
+                //           "leading-[97.44px] text-[84px]"
+                //     }`}
+                className={`text-[#6d23ef] font-archivoSemibold text-center ${
+                  isMobile
+                    ? "text-[38px]"
+                    : isTablet
+                    ? "text-[50px]"
+                    : isDesktop
+                    ? `text-[64px]`
+                    : isLargeDesktop
+                    ? "text-[80px]"
+                    : "text-[84px]"
+                }`}
               >
                 {subtitle_2}&nbsp;
               </span>
