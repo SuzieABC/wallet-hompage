@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import {
   geistSans,
   geistMono,
-  pretendard,
   pretendardLight,
   pretendardRegular,
   pretendardMedium,
@@ -41,7 +40,6 @@ export default function RootLayout({
   const fontClasses = [
     geistSans.variable,
     geistMono.variable,
-    pretendard.variable,
     pretendardLight.variable,
     pretendardRegular.variable,
     pretendardMedium.variable,

@@ -5,67 +5,60 @@ export const geistSans = localFont({
     variable: "--font-geist-sans",
     weight: "100 900",
   });
-  export const geistMono = localFont({
-    src: "./../assets/fonts/GeistMonoVF.woff",
-    variable: "--font-geist-mono",
-    weight: "100 900",
-  });
-  
-  export const pretendard = localFont({
-    src: "./../assets/fonts/Pretendard-Medium.woff",
-    display: "swap",
-    weight: "45 920",
-    variable: "--font-pretendard",
-  });
-  
-  export const pretendardLight = localFont({
-    src: "./../assets/fonts/Pretendard-Light.woff",
-    display: "swap",
-    weight: "45 920",
-    variable: "--font-pretendardLight",
-  });
+export const geistMono = localFont({
+  src: "./../assets/fonts/GeistMonoVF.woff",
+  variable: "--font-geist-mono",
+  weight: "100 900",
+});
 
-  export const pretendardRegular = localFont({
-    src:"./../assets/fonts/Pretendard-Regular.woff",
-    display: "swap",
-    weight: "45 920",
-    variable: "--font-pretendardRegular",  
-  })
+export const pretendardLight = localFont({
+  src: "./../assets/fonts/PretendardJP-Light.otf",
+  display: "swap",
+  weight: "45 920",
+  variable: "--font-pretendardLight",
+});
 
-  export const pretendardMedium = localFont({
-    src:"./../assets/fonts/Pretendard-Medium.woff",
-    display: "swap",
-    weight: "45 920",
-    variable: "--font-pretendardMedium",  
-  })
-  
-  export const pretendardSemibold = localFont({
-    src: "./../assets/fonts/Pretendard-SemiBold.woff",
-    display: "swap",
-    weight: "45 920",
-    variable: "--font-pretendardSemibold",
-  });
+export const pretendardRegular = localFont({
+  src:"./../assets/fonts/PretendardJP-Regular.otf",
+  display: "swap",
+  weight: "45 920",
+  variable: "--font-pretendardRegular",  
+})
 
-    export const pretendardBold = localFont({
-    src: "./../assets/fonts/Pretendard-Bold.woff",
-    display: "swap",
-    weight: "45 920",
-    variable: "--font-pretendardBold",
-  });
-  
-  export const pretendardExtrabold = localFont({
-    src: "./../assets/fonts/Pretendard-ExtraBold.woff",
-    display: "swap",
-    weight: "45 920",
-    variable: "--font-pretendardExtrabold",
-  });
+export const pretendardMedium = localFont({
+  src:"./../assets/fonts/PretendardJP-Medium.otf",
+  display: "swap",
+  weight: "45 920",
+  variable: "--font-pretendardMedium",  
+})
 
-  export const archivoRegular = localFont({
-    src: "./../assets/fonts/Archivo-Regular.ttf",
-    display: "swap",
-    weight: "45 920",
-    variable: "--font-archivoRegular",
-  });
+export const pretendardSemibold = localFont({
+  src: "./../assets/fonts/PretendardJP-SemiBold.otf",
+  display: "swap",
+  weight: "45 920",
+  variable: "--font-pretendardSemibold",
+});
+
+  export const pretendardBold = localFont({
+  src: "./../assets/fonts/PretendardJP-Bold.otf",
+  display: "swap",
+  weight: "45 920",
+  variable: "--font-pretendardBold",
+});
+
+export const pretendardExtrabold = localFont({
+  src: "./../assets/fonts/PretendardJP-ExtraBold.otf",
+  display: "swap",
+  weight: "45 920",
+  variable: "--font-pretendardExtrabold",
+});
+
+export const archivoRegular = localFont({
+  src: "./../assets/fonts/Archivo-Regular.ttf",
+  display: "swap",
+  weight: "45 920",
+  variable: "--font-archivoRegular",
+});
 
 export const archivoMedium = localFont({
   src: "./../assets/fonts/Archivo-Medium.ttf",
@@ -88,9 +81,9 @@ export const archivoBold = localFont({
   variable: "--font-archivoBold",
     });
 
-    export const outfitExtrabold = localFont({
-      src: "./../assets/fonts/Outfit-ExtraBold.woff",
-      display: "swap",
-      weight: "45 920",
-      variable: "--font-outfitExtrabold",
-    });
+export const outfitExtrabold = localFont({
+  src: "./../assets/fonts/Outfit-ExtraBold.woff",
+  display: "swap",
+  weight: "45 920",
+  variable: "--font-outfitExtrabold",
+});
