@@ -1,34 +1,44 @@
 import { NextResponse, NextRequest } from "next/server";
-import { fallbackLng, locales } from "@/utils/localization/settings";
+import { fallbackLng, locales, LocaleTypes } from "@/utils/localization/settings";
 
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
-  // Check if the default locale is in the pathname
-  if (pathname.startsWith(`/${fallbackLng}`)) {
-    // Fallback locale이 경로에 포함된 경우, 이를 제거하여 리다이렉트
-    return NextResponse.redirect(
-      new URL(
-        pathname.replace(`/${fallbackLng}`, pathname === `/${fallbackLng}` ? "/" : ""),
-        request.url
-      )
-    );
-  }
-
-  // Check if the pathname is missing any locale
-  const pathnameIsMissingLocale = !locales.some(
+  // 1. URL에 이미 언어 경로가 포함된 경우
+  const isLocalePresent = locales.some(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   );
 
-  if (pathnameIsMissingLocale) {
-    // locale이 없는 경로일 경우 rewrite
-    return NextResponse.rewrite(new URL(`/${fallbackLng}${pathname}`, request.url));
+  if (isLocalePresent) {
+    // 언어 경로가 있는 경우 그대로 진행
+    return NextResponse.next();
   }
+
+  // 2. 브라우저 언어 감지
+  const acceptLanguage = request.headers.get("accept-language") || "";
+  const detectedLanguage = detectLanguage(acceptLanguage);
+
+  // 3. 감지된 언어에 따라 리다이렉트
+  const redirectUrl = new URL(`/${detectedLanguage}${pathname}`, request.url);
+  return NextResponse.redirect(redirectUrl);
 }
 
+// 언어 감지 함수
+function detectLanguage(acceptLanguageHeader: string): LocaleTypes {
+  const languages = acceptLanguageHeader
+    .split(",")
+    .map((lang) => {
+      const [code] = lang.split(";"); // 'en-US;q=0.9' → 'en-US'
+      return code.split("-")[0] as LocaleTypes; // 'en-US' → 'en'
+    });
+
+  // 지원 언어 중 감지된 언어 반환, 없으면 기본 언어 반환
+  return languages.find((lang) => locales.includes(lang)) || fallbackLng;
+}
+
+// 미들웨어가 적용될 경로 설정
 export const config = {
   matcher: [
-    // 특정 경로에만 미들웨어가 적용되도록 matcher 설정
     "/((?!api|.*\\..*|_next/static|_next/image|manifest.json|assets|favicon.ico).*)",
   ],
 };
